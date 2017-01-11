@@ -63,6 +63,7 @@ set.seed(1234)
 
 ```
 
+
 ##Plotting
 
 Once we have all the data available we can start plotting it. We will create a Karyoplot of 
@@ -70,6 +71,7 @@ the human genome with 2 data panels, one over and one below the ideogram. In ord
 better see the data we will create a karyoplot with only 3 chromosomes.
 
 ###Data Panel 1
+
 In the data panel 1, the top one, we will plot the big regions and the data points going from
 the ideogram r0=0 to 80% of the panel r1=0.8 and we'll use the top 20% (r0=0.8, r1=1) to plot
 the markers.
@@ -142,7 +144,7 @@ label outside the data panel margins with a simple **kpText**.
     kpPlotCoverage(kp, data=mid.regs, r0=0.2, r1=0, col=data.points.colors[2], data.panel = 2)
     kpPlotCoverage(kp, data=mid.regs, r0=0.2, r1=0.12, col=data.points.colors[1], data.panel = 2)
     
-    kpText(kp,  y=0.4, x=0, data.panel = 2, r0=0.2, r1=0, col="#444444", label="30x", cex=0.8, pos=2)
+    kpText(kp, chr=seqlevels(kp$genome), y=0.4, x=0, data.panel = 2, r0=0.2, r1=0, col="#444444", label="30x", cex=0.8, pos=2)
     kpAbline(kp, h=0.4, data.panel = 2, r0=0.2, r1=0, col=data.points.colors[3])
     
 dev.off()
