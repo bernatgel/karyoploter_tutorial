@@ -29,7 +29,7 @@ and run the R code.
 
     A plot with multiple data types plotted together. 
     
-    ![Multiple Data Types Figure](Examples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
+    ![Multiple Data Types Figure](Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
 
 
 *** 
