@@ -25,7 +25,7 @@ and run the R code.
     
 ## Complete Examples
 
-* [Example 1 - Multiple data types](Examples/MultipleDataTypes/MultipleDataTypes.md)
+* [Example 1 - Multiple data types](Examples/CompleteExamples/MultipleDataTypes/MultipleDataTypes.md)
 
     A plot with multiple data types plotted together. 
     
