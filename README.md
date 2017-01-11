@@ -1,7 +1,7 @@
 # Examples of plots created with karyoploteR
 
-This repo contains a number of small examples on how to use the Bioconductor package [karyoploteRR](http://bioconductor.org/packages/release/bioc/html/karyoploteR.html) 
-to create karyoplots, that it, the chromosome ideograms accompained by any arbitrary
+This repo contains a number of small examples on how to use the Bioconductor package [karyoploteR](http://bioconductor.org/packages/release/bioc/html/karyoploteR.html) 
+to create karyoplots, that is, the chromosome ideograms accompained by any arbitrary
 data.
 
 The first part is a tutorial-like series of simple examples showing the different parts
