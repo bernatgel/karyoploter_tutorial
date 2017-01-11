@@ -11,7 +11,7 @@ and [rakyoploteR](http://bioconductor.org/packages/release/bioc/html/karyoploteR
 will use the [zoo](https://cran.r-project.org/package=zoo) package to compute the rolling 
 meand and sd of the data points.
 
-##Data Creation
+## Data Creation
 
 We will use different calls to **createRandomRegions** from regioneR to create the random 
 positions and regions in the genome and calls to **runif** and **rnorm** to create the data
@@ -60,13 +60,13 @@ set.seed(1234)
 ```
 
 
-##Plotting
+## Plotting
 
 Once we have all the data available we can start plotting it. We will create a Karyoplot of 
 the human genome with 2 data panels, one over and one below the ideogram. In order to 
 better see the data we will create a karyoplot with only 3 chromosomes.
 
-###Data Panel 1
+### Data Panel 1
 
 In the data panel 1, the top one, we will plot the big regions and the data points going from
 the ideogram r0=0 to 80% of the panel r1=0.8 and we'll use the top 20% (r0=0.8, r1=1) to plot
@@ -146,15 +146,6 @@ label outside the data panel margins with a simple **kpText**.
 ```
 
 ![plot of chunk Figure](figure/Figure-1.png)
-
-```r
-dev.off()
-```
-
-```
-## null device 
-##           1
-```
 
 
 

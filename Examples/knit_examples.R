@@ -1,6 +1,7 @@
 #Iterate through all the directories and knit all Rmd's
 
 
+
 library(knitr)
 
 
