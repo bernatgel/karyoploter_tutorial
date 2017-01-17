@@ -108,7 +108,7 @@ plot will be flipped. This is a very useful trick to invert the plotting coordin
 Finally, we add a horizontal bar depicting a fake 30x level with **kpAbline** and add a text
 label outside the data panel margins with a simple **kpText**.
 
-```{r Figure, message=FALSE, warning=FALSE, }
+```{r Figure, message=FALSE, warning=FALSE,  fig.width=11, fig.height=11}
   kp <- plotKaryotype(plot.type = 2, chromosomes = c("chr1", "chr2", "chr3"))
 
   ### Data Panel 1 ###
