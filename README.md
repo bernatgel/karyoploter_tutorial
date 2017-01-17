@@ -4,6 +4,11 @@ This repo contains a number of small examples on how to use the Bioconductor pac
 to create karyoplots, that is, the chromosome ideograms accompained by any arbitrary
 data.
 
+**IMPORTANT NOTE:** At the moment karyoploteR is only available in the _devel_ version 
+of Bioconductor. Therefore it will only be available on R-devel instances. Please refer to the 
+documentation on [how to use Bioconductor devel](https://www.bioconductor.org/developers/how-to/useDevel/) 
+for more information.
+
 The first part is a tutorial-like series of simple examples showing the different parts
 of karyoploteR and how to use them. The second part contains more involved and complete
 stand-alone examples. 
@@ -13,14 +18,14 @@ and run the R code.
 
 ## Tutorial
 
-* [Example 1 - Create Random Regions](examples/CreateRandomRegions/CreateRandomRegions.md)
+* [Example 1 - Plot ideograms](Examples/Tutorial/CreateIdeogram/CreateIdeogram.md)
 
-    Create a number of regions randomily placed along the genome.
+    Create empty ideograms (with no data plotted) for different organisms
     
      
-* [Example 2 - Creating GenomicRanges](examples/CreateGenomicRanges/CreateGenomicRanges.md)
+* [Example 2 - Filter and reorder chromosomes](Examples/Tutorial/FilterChromosomes/FilterChromosomes.md)
 
-    Create a GenomicRanges (GRanges) object from a data.frame or a local or external file.
+    Create ideograms of a subset of chromosomes and plot them in any order
     
     
 ## Complete Examples
@@ -34,4 +39,4 @@ and run the R code.
 
 *** 
 
-For more extensive documentation on keryoploteR, please refer to the [vignette](http://bioconductor.org/packages/release/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf) and the [reference manual](http://bioconductor.org/packages/release/bioc/manuals/karyoploteR/man/karyoploteR.pdf)
+For more extensive documentation on keryoploteR, please refer to the [vignette](http://bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf) and the [reference manual](http://bioconductor.org/packages/devel/bioc/manuals/karyoploteR/man/karyoploteR.pdf)

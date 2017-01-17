@@ -1,7 +1,6 @@
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-
 ```
 
 In this examples we will use the Bioconductor package
