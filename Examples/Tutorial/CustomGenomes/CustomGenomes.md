@@ -19,6 +19,7 @@ kp <- plotKaryotype(genome = custom.genome)
 ```
 
 ![plot of chunk Figure1](figure/Figure1-1.png)
+
 or using regioneR's **toGRanges** to read the chromosome from a file, in this case 
 *mygenome.txt*
 
