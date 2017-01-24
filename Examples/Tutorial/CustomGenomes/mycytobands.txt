@@ -1,0 +1,11 @@
+chr	start	end	name	gieStain
+A	1	10	A1	gneg
+A	10	20	A2	acen
+A	20	50	A3	gpos50
+A	50	80	A4	gneg
+A	80	100	A5	gpos75
+B	1	20	B1	stalk
+B	20	50	B1	gpos25
+B	50	100	B2	gneg
+B	100	150	B3	gvar
+B	150	200	B4	gpos25

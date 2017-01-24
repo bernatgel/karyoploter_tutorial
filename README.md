@@ -27,7 +27,11 @@ and run the R code.
 
     Create ideograms of a subset of chromosomes and plot them in any order
     
+* [Example 3 - Using custom genomes](Examples/Tutorial/CustomGenomes/CustomGenomes.md)
     
+    Create ideograms using your own custom genomes including specifying your own cytobands
+
+
 * More to come soon...    
     
 ## Complete Examples
