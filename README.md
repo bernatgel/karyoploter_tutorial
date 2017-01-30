@@ -31,6 +31,11 @@ and run the R code.
     
     Create ideograms using your own custom genomes including specifying your own cytobands
 
+* [Example 4 - Adding base numbers and cytoband labels](Examples/Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.md)
+    
+    Add a base numbering guide to the ideograms and label the cytobands with their names
+
+
 
 * More to come soon...    
     
