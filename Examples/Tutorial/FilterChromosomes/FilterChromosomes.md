@@ -13,9 +13,7 @@ We can specify a vector of chromosome names (note that the chromosomes will be p
 kp <- plotKaryotype(genome = "hg19", chromosomes=c("chr10", "chr12", "chr2"))
 ```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
+![plot of chunk Figure1](figure/Figure1-1.png)
 
 Since internally plotKaryotype uses regioneR's **filterChromosomes**, we can specify predefined
 sets of chromosomes in many genomes. By default it only plots canonical chromosomes.
@@ -27,9 +25,7 @@ For example, we can plot only autosomal chromosomes in hg19
 kp <- plotKaryotype(genome = "hg19", chromosomes="autosomal")
 ```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
+![plot of chunk Figure2](figure/Figure2-1.png)
 
 Chromosome specification can also be used to reorder the chromosomes, so for example,
 to plot the canonical in reverse order, we can simply specify them as:
@@ -39,6 +35,4 @@ to plot the canonical in reverse order, we can simply specify them as:
 kp <- plotKaryotype(genome = "hg19", chromosomes=rev(paste0("chr", c(1:22, "X", "Y"))))
 ```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
+![plot of chunk Figure3](figure/Figure3-1.png)

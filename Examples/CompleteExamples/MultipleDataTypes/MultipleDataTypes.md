@@ -22,7 +22,13 @@ values:
 library(karyoploteR)
 library(regioneR)
 library(zoo)
+```
 
+```
+## Error in library(zoo): there is no package called 'zoo'
+```
+
+```r
 set.seed(1234)
 
 #Parameters
@@ -108,49 +114,17 @@ label outside the data panel margins with a simple **kpText**.
 
 ```r
   kp <- plotKaryotype(plot.type = 2, chromosomes = c("chr1", "chr2", "chr3"))
-```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
-
-```r
   ### Data Panel 1 ###
 
   #Big regions
   kpRect(kp, data = big.regs.up, y0=0, y1=1, col="#FFDDDD", border=NA, r0=0, r1=0.8)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
   kpRect(kp, data = big.regs.down, y0=0, y1=1, col="#DDFFDD", border=NA, r0=0, r1=0.8)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
+  
   #Data points
   kpAxis(kp, ymin = 0, ymax = 1, r0=0, r1=0.8, numticks = 5, col="#666666", cex=0.5)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
   kpPoints(kp, data=data.points, pch=16, cex=0.5, col=dp.colors, r0=0, r1=0.8)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
+  
   #Mean and sd of the data points.  
   for(chr in seqlevels(kp$genome)) {
     chr.dp <- sort(keepSeqlevels(x = data.points, value = chr))
@@ -163,69 +137,45 @@ label outside the data panel margins with a simple **kpText**.
 ```
 
 ```
-## Error in seqlevels(kp$genome): object 'kp' not found
+## Error in GenomeInfoDb:::getDanglingSeqlevels(x, new2old = new2old, force = force, : The following seqlevels are to be dropped but are currently in use
+##   (i.e. have ranges on them): chr2, chr3, chr4, chr5, chr6, chr7,
+##   chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16,
+##   chr17, chr18, chr19, chr20, chr21, chr22, chrX, chrY,
+##   chr1_gl000192_random, chr6_apd_hap1, chr6_cox_hap2, chr6_dbb_hap3,
+##   chr6_mann_hap4, chr6_mcf_hap5, chr6_qbl_hap6, chr6_ssto_hap7,
+##   chr17_ctg5_hap1, chr17_gl000205_random, chr19_gl000208_random,
+##   chrUn_gl000211, chrUn_gl000219. Please use the 'pruning.mode'
+##   argument to control how to prune 'x', that is, how to remove the
+##   ranges in 'x' that are on these sequences. For example, do
+##   something like:
+##   
+##   seqlevels(x, pruning.mode="coarse") <- new_seqlevels
+##   
+##   or
+##   
+##   keepSeqlevels(x, new_seqlevels, pruning.mode="coarse")
+##   
+##   See ?seqinfo for a description of the pruning modes.
 ```
 
 ```r
   #Markers
     kpSegments(kp, chr=seqlevels(marks), x0 = start(marks), x1 = start(marks), y0=0, y1=1, r0=0, r1=0.85, col="#666666")
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
     kpText(kp, chr=seqlevels(marks), x = start(marks), y=0.5, r0=0.85, r1=1, labels = as.character(marks$label), col="#333333", cex=0.5) 
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
+    
   ### Data Panel 2 ###
     
   #medium regions and their coverage
     
     kpPlotRegions(kp, data = mid.regs, r0 = 0.2, r1=1, border=NA, data.panel=2)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
     kpPlotCoverage(kp, data=mid.regs, r0=0.2, r1=0, col=data.points.colors[2], data.panel = 2)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
     kpPlotCoverage(kp, data=mid.regs, r0=0.2, r1=0.12, col=data.points.colors[1], data.panel = 2)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
+    
     kpText(kp, chr=seqlevels(kp$genome), y=0.4, x=0, data.panel = 2, r0=0.2, r1=0, col="#444444", label="30x", cex=0.8, pos=2)
-```
-
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
-
-```r
     kpAbline(kp, h=0.4, data.panel = 2, r0=0.2, r1=0, col=data.points.colors[3])
 ```
 
-```
-## Error in methods::is(karyoplot, "KaryoPlot"): object 'kp' not found
-```
+![plot of chunk Figure](figure/Figure-1.png)
 
 
 

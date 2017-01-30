@@ -16,9 +16,7 @@ library(karyoploteR)
 kp <- plotKaryotype()
 ```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
+![plot of chunk Figure1](figure/Figure1-1.png)
 
 It is possible to specify other genomes. If it's one of the few included in the 
 package it will be plotted from cache and if it's not, karyoploteR will try to load the 
@@ -32,9 +30,7 @@ BSGenome needs to be installed in the system. Use **installed.genomes()** from p
 kp <- plotKaryotype(genome = "dm6")
 ```
 
-```
-## Error in GenomeInfoDb::keepSeqlevels(cytobands, value = GenomeInfoDb::seqlevels(gr.genome), : unused argument (pruning.mode = "coarse")
-```
+![plot of chunk Figure2](figure/Figure2-1.png)
 
 
 
