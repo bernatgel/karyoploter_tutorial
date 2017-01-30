@@ -16,6 +16,7 @@ kpAddBaseNumbers(kp)
 ```
 
 ![plot of chunk Figure1](figure/Figure1-1.png)
+
 as with all other functions in karyoploteR it is possible to customize the 
 appearance of the numbering mostly using standard graphics parameters. In 
 addition, it is also possible to specify the distance between the tick marks 
@@ -57,6 +58,7 @@ kpAddCytobandLabels(kp, force.all = TRUE)
 ```
 
 ![plot of chunk Figure4](figure/Figure4-1.png)
+
 Again, it is possible to customize the plotting with the standard graphical
 parameters
 

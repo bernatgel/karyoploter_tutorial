@@ -18,6 +18,7 @@ kp <- plotKaryotype()
 kpAddBaseNumbers(kp)
 
 ```
+
 as with all other functions in karyoploteR it is possible to customize the 
 appearance of the numbering mostly using standard graphics parameters. In 
 addition, it is also possible to specify the distance between the tick marks 
@@ -57,6 +58,7 @@ kp <- plotKaryotype(chromosomes="chr17")
 kpAddCytobandLabels(kp, force.all = TRUE)
 
 ```
+
 Again, it is possible to customize the plotting with the standard graphical
 parameters
 
