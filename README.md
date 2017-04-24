@@ -18,10 +18,11 @@ and run the R code.
 
 ## Tutorial
 
+### Ideograms and other non-data graphical elements
+
 * [Example 1 - Plot ideograms](Examples/Tutorial/CreateIdeogram/CreateIdeogram.md)
 
     Create empty ideograms (with no data plotted) for different organisms
-    
      
 * [Example 2 - Filter and reorder chromosomes](Examples/Tutorial/FilterChromosomes/FilterChromosomes.md)
 
@@ -35,7 +36,15 @@ and run the R code.
     
     Add a base numbering guide to the ideograms and label the cytobands with their names
 
+### Low-level Plotting Functions
 
+* Comming soon
+
+### High Level Plotting Functions
+
+* [Example 5 - Plotting markers (genes, snps, ...)](Examples/Tutorial/PlotMarkers/PlotMarkers.md)
+
+    Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...
 
 * More to come soon...    
     
