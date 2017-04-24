@@ -22,13 +22,7 @@ values:
 library(karyoploteR)
 library(regioneR)
 library(zoo)
-```
 
-```
-## Error in library(zoo): there is no package called 'zoo'
-```
-
-```r
 set.seed(1234)
 
 #Parameters
@@ -40,7 +34,7 @@ set.seed(1234)
 
   num.mid.regions <- 6000
   
-  num.marks <- 30
+  num.marks <- 90
 
 #Create the random fake data  
 
@@ -59,7 +53,7 @@ set.seed(1234)
 
   #markers
   marks <- createRandomRegions(nregions = num.marks, length.mean = 1, length.sd = 0)
-  mcols(marks) <- data.frame(label=paste0("rs", floor(runif(num.marks, min = 10000, max=99999))))
+  mcols(marks) <- data.frame(labels=paste0("rs", floor(runif(num.marks, min = 10000, max=99999))))
 
   #medium regions
   mid.regs <- createRandomRegions(nregions = num.mid.regions, length.mean = 5000000, length.sd = 1000000)
@@ -88,11 +82,14 @@ rectangles. In addition, we will add an axis.
 Once the data points are plotted, we will add the mean and sd of the data points. We'll do 
 that chromosome per chromosome since the **rollmean** and **rollaply** functions from zoo 
 do not understand about chromosome separation. The mean will be plotted with **kpLines** 
-and the sd around the mean with a call to **kpPolygon**.
+and the sd around the mean with a call to **kpPlotRibbon**, that plots a variable width 
+polygon from y0 to y1.
 
-Finally, the markers will be plotted with a call to **kpSegments** followed by another one
-to **kpText**. The r0 and r1 parameters allow us to position the marker labels in the top 20%
-of the data panel.
+Finally, the markers will be plotted with a call to **kpPlotMarkers**, setting 
+r1=1.1 so the tip the marker lines end slightly over the top of the big regions. 
+With this function the marker labels will be moved as necessary to avoid label 
+overlapping.
+
 
 ### Data Panel 2
 
@@ -127,42 +124,16 @@ label outside the data panel margins with a simple **kpText**.
   
   #Mean and sd of the data points.  
   for(chr in seqlevels(kp$genome)) {
-    chr.dp <- sort(keepSeqlevels(x = data.points, value = chr))
+    chr.dp <- sort(keepSeqlevels(x = data.points, value = chr, pruning.mode = "coarse"))
     rmean <- rollmean(chr.dp$y, k = 6, align = "center")  
     rsd <- rollapply(data = chr.dp$y, FUN=sd, width=6)
     kpLines(kp, chr = chr, x=start(chr.dp)[3:(length(chr.dp)-3)], y=rmean, col=data.points.colors[3], r0=0, r1=0.8)
-    kpPolygon(kp, chr=chr, x=c(start(chr.dp)[3:(length(chr.dp)-3)], rev(start(chr.dp)[3:(length(chr.dp)-3)])),
-                           y=c(rmean+rsd, rev(rmean-rsd)), r0=0, r1=0.8, col="#FF336633", border=NA)
+    kpPlotRibbon(kp, chr=chr, data=chr.dp[3:(length(chr.dp)-3)], y0=rmean-rsd, y1=rmean+rsd, r0=0, r1=0.8, col="#FF336633", border=NA)
   }
-```
-
-```
-## Error in GenomeInfoDb:::getDanglingSeqlevels(x, new2old = new2old, force = force, : The following seqlevels are to be dropped but are currently in use
-##   (i.e. have ranges on them): chr2, chr3, chr4, chr5, chr6, chr7,
-##   chr8, chr9, chr10, chr11, chr12, chr13, chr14, chr15, chr16,
-##   chr17, chr18, chr19, chr20, chr21, chr22, chrX, chrY,
-##   chr1_gl000192_random, chr6_apd_hap1, chr6_cox_hap2, chr6_dbb_hap3,
-##   chr6_mann_hap4, chr6_mcf_hap5, chr6_qbl_hap6, chr6_ssto_hap7,
-##   chr17_ctg5_hap1, chr17_gl000205_random, chr19_gl000208_random,
-##   chrUn_gl000211, chrUn_gl000219. Please use the 'pruning.mode'
-##   argument to control how to prune 'x', that is, how to remove the
-##   ranges in 'x' that are on these sequences. For example, do
-##   something like:
-##   
-##   seqlevels(x, pruning.mode="coarse") <- new_seqlevels
-##   
-##   or
-##   
-##   keepSeqlevels(x, new_seqlevels, pruning.mode="coarse")
-##   
-##   See ?seqinfo for a description of the pruning modes.
-```
-
-```r
-  #Markers
-    kpSegments(kp, chr=seqlevels(marks), x0 = start(marks), x1 = start(marks), y0=0, y1=1, r0=0, r1=0.85, col="#666666")
-    kpText(kp, chr=seqlevels(marks), x = start(marks), y=0.5, r0=0.85, r1=1, labels = as.character(marks$label), col="#333333", cex=0.5) 
     
+  #Markers
+  kpPlotMarkers(kp, data=marks, label.color = "#333333", r1=1.1, cex=0.5, label.margin = 5)
+
   ### Data Panel 2 ###
     
   #medium regions and their coverage
