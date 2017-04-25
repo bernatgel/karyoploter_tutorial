@@ -4,10 +4,7 @@ title: Create an Ideogram
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 
-```
 
 ## Plot an ideogram
 
@@ -18,13 +15,14 @@ karyoplot object that we need to add additional data to the plot.
 By default it will create a karyoplot of the human genome hg19
 
 
-```{r Figure1, message=FALSE, warning=FALSE}
 
+```r
 library(karyoploteR)
 
 kp <- plotKaryotype()
-
 ```
+
+![plot of chunk Figure1](images//Figure1-1.png)
 
 It is possible to specify other genomes. If it's one of the few included in the 
 package it will be plotted from cache and if it's not, karyoploteR will try to load the 
@@ -32,12 +30,13 @@ corresponding BSGenome library and connect to UCSC to download the the cytobands
 BSGenome needs to be installed in the system. Use **installed.genomes()** from package 
 **BSGenome** to list them.
 
-```{r Figure2, message=FALSE, warning=FALSE}
 
+```r
 #Drosophila
 kp <- plotKaryotype(genome = "dm6")
-
 ```
+
+![plot of chunk Figure2](images//Figure2-1.png)
 
 
 

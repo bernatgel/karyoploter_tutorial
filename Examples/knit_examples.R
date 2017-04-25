@@ -1,26 +1,31 @@
 #Iterate through all the directories and knit all Rmd's
+#into md's in the docs folder so they can be served by jekyll
+#on the GitHub Pages
 
 
 
 library(knitr)
+library(ezknitr)
 
-
+base.page.dir <- "../docs/pages"
 
 dirs <- list.dirs(".", recursive = TRUE, full.names = TRUE)
-
-original.wd <- getwd()
 
 for(d in dirs) {
   if(nchar(d)>2) { #skip . and ..
     message("Working on directory: ", d)
-    setwd(d)  
+    
     
     files <- list.files(path = ".", pattern = "*.Rmd", full.names = TRUE)
     
     for(f in files) {
       message("Knitting file: ", f)
-      knit(f)
+      
+      page.dir <- file.path(base.page.dir, gsub(".Rmd", "", basename(f)))
+      dir.create(page.dir, recursive = TRUE)
+      
+      ezknit(file.path(d, f), out_dir = page.dir, fig_dir="images", keep_html=FALSE)
     }
-    setwd(original.wd)
   }
 }
+
