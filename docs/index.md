@@ -10,7 +10,7 @@ This is a tutorial and a few more complex examples on how to use the Bioconducto
 karryoploteR is an R package to create karyoplots, that is, the chromosome ideograms accompained by any arbitrary data. It is inspired by the R 
 base graphics system and does not depend on other graphics packages. 
 
-## Geting Started
+## Getting Started
 
 karyoploteR is part of [Bioconductor](http://bioconductor.org). The package documentation, including  the [vignette](http://bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf)
 and [user manual](http://bioconductor.org/packages/devel/bioc/manuals/karyoploteR/man/karyoploteR.pdf) is available at the karyoploteR's 
