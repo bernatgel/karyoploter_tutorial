@@ -1,13 +1,14 @@
 body {
     font-weight: 400;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+    font-size: 16px;
 }
 
 pre, code, pre code {
     border: none;
     border-radius: 0;
     background-color: #f9f9f9;
-    font-size: 0.85em;
+    font-size: 1em;
 }
 
 .highlight {
@@ -91,4 +92,46 @@ table {
 td, th {
   padding: .25rem .5rem;
   border: 1px solid #e5e5e5;
+}
+
+/*Added for karyoploteR*/
+
+h1 {
+    font-weight: 600;
+    padding-bottom: 0.3em;
+    font-size: 2.5em;
+    border-bottom: 1px solid #eaecef;
+    margin-top: 24px;
+    margin-bottom: 16px;
+
+}
+
+h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.8em;
+    border-bottom: 1px solid #eaecef;
+    margin-top: 24px;
+    margin-bottom: 16px;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+  
+p {
+  margin-bottom: 16px;
+}
+
+#content {
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding-left: 2em;
+  padding-right: 2em;
 }
