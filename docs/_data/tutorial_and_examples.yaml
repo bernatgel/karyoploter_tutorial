@@ -1,0 +1,35 @@
+tutorial:
+  - title: Ideograms and other non-data graphical elements
+    subfolderitems:
+      - page: Tutorial 1 - Plot ideograms
+        url: /Tutorial/CreateIdeogram/CreateIdeogram.html
+        text: Create empty ideograms (with no data plotted) for different organisms
+      - page: Tutorial 2 - Filter and reorder chromosomes
+        url: /Tutorial/FilterChromosomes/FilterChromosomes.html
+        text: Create ideograms of a subset of chromosomes and plot them in any order
+      - page: Tutorial 3 - Using custom genomes
+        url: /Tutorial/CustomGenomes/CustomGenomes.html
+        text: Create ideograms using your own custom genomes including specifying your own cytobands
+      - page: Tutorial 4- Adding base numbers and cytoband labels
+        url: /Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.html
+        text: Add a base numbering guide to the ideograms and label the cytobands with their names
+  - title: Low-level Plotting Functions
+    subfolderitems:
+      - page: Coming soon...
+        url: /
+        text: 
+  - title: High Level Plotting Functions
+    subfolderitems:
+      - page: Tutorial 5 - Plotting markers (genes, snps, ...)
+        url: /Tutorial/PlotMarkers/PlotMarkers.html
+        text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
+      - page: More coming
+        url: /
+        text: 
+
+examples:
+  - title: Ideograms and other non-data graphical elements
+    subfolderitems:
+      - page: Example 1 - Multiple data types
+        url: /Examples/MultipleDataTypes/MultipleDataTypes.html
+        text: A plot with multiple data types plotted together.

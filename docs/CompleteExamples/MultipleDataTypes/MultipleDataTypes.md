@@ -4,10 +4,7 @@ title: Example with Multiple Data Types
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 
-```
 
 In this examples we will use the Bioconductor package
 [regioneR](http://bioconductor.org/packages/release/bioc/html/regioneR.html) to create 
@@ -26,7 +23,8 @@ We will use different calls to **createRandomRegions** from regioneR to create t
 positions and regions in the genome and calls to **runif** and **rnorm** to create the data
 values:
 
-```{r, message=FALSE, warning=FALSE}
+
+```r
 library(karyoploteR)
 library(regioneR)
 library(zoo)
@@ -65,7 +63,6 @@ set.seed(1234)
 
   #medium regions
   mid.regs <- createRandomRegions(nregions = num.mid.regions, length.mean = 5000000, length.sd = 1000000)
-
 ```
 
 
@@ -117,7 +114,8 @@ plot will be flipped. This is a very useful trick to invert the plotting coordin
 Finally, we add a horizontal bar depicting a fake 30x level with **kpAbline** and add a text
 label outside the data panel margins with a simple **kpText**.
 
-```{r Figure, message=FALSE, warning=FALSE,  fig.width=11, fig.height=11}
+
+```r
   kp <- plotKaryotype(plot.type = 2, chromosomes = c("chr1", "chr2", "chr3"))
 
   ### Data Panel 1 ###
@@ -152,9 +150,9 @@ label outside the data panel margins with a simple **kpText**.
     
     kpText(kp, chr=seqlevels(kp$genome), y=0.4, x=0, data.panel = 2, r0=0.2, r1=0, col="#444444", label="30x", cex=0.8, pos=2)
     kpAbline(kp, h=0.4, data.panel = 2, r0=0.2, r1=0, col=data.points.colors[3])
-    
-
 ```
+
+![plot of chunk Figure](images//Figure-1.png)
 
 
 

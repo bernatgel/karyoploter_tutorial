@@ -27,12 +27,13 @@ To install the package, start R and enter:
 ## Tutorial
 
 {% for item in site.data.tutorial_and_examples.tutorial %}
-    <h3>{{ item.title }}</h3>
-      <ul>
-        {% for entry in item.subfolderitems %}
-          <li><a href="{{ entry.url }}">{{ entry.page }}</a></li>
-        {% endfor %}
-      </ul>
+  <h3>{{ item.title }}</h3>
+  <ul>
+    {% for entry in item.subfolderitems %}
+      <li><a href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.page }}</a></li>
+      <p>{{ entry.text }}</p>
+    {% endfor %}
+  </ul>
 {% endfor %}
 
 

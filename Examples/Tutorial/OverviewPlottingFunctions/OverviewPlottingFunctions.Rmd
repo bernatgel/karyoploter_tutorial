@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Plot Genomic Markers
+title: Overview of Plotting Functions
 ---
 
 

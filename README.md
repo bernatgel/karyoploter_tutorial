@@ -38,7 +38,7 @@ and run the R code.
 
 ### Low-level Plotting Functions
 
-* Comming soon
+* Coming soon
 
 ### High Level Plotting Functions
 

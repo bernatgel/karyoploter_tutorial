@@ -1,1 +1,11 @@
 .Rhistory
+
+docs/Gemfile
+
+docs/Gemfile\.lock
+
+docs/\.bundle/
+
+docs/_site/
+
+docs/bin/
