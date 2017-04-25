@@ -2,6 +2,6 @@ tutorial:
   - title: Ideograms and other non-data graphical elements
     subfolderitems:
       - page: Tutorial 1 - Plot ideograms
-        url: /Tutorial/CreCreateIdeogram/CreCreateIdeogram.html
+        url: /Tutorial/CreateIdeogram/CreateIdeogram.html
       - page: Tutorial 2 - Filter and reorder chromosomes
         url: /Tutorial/FilterChromosomes/FilterChromosomes.html
