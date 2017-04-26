@@ -28,8 +28,7 @@ tutorial:
         text: 
 
 examples:
-  - title: Ideograms and other non-data graphical elements
-    subfolderitems:
-      - page: Example 1 - Multiple data types
-        url: /Examples/MultipleDataTypes/MultipleDataTypes.html
-        text: A plot with multiple data types plotted together.
+  - title: Multiple Data Types
+    image: https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png
+    url: /Examples/MultipleDataTypes/MultipleDataTypes.html
+    text: A plot with multiple data types plotted together.
