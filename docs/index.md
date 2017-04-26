@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: index
 title: "karyoploteR Tutorial and Examples"
 ---
 
