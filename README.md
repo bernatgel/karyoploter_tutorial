@@ -6,7 +6,7 @@ data.
 
 They can be found at [https://bernatgel.github.io/karyoploter_examples/](https://bernatgel.github.io/karyoploter_examples/)
 
-![Multiple Data Types Figure](Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
+![Multiple Data Types Figure](Examples/Examples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
 
 *** 
 
