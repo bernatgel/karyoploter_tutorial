@@ -6,7 +6,9 @@ title: Example with Multiple Data Types
 
 
 
-In this examples we will use the Bioconductor package
+# Multiple Data Types
+
+In this example we will use the Bioconductor package
 [regioneR](http://bioconductor.org/packages/release/bioc/html/regioneR.html) to create 
 different sets of genomic regions and positions representing different data types: 
 a small set of large regions, a number of point positions in the genome representing 

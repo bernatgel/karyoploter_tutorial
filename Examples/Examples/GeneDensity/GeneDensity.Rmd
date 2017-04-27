@@ -1,0 +1,75 @@
+---
+layout: default
+title: Gene Density
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Gene Density
+
+This example shows how to plot the density of genes along the genome. We'll need 
+the position of all human genes and we'll get it from the 
+[TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/TxDb.Hsapiens.UCSC.hg19.knownGene)
+Bioconductor package. 
+
+We'll start by using the _genes_ function to create a GRanges object
+with all genes.
+
+
+```{r, message=FALSE, warning=FALSE}
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+all.genes <- genes(txdb)
+head(all.genes)
+```
+
+To plot the density of the genes we'll use karyoploteR's _kpPlotDensity_, 
+a function that computed the density of a GRanges object over the genome 
+and plots it. 
+
+```{r Figure 1, message=FALSE, warning=FALSE}
+library(karyoploteR)
+kp <- plotKaryotype(genome="hg19")
+kp <- kpPlotDensity(kp, all.genes)
+```
+
+
+This plot is correct and has the information we need, but it would be nice to 
+ba able to compare the density of the different chromosomes by having them one
+next to the other in a single line. We can achieve this simply changing the
+plot.type to 3, 4 or 5. In our case we'll use plot.type=4, the plot with the 
+ideogram on the bottom of the plot and the data above it. More information 
+about the available plot types can be found at the [vignette](https://www.bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.html#types-of-plots).
+We will also omit the default creation of the ideograms and chromosome labels
+and explicitly call the functions to better control their look.
+
+```{r Figure 2, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(genome="hg19", plot.type=4, ideogram.plotter = NULL, labels.plotter = NULL)
+kpAddCytobandsAsLine(kp)
+kpAddChromosomeNames(kp, srt=45, cex=0.8)
+kpPlotDensity(kp, all.genes)
+```
+
+It is now easier to compare the density between the chromosomes, but the 
+data is maybe too "spyky" for a genome-wide view. We can smoothen it 
+using a larger window size in the density computation. For example we can set 
+window.size to 10Mb instead of the default 1Mb. In addition we'll adjust the
+plotting parameters to reduce some of the blank space. 
+
+
+```{r Figure 3, message=FALSE, warning=FALSE}
+pp <- getDefaultPlotParams(plot.type = 4)
+pp$data1inmargin <- 0
+pp$bottommargin <- 20
+
+kp <- plotKaryotype(genome="hg19", plot.type=4, ideogram.plotter = NULL,
+                    labels.plotter = NULL, plot.params = pp,
+                    main="Gene Density")
+kpAddCytobandsAsLine(kp)
+kpAddChromosomeNames(kp, srt=45, cex=0.8)
+kpPlotDensity(kp, all.genes, window.size = 10e6, col="#ddaacc")
+```
