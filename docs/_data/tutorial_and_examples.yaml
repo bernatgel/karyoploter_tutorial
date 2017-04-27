@@ -40,6 +40,6 @@ tutorial:
 examples:
   - title: Multiple Data Types
     short_title: Multiple Data Types
-    image: https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png
+    image: /Examples/MultipleDataTypes/figure/Figure-1.png
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.
