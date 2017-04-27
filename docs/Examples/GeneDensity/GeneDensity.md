@@ -6,7 +6,7 @@ title: Gene Density
 
 
 
-# Gene Density
+## Gene Density
 
 This example shows how to plot the density of genes along the genome. We'll need 
 the position of all human genes and we'll get it from the 
@@ -50,7 +50,7 @@ kp <- plotKaryotype(genome="hg19")
 kp <- kpPlotDensity(kp, all.genes)
 ```
 
-![plot of chunk Figure 1](images//Figure 1-1.png)
+![plot of chunk Figure1](images//Figure1-1.png)
 
 
 This plot is correct and has the information we need, but it would be nice to 
@@ -70,7 +70,7 @@ kpAddChromosomeNames(kp, srt=45, cex=0.8)
 kpPlotDensity(kp, all.genes)
 ```
 
-![plot of chunk Figure 2](images//Figure 2-1.png)
+![plot of chunk Figure2](images//Figure2-1.png)
 
 It is now easier to compare the density between the chromosomes, but the 
 data is maybe too "spyky" for a genome-wide view. We can smoothen it 
@@ -93,4 +93,4 @@ kpAddChromosomeNames(kp, srt=45, cex=0.8)
 kpPlotDensity(kp, all.genes, window.size = 10e6, col="#ddaacc")
 ```
 
-![plot of chunk Figure 3](images//Figure 3-1.png)
+![plot of chunk Figure3](images//Figure3-1.png)

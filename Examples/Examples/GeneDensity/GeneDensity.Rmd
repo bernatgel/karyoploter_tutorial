@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```
 
-# Gene Density
+## Gene Density
 
 This example shows how to plot the density of genes along the genome. We'll need 
 the position of all human genes and we'll get it from the 
@@ -31,7 +31,7 @@ To plot the density of the genes we'll use karyoploteR's _kpPlotDensity_,
 a function that computed the density of a GRanges object over the genome 
 and plots it. 
 
-```{r Figure 1, message=FALSE, warning=FALSE}
+```{r Figure1, message=FALSE, warning=FALSE}
 library(karyoploteR)
 kp <- plotKaryotype(genome="hg19")
 kp <- kpPlotDensity(kp, all.genes)
@@ -47,7 +47,7 @@ about the available plot types can be found at the [vignette](https://www.biocon
 We will also omit the default creation of the ideograms and chromosome labels
 and explicitly call the functions to better control their look.
 
-```{r Figure 2, message=FALSE, warning=FALSE}
+```{r Figure2, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(genome="hg19", plot.type=4, ideogram.plotter = NULL, labels.plotter = NULL)
 kpAddCytobandsAsLine(kp)
 kpAddChromosomeNames(kp, srt=45, cex=0.8)
@@ -61,7 +61,7 @@ window.size to 10Mb instead of the default 1Mb. In addition we'll adjust the
 plotting parameters to reduce some of the blank space. 
 
 
-```{r Figure 3, message=FALSE, warning=FALSE}
+```{r Figure3, message=FALSE, warning=FALSE, fig.width=10, fig.height=5}
 pp <- getDefaultPlotParams(plot.type = 4)
 pp$data1inmargin <- 0
 pp$bottommargin <- 20

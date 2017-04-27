@@ -40,6 +40,11 @@ tutorial:
 examples:
   - title: Multiple Data Types
     short_title: Multiple Data Types
-    image: /Examples/MultipleDataTypes/figure/Figure-1.png
+    image: /Examples/MultipleDataTypes/images/Figure-1.png
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.
+  - title: Gene Density
+    short_title: Gene Density
+    image: /Examples/GeneDensity/images/Figure3-1.png
+    url: /Examples/GeneDensity/GeneDensity.html
+    text: Plot the density of genes along the genome.

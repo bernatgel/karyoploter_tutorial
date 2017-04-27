@@ -60,7 +60,7 @@ To install the package, start R and enter:
   <div class="col-md-4">
     <div class="thumbnail">
       <a href="{{ site.baseurl }}/{{ item.url }}">
-	<img class="img-responsive" src="{{ item.image }}" alt="Image of example {{ item.title }}">
+	<img class="img-responsive" src="{{ site.baseurl }}/{{ item.image }}" alt="Image of example {{ item.title }}">
 	<div class="caption">
 	  <h4>{{ item.title}} </h4>
 	  <p>{{ item.text }}</p>
