@@ -137,27 +137,112 @@ p {
   padding-right: 2em;
 }
 
-/*From album example at http://v4-alpha.getbootstrap.com/examples/album/album.css */
-.album {
-  min-height: 50rem; /* Can be removed; just added for demo purposes */
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  background-color: #f7f7f7;
+/*Off-canvas nav bar from http://www.bootply.com/new?visual=1 */
+
+body {
+  padding-top: 51px;  
+}
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+  background-color: #fff;
 }
 
-.card {
-  float: left;
-  width: 33.333%;
-  padding: .75rem;
-  margin-bottom: 2rem;
-  border: 0;
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+#sidebar .nav {
+  width: 95%;
+}
+#sidebar li {
+  border:0 #f2f2f2 solid;
+  border-bottom-width: 0px;
+  margin: 0;
 }
 
-.card > img {
-  margin-bottom: .75rem;
+.nav>li {
+    position: relative;
+    display: block;
+    margin: 0;
 }
 
-.card-text {
-  font-size: 85%;
+.mynav>li>a {
+  padding: 0;
 }
+
+.mynav>.section-header>.nav-link {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eaecef;
+  border-top: 1px solid #eaecef;
+  margin-top: 5px;
+  font-weight: 800;
+}
+
+.mynav>.subsection-header {
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.mynav>.nav-2 {
+  padding-left: 0.5rem;
+}
+
+.mynav>.nav-3>.nav-link {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  padding-left: 0.5rem;
+}
+
+.mynav>.nav-3 {
+  padding-left: 1rem;
+}
+
+.nav>li {
+    position: relative;
+    display: block;
+    margin: 0;
+}
+
+.nav-item {
+  padding: 0;
+}
+
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+}
+
 

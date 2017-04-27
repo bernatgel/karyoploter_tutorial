@@ -1,34 +1,45 @@
 tutorial:
   - title: Ideograms and other non-data graphical elements
+    short_title: Ideograms
     subfolderitems:
-      - page: Tutorial 1 - Plot ideograms
+      - title: Plot ideograms
+        short_title: Plot ideograms
         url: /Tutorial/CreateIdeogram/CreateIdeogram.html
-        text: Create empty ideograms (with no data plotted) for different organisms
-      - page: Tutorial 2 - Filter and reorder chromosomes
+        text: Create ideograms for different organisms
+      - title: Filter and reorder chromosomes
+        short_title: Filter and reorder
         url: /Tutorial/FilterChromosomes/FilterChromosomes.html
         text: Create ideograms of a subset of chromosomes and plot them in any order
-      - page: Tutorial 3 - Using custom genomes
+      - title: Using custom genomes
+        short_title: Custom genomes
         url: /Tutorial/CustomGenomes/CustomGenomes.html
         text: Create ideograms using your own custom genomes including specifying your own cytobands
-      - page: Tutorial 4- Adding base numbers and cytoband labels
+      - title: Adding base numbers and cytoband labels
+        short_title: Base numbers & Cytoband labels
         url: /Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.html
         text: Add a base numbering guide to the ideograms and label the cytobands with their names
   - title: Low-level Plotting Functions
+    short_title: Low-level
     subfolderitems:
-      - page: Coming soon...
+      - title: Coming soon...
+        short_title: Coming soon
         url: /
         text: 
-  - title: High Level Plotting Functions
+  - title: High-level Plotting Functions
+    short_title: High-level
     subfolderitems:
-      - page: Tutorial 5 - Plotting markers (genes, snps, ...)
+      - title: Plotting markers (genes, snps, ...)
+        short_title: Plotting markers
         url: /Tutorial/PlotMarkers/PlotMarkers.html
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
-      - page: More coming
+      - title: More coming
+        short_title: Coming soon
         url: /
         text: 
 
 examples:
   - title: Multiple Data Types
+    short_title: Multiple Data Types
     image: https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.

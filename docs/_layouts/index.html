@@ -11,9 +11,15 @@
 
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{{ site.baseurl }}/css/syntax.css">
-        <link rel="stylesheet" href="../css/main.css">
-        <!-- <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css"> -->
+        <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
         <!-- <link rel="icon" href="../../favicon.ico"> -->
+        
+        <!-- Undo the body padding only for the main page -->
+         <style type="text/css">
+            body {
+	      padding-top: 0px;
+	    }
+	 </style>
         
     </head>
     <body>
@@ -22,7 +28,7 @@
 	<div class="container">
 	  <h1 class="jumbotron-heading">karyoploteR</h1>
 	  <div class="col-sm-8 col-sm-offset-2">
-	    <p class="lead text-muted text-center">A tutorial and a set of examples on using the R/Bioconductor package karyoploteR to plot genomes with arbitrary data on them</p>
+	    <p class="lead text-muted text-center">A tutorial and a set of examples on using the R/Bioconductor package karyoploteR to plot whole genomes with arbitrary data on them</p>
 	  </div>
 	</div>
       </section>
