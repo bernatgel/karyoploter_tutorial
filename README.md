@@ -4,58 +4,9 @@ This repo contains a number of small examples on how to use the Bioconductor pac
 to create karyoplots, that is, the chromosome ideograms accompained by any arbitrary
 data.
 
-**IMPORTANT NOTE:** At the moment karyoploteR is only available in the _devel_ version 
-of Bioconductor. Therefore it will only be available on R-devel instances. Please refer to the 
-documentation on [how to use Bioconductor devel](https://www.bioconductor.org/developers/how-to/useDevel/) 
-for more information.
+They can be found at [https://bernatgel.github.io/karyoploter_examples/](https://bernatgel.github.io/karyoploter_examples/)
 
-The first part is a tutorial-like series of simple examples showing the different parts
-of karyoploteR and how to use them. The second part contains more involved and complete
-stand-alone examples. 
-
-In all cases, each example is self contained and it should be possible to directly copy 
-and run the R code.
-
-## Tutorial
-
-### Ideograms and other non-data graphical elements
-
-* [Example 1 - Plot ideograms](Examples/Tutorial/CreateIdeogram/CreateIdeogram.md)
-
-    Create empty ideograms (with no data plotted) for different organisms
-     
-* [Example 2 - Filter and reorder chromosomes](Examples/Tutorial/FilterChromosomes/FilterChromosomes.md)
-
-    Create ideograms of a subset of chromosomes and plot them in any order
-    
-* [Example 3 - Using custom genomes](Examples/Tutorial/CustomGenomes/CustomGenomes.md)
-    
-    Create ideograms using your own custom genomes including specifying your own cytobands
-
-* [Example 4 - Adding base numbers and cytoband labels](Examples/Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.md)
-    
-    Add a base numbering guide to the ideograms and label the cytobands with their names
-
-### Low-level Plotting Functions
-
-* Coming soon
-
-### High Level Plotting Functions
-
-* [Example 5 - Plotting markers (genes, snps, ...)](Examples/Tutorial/PlotMarkers/PlotMarkers.md)
-
-    Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...
-
-* More to come soon...    
-    
-## Complete Examples
-
-* [Example 1 - Multiple data types](Examples/CompleteExamples/MultipleDataTypes/MultipleDataTypes.md)
-
-    A plot with multiple data types plotted together. 
-    
-    ![Multiple Data Types Figure](Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
-
+![Multiple Data Types Figure](Examples/CompleteExamples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
 
 *** 
 
