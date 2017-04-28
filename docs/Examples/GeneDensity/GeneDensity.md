@@ -66,7 +66,7 @@ and explicitly call the functions to better control their look.
 ```r
 kp <- plotKaryotype(genome="hg19", plot.type=4, ideogram.plotter = NULL, labels.plotter = NULL)
 kpAddCytobandsAsLine(kp)
-kpAddChromosomeNames(kp, srt=45, cex=0.8)
+kpAddChromosomeNames(kp, srt=45)
 kpPlotDensity(kp, all.genes)
 ```
 
@@ -76,7 +76,8 @@ It is now easier to compare the density between the chromosomes, but the
 data is maybe too "spyky" for a genome-wide view. We can smoothen it 
 using a larger window size in the density computation. For example we can set 
 window.size to 10Mb instead of the default 1Mb. In addition we'll adjust the
-plotting parameters to reduce some of the blank space. 
+plotting parameters to reduce some of the blank space. In addition we'll make 
+the plot height smaller to get a more adequate aspect ratio.
 
 
 
@@ -89,7 +90,7 @@ kp <- plotKaryotype(genome="hg19", plot.type=4, ideogram.plotter = NULL,
                     labels.plotter = NULL, plot.params = pp,
                     main="Gene Density")
 kpAddCytobandsAsLine(kp)
-kpAddChromosomeNames(kp, srt=45, cex=0.8)
+kpAddChromosomeNames(kp, srt=45)
 kpPlotDensity(kp, all.genes, window.size = 10e6, col="#ddaacc")
 ```
 

@@ -6,6 +6,8 @@ title: Overview of Plotting Functions
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
 set.seed(1234)
 ```
 

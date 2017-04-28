@@ -6,7 +6,8 @@ title: Create an Ideogram
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
 ```
 
 ## Plot an ideogram

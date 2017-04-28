@@ -6,6 +6,8 @@ title: Plot Genomic Markers
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
 set.seed(1234)
 ```
 
@@ -17,7 +19,7 @@ that is, specific positions of the genome with a name: genes, snps, etc...
 We will create a set of example markers and plot them on the genome
 
 
-```{r Figure1, message=FALSE, warning=FALSE}
+```{r Figure1, message=FALSE, warning=FALSE, fig.height=7}
 
 library(karyoploteR)
 
@@ -35,7 +37,7 @@ avoid the overlapping as much as possible. If the label movement is not desired,
 it can be disabled setting **adjust.label.position=FALSE** .
 
 
-```{r Figure2, message=FALSE, warning=FALSE}
+```{r Figure2, message=FALSE, warning=FALSE, fig.height=7}
 
 
 markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
@@ -60,7 +62,7 @@ to specify a different color for the line and the label, to split the line
 bending in different proportions, to adjust the text orientation and margins and
 in general to use most of the standard graphics parameters.
 
-```{r Figure3, message=FALSE, warning=FALSE}
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=7}
 
 markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
 

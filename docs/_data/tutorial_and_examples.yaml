@@ -48,3 +48,8 @@ examples:
     image: /Examples/GeneDensity/images/Figure3-1.png
     url: /Examples/GeneDensity/GeneDensity.html
     text: Plot the density of genes along the genome.
+  - title: Plot Genes
+    short_title: Plot Genes
+    image: /Examples/PlotGenes/images/Figure2-1.png
+    url: /Examples/PlotGenes/PlotGenes.html
+    text: Plot the location of a set of genes on the genome.

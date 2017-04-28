@@ -52,6 +52,18 @@ kpAddCytobandLabels(kp)
 
 ![plot of chunk Figure3](images//Figure3-1.png)
 
+and we can adjust the label sizes with cex
+
+
+```r
+kp <- plotKaryotype(chromosomes="chr17")
+kpAddCytobandLabels(kp, cex=1.5)
+```
+
+![plot of chunk Figure4](images//Figure4-1.png)
+
+
+
 By default, it checks the size of the label and plots only those that fit inside
 their cytoband. To force it to plot all labels even if they end up spilling or 
 overlapping, set **force.all** to TRUE
@@ -59,10 +71,10 @@ overlapping, set **force.all** to TRUE
 
 ```r
 kp <- plotKaryotype(chromosomes="chr17")
-kpAddCytobandLabels(kp, force.all = TRUE)
+kpAddCytobandLabels(kp, cex=1.5, force.all = TRUE)
 ```
 
-![plot of chunk Figure4](images//Figure4-1.png)
+![plot of chunk Figure5](images//Figure5-1.png)
 
 Again, it is possible to customize the plotting with the standard graphical
 parameters
@@ -70,7 +82,7 @@ parameters
 
 ```r
 kp <- plotKaryotype(chromosomes="chr17")
-kpAddCytobandLabels(kp, force.all = TRUE, srt=90, col="orange", cex=0.8)
+kpAddCytobandLabels(kp, force.all=TRUE, srt=90, col="orange", cex=1.5)
 ```
 
-![plot of chunk Figure5](images//Figure5-1.png)
+![plot of chunk Figure6](images//Figure6-1.png)

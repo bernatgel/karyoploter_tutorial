@@ -5,7 +5,8 @@ title: Add Base Numbers and Cytoband Names
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
 ```
 
 ## Add the base numbers to a genome
@@ -53,23 +54,34 @@ kpAddCytobandLabels(kp)
 
 ```
 
-By default, it checks the size of the label and plots only those that fit inside
-their cytoband. To force it to plot all labels even if they end up spilling or 
-overlapping, set **force.all** to TRUE
+and we can adjust the label sizes with cex
 
 ```{r Figure4, message=FALSE, warning=FALSE}
 
 kp <- plotKaryotype(chromosomes="chr17")
-kpAddCytobandLabels(kp, force.all = TRUE)
+kpAddCytobandLabels(kp, cex=1.5)
+
+```
+
+
+
+By default, it checks the size of the label and plots only those that fit inside
+their cytoband. To force it to plot all labels even if they end up spilling or 
+overlapping, set **force.all** to TRUE
+
+```{r Figure5, message=FALSE, warning=FALSE}
+
+kp <- plotKaryotype(chromosomes="chr17")
+kpAddCytobandLabels(kp, cex=1.5, force.all = TRUE)
 
 ```
 
 Again, it is possible to customize the plotting with the standard graphical
 parameters
 
-```{r Figure5, message=FALSE, warning=FALSE}
+```{r Figure6, message=FALSE, warning=FALSE}
 
 kp <- plotKaryotype(chromosomes="chr17")
-kpAddCytobandLabels(kp, force.all = TRUE, srt=90, col="orange", cex=0.8)
+kpAddCytobandLabels(kp, force.all=TRUE, srt=90, col="orange", cex=1.5)
 
 ```
