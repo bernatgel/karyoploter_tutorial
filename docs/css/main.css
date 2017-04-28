@@ -232,17 +232,31 @@ body {
   .sidebar-offcanvas {
     left: -41.6%;
   }
+  .row-offcanvas-left
+  .sidebar-offcanvas.active {
+    left: 0;
+  }
+  /*
   .row-offcanvas-right.active {
     right: 41.6%;
   }
   .row-offcanvas-left.active {
-    left: 41.6%;
-  }
+    left: 0;
+  }*/
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
     width: 41.6%;
+    background-color: white;
+    border-right: 1px solid #eaecef;
+    box-shadow: 2px 0px 5px #eaecef;
+    -webkit-transition: all 0.20s ease-out;
+    -moz-transition: all 0.20s ease-out;
+    transition: all 0.20s ease-out;
+    z-index: 99;
   }
+  
+  
   #sidebar {
     padding-top:0;
   }

@@ -36,36 +36,37 @@
 	    <div class="row row-offcanvas row-offcanvas-left">
 	    
 	    
-	      <!-- sidebar -->
-	      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-		<ul class="nav flex-column mynav">
-		  <li class="nav-item section-header">
-		     <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
-		  </li>
-		  <li class="nav-item section-header">
-		     <a class="nav-link" href="{{ site.baseurl }}/#Tutorial">Tutorial</a>
-		  </li>
-		  {% for item in site.data.tutorial_and_examples.tutorial %}
-		    <li class="nav-item nav-2 subsection-header">{{ item.short_title }}</li>
-		    {% for entry in item.subfolderitems %}
-		        <li class="nav-item nav-3"><a class="nav-link" href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.short_title }}</a></li>
-		    {% endfor %}
+	    <!-- sidebar -->
+	    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+	      <ul class="nav flex-column mynav">
+		<li class="nav-item section-header">
+		    <a class="nav-link" href="{{ site.baseurl }}/">Home</a>
+		</li>
+		<li class="nav-item section-header">
+		    <a class="nav-link" href="{{ site.baseurl }}/#Tutorial">Tutorial</a>
+		</li>
+		{% for item in site.data.tutorial_and_examples.tutorial %}
+		  <li class="nav-item nav-2 subsection-header">{{ item.short_title }}</li>
+		  {% for entry in item.subfolderitems %}
+		      <li class="nav-item nav-3"><a class="nav-link" href="{{ site.baseurl }}/{{ entry.url }}">{{ entry.short_title }}</a></li>
 		  {% endfor %}
-		  		
-		  <li class="nav-item section-header">
-		     <a class="nav-link" href="{{ site.baseurl }}/#Examples">Examples</a>
-		  </li>
-		  {% for item in site.data.tutorial_and_examples.examples %}
-		    <li class="nav-item nav-3"><a class="nav-link" href="{{ site.baseurl }}/{{ item.url }}">{{ item.short_title }}</a></li>
-	          {% endfor %}
-		</ul>
-	      </div>
-	    
+		{% endfor %}
+			      
+		<li class="nav-item section-header">
+		    <a class="nav-link" href="{{ site.baseurl }}/#Examples">Examples</a>
+		</li>
+		{% for item in site.data.tutorial_and_examples.examples %}
+		  <li class="nav-item nav-3"><a class="nav-link" href="{{ site.baseurl }}/{{ item.url }}">{{ item.short_title }}</a></li>
+		{% endfor %}
+	      </ul>
+	    </div>
 	    
 	    <!-- Main Content -->
 	      <div id="content" class="col-xs-12 col-sm-9">
 		  {{ content }}
 	      </div>
+	      
+
 	      
 	      
 	    </div> <!-- end row -->
@@ -99,8 +100,11 @@
       <script type='text/javascript' src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script type='text/javascript'>
         $(document).ready(function() {
+// 	    $('[data-toggle=offcanvas]').click(function() {
+// 	      $('.row-offcanvas').toggleClass('active');
+// 	    });
 	    $('[data-toggle=offcanvas]').click(function() {
-	      $('.row-offcanvas').toggleClass('active');
+	      $('.sidebar-offcanvas').toggleClass('active');
 	    });
 	});
       </script>
