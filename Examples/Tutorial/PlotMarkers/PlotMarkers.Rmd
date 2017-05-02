@@ -1,5 +1,6 @@
 ---
 layout: default
+label: PlotMarkers
 title: Plot Genomic Markers
 ---
 

@@ -1,5 +1,6 @@
 ---
 layout: default
+label: OverviewPlottingFunctions
 title: Overview of Plotting Functions
 ---
 

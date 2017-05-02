@@ -1,5 +1,6 @@
 ---
 layout: default
+label: BaseNumbers
 title: Add Base Numbers and Cytoband Names
 ---
 

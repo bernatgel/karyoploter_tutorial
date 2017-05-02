@@ -1,6 +1,6 @@
 ---
 layout: default
-page_id: CustomGenome
+label: CustomGenomes
 title: Plot an Ideogram using a Custom Genome
 ---
 

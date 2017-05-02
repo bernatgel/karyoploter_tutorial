@@ -214,6 +214,24 @@ body {
   padding: 0;
 }
 
+.current:before {
+   position:absolute;
+	content:"";
+	top:50%;
+	-webkit-transform:translateY(-50%);
+	-moz-transform:translateY(-50%);
+	-o-transform:translateY(-50%);
+	-ms-transform:translateY(-50%);
+	transform:translateY(-50%);
+	margin-left:-12px;
+	width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid black;
+}
+
+
 
 /* collapsed sidebar styles */
 @media screen and (max-width: 767px) {

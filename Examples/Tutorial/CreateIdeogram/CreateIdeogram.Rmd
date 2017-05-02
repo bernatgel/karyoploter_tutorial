@@ -1,6 +1,7 @@
 ---
 layout: default
-title: Create an Ideogram
+label: PlotIdeograms
+title: Plot an Ideogram
 ---
 
 

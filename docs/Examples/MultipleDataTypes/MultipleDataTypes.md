@@ -1,5 +1,6 @@
 ---
 layout: default
+label: MultipleData
 title: Example with Multiple Data Types
 ---
 

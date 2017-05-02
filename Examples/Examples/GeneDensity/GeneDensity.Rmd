@@ -1,5 +1,6 @@
 ---
 layout: default
+label: GeneDensity
 title: Gene Density
 ---
 

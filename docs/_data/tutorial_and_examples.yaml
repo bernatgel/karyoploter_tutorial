@@ -2,40 +2,43 @@ tutorial:
   - title: Ideograms and other non-data graphical elements
     short_title: Ideograms
     subfolderitems:
-      - title: Plot ideograms
+      - label: PlotIdeograms
+        title: Plot ideograms
         short_title: Plot ideograms
         url: /Tutorial/CreateIdeogram/CreateIdeogram.html
         text: Create ideograms for different organisms
-      - title: Filter and reorder chromosomes
+      - label: FilterChromosomes
+        title: Filter and reorder chromosomes
         short_title: Filter and reorder
         url: /Tutorial/FilterChromosomes/FilterChromosomes.html
         text: Create ideograms of a subset of chromosomes and plot them in any order
-      - title: Using custom genomes
+      - label: CustomGenomes
+        title: Using custom genomes
         short_title: Custom genomes
         url: /Tutorial/CustomGenomes/CustomGenomes.html
         text: Create ideograms using your own custom genomes including specifying your own cytobands
-      - title: Adding base numbers and cytoband labels
+      - label: BaseNumbers
+        title: Adding base numbers and cytoband labels
         short_title: Base numbers & Cytoband labels
         url: /Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.html
         text: Add a base numbering guide to the ideograms and label the cytobands with their names
   - title: Low-level Plotting Functions
     short_title: Low-level
     subfolderitems:
-      - title: Coming soon...
-        short_title: Coming soon
-        url: /
-        text: 
-  - title: High-level Plotting Functions
-    short_title: High-level
-    subfolderitems:
-      - title: Plotting markers (genes, snps, ...)
+      - label: PlotMarkers2
+        title: Plotting markers (genes, snps, ...)
         short_title: Plotting markers
         url: /Tutorial/PlotMarkers/PlotMarkers.html
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
-      - title: More coming
-        short_title: Coming soon
-        url: /
-        text: 
+
+  - title: High-level Plotting Functions
+    short_title: High-level
+    subfolderitems:
+      - label: PlotMarkers
+        title: Plotting markers (genes, snps, ...)
+        short_title: Plotting markers
+        url: /Tutorial/PlotMarkers/PlotMarkers.html
+        text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
 
 examples:
   - title: Multiple Data Types

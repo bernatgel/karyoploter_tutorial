@@ -1,5 +1,6 @@
 ---
 layout: default
+label: FilterChromosomes
 title: Filter and Reorder Chromosomes
 ---
 
