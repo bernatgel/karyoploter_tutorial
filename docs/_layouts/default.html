@@ -111,16 +111,26 @@
       </script>
       
       <!-- Add support for mobile swipes -->
-      <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+      <script type="text/javascript" src="{{ site.baseurl }}/js/jquery.touchSwipe.min.js"></script>
       <script type='text/javascript'>
-	$(".page-container").swipe( {
-	    swipeRight:function(event, direction, distance, duration, fingerCount, fingerData) {
-		$('.sidebar-offcanvas').addClass('active')
-	    },
-	    swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
-		$('.sidebar-offcanvas').removeClass('active')
-	    }
-	});
+	//attach the swipe event only on touch screens, since it prevents text selection in desktop
+	
+	function isMobile() {
+	  try{ document.createEvent("TouchEvent"); return true; }
+	  catch(e){ return false; }
+	}
+      
+	if(isMobile()) {
+	  $(".page-container").swipe( {
+	      swipeRight:function(event, direction, distance, duration, fingerCount, fingerData) {
+		  console.log("swipe right")
+		  $('.sidebar-offcanvas').addClass('active')
+	      },
+	      swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
+		  $('.sidebar-offcanvas').removeClass('active')
+	      }
+	  });
+	}
 
       
       
