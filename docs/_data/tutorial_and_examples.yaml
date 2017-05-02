@@ -25,11 +25,11 @@ tutorial:
   - title: Low-level Plotting Functions
     short_title: Low-level
     subfolderitems:
-      - label: PlotMarkers2
-        title: Plotting markers (genes, snps, ...)
-        short_title: Plotting markers
-        url: /Tutorial/PlotMarkers/PlotMarkers.html
-        text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
+      - label: OverviewPlottingFunctions
+        title: Overview of low-level plotting functions
+        short_title: Low-level plotting overview
+        url: /Tutorial/OverviewPlottingFunctions/OverviewPlottingFunctions.html
+        text: Overview of the low-level plotting functions to plot basic graphical primitives: points, lines, arrows, poylgons...
 
   - title: High-level Plotting Functions
     short_title: High-level

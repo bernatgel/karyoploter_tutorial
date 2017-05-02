@@ -1,73 +1,54 @@
 ---
 layout: tutorial
 label: OverviewPlottingFunctions
-title: Overview of Plotting Functions
+title: Overview of Low-level Plotting Functions
 ---
 
 
 
 
-## Plotting Genomic Markers
+## Low-level plotting functions
 
-The function **kpPlotMarkers** can be used to plot markers along the genome,
-that is, specific positions of the genome with a name: genes, snps, etc...
+Plotting functions in karyoploteR are divided in two groups: low- and high-level.
+Low level plotting functions are mainly chromosome-aware versions of the R base
+graphics primitives: points, lines, segments, polygons...
 
-We will create a set of example markers and plot them on the genome
+They all share the same naming scheme: _kpPrimitive_, that means, _kpPoints_ to 
+plot points, _kpLines_ to plot lines, _kpArrows_ for arrows, etc. All of them
+are customizable using the standrad R base [graphical parameters](https://www.rdocumentation.org/packages/graphics/versions/3.4.0/topics/par)
+and all of them share almost the same API.
 
+To use them, we first need to create a karyoplot with a call to _plotKaryotype_.
+After that, successive calls to the plotting functions will add new graphical 
+elements to the plot.
 
 
 ```r
 library(karyoploteR)
 
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*10e6), labels=paste0("Gene", 1:10))
+x <- 1:23*10e6
+y <- rnorm(23, 0.5, 0.1)
 
 kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels)
+
+kpPoints(kp, chr = "chr1", x=x, y=y)
+kpText(kp, chr="chr1", x=x, y=y, labels=c(1:23), pos=3)
+kpLines(kp, chr="chr1", x=x, y=y, col="#FFAADD")
+
+kpArrows(kp, chr="chr1", x0=x, x1=x, y0=0, y1=y, col="#DDDDDD")
 ```
 
 ![plot of chunk Figure1](images//Figure1-1.png)
 
-If the positions are closer and the labels will overlap, they will be moved to
-avoid the overlapping as much as possible. If the label movement is not desired,
-it can be disabled setting **adjust.label.position=FALSE** .
+## Common parameters
 
+The low-level plotting functions can, again, be classified in two groups: those 
+that need a single point specified by x and y (such as points, lines, text...) 
+and those that need pair of points (x0, x1, y0, y1): segments, arrows, bars,
+polygons, etc. Some of the functions have special parameters, such as _labels_
+in _kpText_. In addition, all functions need a _chr_ parameter to fully specify
+the position of each data point and the _karyoplot_ object returned by _plotKaryotype_
+as the first parameter. 
 
-
-```r
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
-
-kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels)
-
-
-markers2 <- data.frame(chr=rep("chr1", 10), pos=140e6+(1:10*1e6), labels=paste0("OtherGene", 1:10))
-
-kpPlotMarkers(kp, chr=markers2$chr, x=markers2$pos, labels=markers2$labels, adjust.label.position=FALSE)
-```
-
-![plot of chunk Figure2](images//Figure2-1.png)
-
-The markers information can be passed as a set of parameters (chr, x, labels) or
-as a GenomicRanges object with a *labels* column.
-
-It is possible to customize the marker plotting in several ways. It is possible
-to specify a different color for the line and the label, to split the line 
-bending in different proportions, to adjust the text orientation and margins and
-in general to use most of the standard graphics parameters.
-
-
-```r
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
-
-kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels,
-              text.orientation = "horizontal", marker.parts = c(0, 0.9, 0.1),
-              line.color = "#FFAA22", label.color = "#22AAFF", 
-              label.dist = 0.01, max.iter = 1000)
-```
-
-![plot of chunk Figure3](images//Figure3-1.png)
-
+In addition to that, all functions accept a standard set of parameters to 
+further modify the data positioning. These parameters are explained in the next section.

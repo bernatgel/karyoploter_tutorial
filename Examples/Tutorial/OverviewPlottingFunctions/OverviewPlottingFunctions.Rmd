@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 label: OverviewPlottingFunctions
-title: Overview of Plotting Functions
+title: Overview of Low-level Plotting Functions
 ---
 
 
@@ -12,67 +12,71 @@ knitr::opts_chunk$set(fig.height = 14)
 set.seed(1234)
 ```
 
-## Plotting Genomic Markers
+## Low-level plotting functions
 
-The function **kpPlotMarkers** can be used to plot markers along the genome,
-that is, specific positions of the genome with a name: genes, snps, etc...
+Plotting functions in karyoploteR are divided in two groups: low- and high-level.
+Low level plotting functions are mainly chromosome-aware versions of the R base
+graphics primitives: points, lines, segments, polygons... and they do not compute
+anything and know nothing about biology or complex bioconductor objects.
 
-We will create a set of example markers and plot them on the genome
+They all share the same naming scheme: _kpPrimitive_, that means, _kpPoints_ to 
+plot points, _kpLines_ to plot lines, _kpArrows_ for arrows, etc. All of them
+are customizable using the standrad R base [graphical parameters](https://www.rdocumentation.org/packages/graphics/versions/3.4.0/topics/par)
+and all of them share almost the same API.
 
+To use them, we first need to create a karyoplot with a call to _plotKaryotype_.
+After that, successive calls to the plotting functions will add new graphical 
+elements to the plot.
 
 ```{r Figure1, message=FALSE, warning=FALSE}
 
 library(karyoploteR)
 
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*10e6), labels=paste0("Gene", 1:10))
+x <- 1:23*10e6
+y <- rnorm(23, 0.5, 0.1)
 
 kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels)
 
+kpPoints(kp, chr = "chr1", x=x, y=y)
+kpText(kp, chr="chr1", x=x, y=y, labels=c(1:23), pos=3)
+kpLines(kp, chr="chr1", x=x, y=y, col="#FFAADD")
+
+kpArrows(kp, chr="chr1", x0=x, x1=x, y0=0, y1=y, col="#DDDDDD")
 
 ```
 
-If the positions are closer and the labels will overlap, they will be moved to
-avoid the overlapping as much as possible. If the label movement is not desired,
-it can be disabled setting **adjust.label.position=FALSE** .
+## Common parameters
 
+The low-level plotting functions can, again, be classified in two groups: those 
+that need a single point specified by x and y (such as points, lines, text...) 
+and those that need pair of points (x0, x1, y0, y1): segments, arrows, bars,
+polygons, etc. Some of the functions have special parameters, such as _labels_
+in _kpText_. In addition, all functions need a _chr_ parameter to fully specify
+the position of each data point and the _karyoplot_ object returned by _plotKaryotype_
+as the first parameter. 
+
+In addition to that, all functions accept a standard set of parameters to 
+further modify the data positioning. These parameters are explained in the next section.
+
+## The _data_ parameter
+
+There is a special convenience parameter called _data_. With it, it's possible 
+to use a GRanges object to provide in a single object the needed data to the 
+plotting functions. _x_, _x0_ and _x1_ will be derived from the start and end
+of the ranges in data, _y_, _y0_ and _y1_ from the _mcols_ annotation, as well
+_labels_ and other specific parameters. If any of this parameters is explicitly 
+passed, it will be used instead of the one from data.
+
+For example, we can create a GRanges object with the data used in the previous plot
 
 ```{r Figure2, message=FALSE, warning=FALSE}
 
-
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
-
-kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels)
-
-
-markers2 <- data.frame(chr=rep("chr1", 10), pos=140e6+(1:10*1e6), labels=paste0("OtherGene", 1:10))
-
-kpPlotMarkers(kp, chr=markers2$chr, x=markers2$pos, labels=markers2$labels, adjust.label.position=FALSE)
-
+mydata <- toGRanges(data.frame(chr=rep("chr1", 23), start=x, end=x+1e6, y=y))
+head(mydata)
 
 ```
 
-The markers information can be passed as a set of parameters (chr, x, labels) or
-as a GenomicRanges object with a *labels* column.
+and use it to plot the same as above,
 
-It is possible to customize the marker plotting in several ways. It is possible
-to specify a different color for the line and the label, to split the line 
-bending in different proportions, to adjust the text orientation and margins and
-in general to use most of the standard graphics parameters.
-
-```{r Figure3, message=FALSE, warning=FALSE}
-
-markers <- data.frame(chr=rep("chr1", 10), pos=(1:10*1e6), labels=paste0("Gene", 1:10))
-
-kp <- plotKaryotype(chromosomes="chr1")
-kpAddBaseNumbers(kp)
-kpPlotMarkers(kp, chr=markers$chr, x=markers$pos, labels=markers$labels,
-              text.orientation = "horizontal", marker.parts = c(0, 0.9, 0.1),
-              line.color = "#FFAA22", label.color = "#22AAFF", 
-              label.dist = 0.01, max.iter = 1000)
-
-```
+but if we specify anything else, data is not used, (y = y+0.2)
 
