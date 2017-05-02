@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 label: BaseNumbers
 title: Add Base Numbers and Cytoband Names
 ---

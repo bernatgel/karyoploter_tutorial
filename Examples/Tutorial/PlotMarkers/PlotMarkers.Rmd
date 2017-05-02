@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 label: PlotMarkers
 title: Plot Genomic Markers
 ---

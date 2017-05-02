@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 label: FilterChromosomes
 title: Filter and Reorder Chromosomes
 ---

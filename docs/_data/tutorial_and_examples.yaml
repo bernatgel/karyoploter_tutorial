@@ -41,19 +41,22 @@ tutorial:
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
 
 examples:
-  - title: Multiple Data Types
+  - label: MultipleData
+    title: Multiple Data Types
     short_title: Multiple Data Types
     image: /Examples/MultipleDataTypes/images/Figure-1.png
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.
-  - title: Gene Density
+  - label: GeneDensity
+    title: Gene Density
     short_title: Gene Density
     image: /Examples/GeneDensity/images/Figure3-1.png
     url: /Examples/GeneDensity/GeneDensity.html
     text: Plot the density of genes along the genome.
     
 draft_examples:
-  - title: Plot Genes
+  - label: PlotGenes
+    title: Plot Genes
     short_title: Plot Genes
     image: /Examples/PlotGenes/images/Figure2-1.png
     url: /Examples/PlotGenes/PlotGenes.html

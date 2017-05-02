@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 label: CustomGenomes
 title: Plot an Ideogram using a Custom Genome
 ---

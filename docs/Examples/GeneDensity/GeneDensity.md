@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: example
 label: GeneDensity
 title: Gene Density
 ---

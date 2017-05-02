@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: tutorial
 label: PlotIdeograms
 title: Plot an Ideogram
 ---
