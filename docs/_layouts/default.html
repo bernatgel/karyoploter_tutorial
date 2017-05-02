@@ -98,6 +98,7 @@
       <!-- These scripts are needed for the offcanvas sidebar -->
       <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script type='text/javascript' src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      
       <script type='text/javascript'>
         $(document).ready(function() {
 // 	    $('[data-toggle=offcanvas]').click(function() {
@@ -107,6 +108,22 @@
 	      $('.sidebar-offcanvas').toggleClass('active');
 	    });
 	});
+      </script>
+      
+      <!-- Add support for mobile swipes -->
+      <script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+      <script type='text/javascript'>
+	$(".page-container").swipe( {
+	    swipeRight:function(event, direction, distance, duration, fingerCount, fingerData) {
+		$('.sidebar-offcanvas').addClass('active')
+	    },
+	    swipeLeft:function(event, direction, distance, duration, fingerCount, fingerData) {
+		$('.sidebar-offcanvas').removeClass('active')
+	    }
+	});
+
+      
+      
       </script>
       
         {% if site.google_analytics_id != "" %}
