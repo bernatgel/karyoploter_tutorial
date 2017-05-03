@@ -15,8 +15,10 @@ in the array, but the general shape and values of the raw data. Good tools exist
 for that, but visualizing the raw data is an important step and a quality control.
 
 In this example we'll use data from a cancer cell line obtained with an Illumina
-OmniExpress array. The data file has been downsampled to only 100k snps, but 
-other from that is the standard "_FinalReport_" one gets from GenomeStudio.
+OmniExpress array. The 
+[data file]({{ site.baseurl }}{% link Examples/data/SNPArray.26T.txt.gz %}) 
+has been downsampled to only 100k snps, but other from that is the standard 
+"_FinalReport_" one gets from GenomeStudio.
 
 
 ```r
