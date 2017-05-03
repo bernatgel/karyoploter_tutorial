@@ -22,6 +22,11 @@ tutorial:
         short_title: Base numbers & Cytoband labels
         url: /Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.html
         text: Add a base numbering guide to the ideograms and label the cytobands with their names
+      - label: DataPanels
+        title: Data Panels
+        short_title: Data Panels
+        url: /Tutorial/DataPanels/DataPanels.html
+        text: Define the parts of the karyoplots where data can be added
   - title: Low-level Plotting Functions
     short_title: Low-level
     subfolderitems:
