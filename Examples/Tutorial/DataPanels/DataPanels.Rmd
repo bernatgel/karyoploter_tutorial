@@ -23,7 +23,7 @@ below. We can decide on which data panel we want to act by specifying the
 _data.panel_ parameter. For example, we can create a blue background for data 
 panel 1 (above the ideograms) and a red one for data panel 2 (below the ideograms).
 
-```{r Figure1, message=FALSE, warning=FALSE, fig.height=5}
+```{r Figure1, message=FALSE, warning=FALSE}
 
 library(karyoploteR)
 
