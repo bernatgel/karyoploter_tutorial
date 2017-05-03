@@ -23,14 +23,7 @@ has been downsampled to only 100k snps, but other from that is the standard
 
 ```r
 library(karyoploteR)
-dd <- read.table(file = "../data/SNPArray.26T.txt.gz", sep="\t", header=TRUE, stringsAsFactors = FALSE)
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
-```
-
-```r
+dd <- read.table(file = "Examples/data/SNPArray.26T.txt.gz", sep="\t", header=TRUE, stringsAsFactors = FALSE)
 head(dd)
 ```
 
