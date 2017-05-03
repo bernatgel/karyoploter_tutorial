@@ -45,6 +45,11 @@ tutorial:
         short_title: Data Positioning
         url: /Tutorial/DataPositioning/DataPositioning.html
         text: Manage and adjust the exact positioning of data when plotting
+      - label: Points
+        title: Points
+        short_title: Points
+        url: /Tutorial/Points/Points.html
+        text: Plot points to create scatter plots
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
