@@ -35,6 +35,11 @@ tutorial:
         short_title: Low-level plotting overview
         url: /Tutorial/OverviewPlottingFunctions/OverviewPlottingFunctions.html
         text: Overview of the low-level plotting functions to plot basic graphical primitives (points, lines, arrows, poylgons...)
+      - label: DataPositioning
+        title: Data Positioning
+        short_title: Data Positioning
+        url: /Tutorial/DataPositioning/DataPositioning.html
+        text: Manage and adjust the exact positioning of data when plotting
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
