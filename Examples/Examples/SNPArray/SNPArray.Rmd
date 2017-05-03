@@ -1,0 +1,112 @@
+---
+layout: example
+label: SNPArray
+title: SNP Array Data
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+```
+
+## Plot SNP array raw data
+
+In addition to genotyping, SNP arrays are good tools for copy number calling. To
+do that, we need to take into account not the individual genotypes of each SNP
+in the array, but the general shape and values of the raw data. Good tools exist 
+for that, but visualizing the raw data is an important step and a quality control.
+
+In this example we'll use data from a cancer cell line obtained with an Illumina
+OmniExpress array. The data file has been downsampled to only 100k snps, but 
+other from that is the standard "_FinalReport_" one gets from GenomeStudio.
+
+```{r, message=FALSE, warning=FALSE}
+library(karyoploteR)
+dd <- read.table(file = "../data/SNPArray.26T.txt.gz", sep="\t", header=TRUE, stringsAsFactors = FALSE)
+head(dd)
+```
+
+to plot it we'll first extract the information we need and convert it into a 
+GRanges using the toGRanges function from regioneR and setting start and end 
+to the snp position. The data we need is the B-allele frequency (BAF), that is,
+the portion of the signal coming from the allele labeled as B, and the 
+Log R Ratio (LRR), that is, the total amount of signal. We'll need to change 
+the chromosome names from the Ensembl style to the UCSC style, since we are
+using the standard hg19 genome.
+
+```{r, message=FALSE, warning=FALSE}
+snp.data <- toGRanges(dd[,c("Chr", "Position", "Position", "B.Allele.Freq", "Log.R.Ratio")])
+names(mcols(snp.data)) <- c("BAF", "LRR")
+seqlevelsStyle(snp.data) <- "UCSC"
+head(snp.data)
+```
+
+And we are ready to plot. We'll create a scatter plot using the _kpPoints_
+function and we'll plot the BAF in the upper part of the data panel 
+(_r0=0.5_ and _r1=1_) and the LRR in the lower part (_r0=0_ and _r1=0.5_).
+
+```{r Figure1, message=FALSE, warning=FALSE}
+kp <- plotKaryotype()
+kpPoints(kp, data=snp.data, y=snp.data$BAF, r0=0.5, r1=1)
+kpPoints(kp, data=snp.data, y=snp.data$LRR, r0=0, r1=0.5)
+```
+
+There are a few problems with this plot. First, we have BAF is in the [0,1] range
+but LRR is not, and it's bleeding over the ideograms. Second, the points are
+too big to reveal the patterns, specially with the chromosomes one over the other.
+To solve this, we'll change to another plot type with all chromosomes in a line,
+_plot.type=4_. We'll deal with the overflowing LRR by setting a different _ymin_
+and cutting the points below that.
+
+```{r Figure2, message=FALSE, warning=FALSE, fig.height=7}
+lrr.below.min <- which(snp.data$LRR < -3)
+snp.data$LRR[lrr.below.min] <- -3
+
+kp <- plotKaryotype(plot.type = 4)
+kpPoints(kp, data=snp.data, y=snp.data$BAF, cex=0.3, r0=0.5, r1=1)
+kpPoints(kp, data=snp.data, y=snp.data$LRR, cex=0.3, r0=0, r1=0.5, ymax=2, ymin=-3)
+```
+
+It is now possible to see the patterns of alteration, both in the BAF and the 
+LRR. We can further refine the plot by reducing the margin between the data and
+the ideograms and changing the ideograms with a single line with the centromere.
+
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=7}
+pp <- getDefaultPlotParams(plot.type = 4)
+pp$data1inmargin <- 2
+kp <- plotKaryotype(plot.type = 4, ideogram.plotter = NULL, plot.params = pp)
+kpAddCytobandsAsLine(kp)
+kpPoints(kp, data=snp.data, y=snp.data$BAF, cex=0.3, r0=0.5, r1=1)
+kpPoints(kp, data=snp.data, y=snp.data$LRR, cex=0.3, r0=0, r1=0.5, ymax=2, ymin=-3)
+```
+
+Finally, we'll mark in red the points below _ymin_ to mark they were cropped,
+we'll add markers for a couple of genes, add axis were needed and a line marking
+the 0 LRR. The information on the position of the genes will come from Ensembl
+Biomart as in the Plot Genes example.
+
+```{r Figure4, message=FALSE, warning=FALSE, fig.height=7}
+library(biomaRt)
+gene.symbols <- c("AKT", "APC", "BCR", "BIRC3", "BRAF", "BRCA1", "BRCA2", "CDKN2C", "FEV", "TP53", "PTEN", "RB")
+ensembl <- useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl", version=67)
+genes <- toGRanges(getBM(attributes=c('chromosome_name', 'start_position', 'end_position', 'hgnc_symbol'),
+               filters = 'hgnc_symbol', values =gene.symbols, mart = ensembl))
+seqlevelsStyle(genes) <- "UCSC"
+
+
+pp <- getDefaultPlotParams(plot.type = 4)
+pp$data1inmargin <- 2
+
+kp <- plotKaryotype(plot.type = 4, ideogram.plotter = NULL, plot.params = pp)
+kpAddCytobandsAsLine(kp)
+kpAxis(kp, r0=0.4, r1=0.75)
+kpPoints(kp, data=snp.data, y=snp.data$BAF, cex=0.3, r0=0.4, r1=0.75)
+kpAxis(kp, tick.pos = c(-3, 0, 2), r0=0, r1=0.35, ymax=2, ymin=-3)
+kpPoints(kp, data=snp.data, y=snp.data$LRR, cex=0.3, r0=0, r1=0.35, ymax=2, ymin=-3)
+kpPoints(kp, data=snp.data[lrr.below.min], y=snp.data[lrr.below.min]$LRR, cex=0.3, r0=0, r1=0.35, ymax=2, ymin=-3, col="red")
+kpAbline(kp, h=0, r0=0, r1=0.35, ymax=2, ymin=-3, col="blue")
+kpPlotMarkers(kp, data=genes, labels=genes$hgnc_symbol, line.color = "#555555", marker.parts = c(0.95,0.025,0.025),  r1=1.05)
+
+```

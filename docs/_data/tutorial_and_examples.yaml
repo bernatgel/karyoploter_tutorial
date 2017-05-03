@@ -72,6 +72,12 @@ examples:
     image: /Examples/GeneDensity/images/Figure3-1.png
     url: /Examples/GeneDensity/GeneDensity.html
     text: Plot the density of genes along the genome.
+  - label: SNPArray
+    title: SNP-array raw data
+    short_title: SNP-array data
+    image: /Examples/SNPArray/images/Figure4-1.png
+    url: /Examples/SNPArray/SNPArray.html
+    text: Create a plot with raw data from an Illumina SNP array starting with real SNP-array data as extracted from GenomeStudio
     
 draft_examples:
   - label: PlotGenes
