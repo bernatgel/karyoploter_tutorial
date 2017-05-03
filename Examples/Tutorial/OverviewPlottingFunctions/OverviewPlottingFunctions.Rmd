@@ -28,7 +28,7 @@ To use them, we first need to create a karyoplot with a call to _plotKaryotype_.
 After that, successive calls to the plotting functions will add new graphical 
 elements to the plot.
 
-```{r Figure1, message=FALSE, warning=FALSE}
+```{r Figure1, message=FALSE, warning=FALSE, fig.height=5}
 
 library(karyoploteR)
 
@@ -71,12 +71,38 @@ For example, we can create a GRanges object with the data used in the previous p
 
 ```{r Figure2, message=FALSE, warning=FALSE}
 
-mydata <- toGRanges(data.frame(chr=rep("chr1", 23), start=x, end=x+1e6, y=y))
+mydata <- toGRanges(data.frame(chr=rep("chr1", 23), start=x, end=x, y=y))
 head(mydata)
 
 ```
 
-and use it to plot the same as above,
+And create the same plot using this object, except for the arrows where we have 
+to specify the _y0_ and _y1_ values since the columns in _data_ need to have the
+same names as the parameters they stand for.
 
-but if we specify anything else, data is not used, (y = y+0.2)
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=5}
+
+kp <- plotKaryotype(chromosomes="chr1")
+
+kpPoints(kp, data=mydata)
+kpText(kp, data=mydata, pos=3)
+kpLines(kp, data=mydata, col="#FFAADD")
+
+kpArrows(kp, data=mydata, y0=0, y1=y, col="#DDDDDD")
+
+```
+
+And in all cases, if _y_, _y0_ or _y1_ are explicitly stated, they will take 
+precedence before the values derived from _data_
+
+```{r Figure4, message=FALSE, warning=FALSE, fig.height=5}
+
+kp <- plotKaryotype(chromosomes="chr1")
+
+kpPoints(kp, data=mydata)
+kpPoints(kp, data=mydata, y=y+0.2, col="red")
+kpPoints(kp, data=mydata, y=y-0.2, col="green")
+
+```
+
 

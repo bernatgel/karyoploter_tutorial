@@ -29,8 +29,7 @@ tutorial:
         title: Overview of low-level plotting functions
         short_title: Low-level plotting overview
         url: /Tutorial/OverviewPlottingFunctions/OverviewPlottingFunctions.html
-        text: Overview of the low-level plotting functions to plot basic graphical primitives: points, lines, arrows, poylgons...
-
+        text: Overview of the low-level plotting functions to plot basic graphical primitives (points, lines, arrows, poylgons...)
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
