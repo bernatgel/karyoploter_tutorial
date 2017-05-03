@@ -78,11 +78,12 @@ examples:
     image: /Examples/SNPArray/images/Figure4-1.png
     url: /Examples/SNPArray/SNPArray.html
     text: Create a plot with raw data from an Illumina SNP array starting with real SNP-array data as extracted from GenomeStudio
-    
-draft_examples:
   - label: PlotGenes
     title: Plot Genes
     short_title: Plot Genes
     image: /Examples/PlotGenes/images/Figure2-1.png
     url: /Examples/PlotGenes/PlotGenes.html
     text: Plot the location of a set of genes on the genome.
+    
+
+  

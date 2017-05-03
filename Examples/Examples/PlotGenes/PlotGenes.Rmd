@@ -1,0 +1,56 @@
+---
+layout: example
+label: PlotGenes
+title: Plot Genes
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+
+```
+
+## Plot Genes
+
+This example shows how to determine the position of some genes in the genome 
+and create a plot showing them. We'll use Ensembl's Biomart database to 
+automatically retrieve their position using the [biomaRt](https://bioconductor.org/packages/biomaRt)
+Bioconductor package. We'll automatically convert the returned data frame into 
+a GRanges with regioneR's _toGRanges_ and since our genome is from UCSC, we'll
+need to change the chromosome name style from Ensembl to UCSC with
+_seqlevelsStyle_. We'll use genome GRCh38, the one used in the current biomart
+version.
+
+
+```{r, message=FALSE, warning=FALSE}
+library(biomaRt)
+gene.symbols <- c("AKT", "APC", "BCR", "BIRC3", "BRAF", "BRCA1", "BRCA2", "CDKN2C", "FEV", "TP53", "PTEN", "RB1")
+ensembl <- useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl")
+genes <- toGRanges(getBM(attributes=c('chromosome_name', 'start_position', 'end_position', 'hgnc_symbol'),
+               filters = 'hgnc_symbol', values =gene.symbols, mart = ensembl))
+seqlevelsStyle(genes) <- "UCSC"
+
+head(genes)
+
+```
+
+Once we have the data prepared we can use _kpPlotMarkers_ to plot them on the
+genome.
+
+```{r Figure1, message=FALSE, warning=FALSE}
+library(karyoploteR)
+kp <- plotKaryotype(genome="hg38")
+kpPlotMarkers(kp, data=sel.genes, labels=gene.labels)
+```
+
+The gene labels are not readable since they overlap the ideograms. To solve this
+we will tweak the plot a bit: make the labels horizontal, reduce them and move
+them closer to their ideograms specifying lower r1 and adjusting the label.margin.
+
+```{r Figure2, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(genome="hg38")
+kpPlotMarkers(kp, data=sel.genes, labels=gene.labels, text.orientation = "horizontal",
+              r1=0.5, cex=0.8, adjust.label.position = FALSE)
+```
