@@ -33,7 +33,7 @@ or using regioneR's **toGRanges** to read the chromosome from a file, in this ca
 ```r
 library(karyoploteR)
 
-custom.genome <- toGRanges("https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/Tutorial/CustomGenomes/mygenome.txt")
+custom.genome <- toGRanges("Tutorial/CustomGenomes/mygenome.txt")
 
 kp <- plotKaryotype(genome = custom.genome)
 ```
@@ -49,8 +49,8 @@ we will use the [*mycytobands.txt*](https://raw.githubusercontent.com/bernatgel/
 
 
 ```r
-custom.genome <- toGRanges("https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/Tutorial/CustomGenomes/mygenome.txt")
-custom.cytobands <- toGRanges("https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/Tutorial/CustomGenomes/mycytobands.txt")
+custom.genome <- toGRanges("Tutorial/CustomGenomes/mygenome.txt")
+custom.cytobands <- toGRanges("Tutorial/CustomGenomes/mycytobands.txt")
 
 kp <- plotKaryotype(genome = custom.genome, cytobands = custom.cytobands)
 ```
