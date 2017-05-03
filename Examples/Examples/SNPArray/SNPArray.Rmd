@@ -89,7 +89,7 @@ Biomart as in the Plot Genes example.
 
 ```{r Figure4, message=FALSE, warning=FALSE, fig.height=7}
 library(biomaRt)
-gene.symbols <- c("AKT", "APC", "BCR", "BIRC3", "BRAF", "BRCA1", "BRCA2", "CDKN2C", "FEV", "TP53", "PTEN", "RB")
+gene.symbols <- c("AKT", "APC", "BCR", "BIRC3", "BRAF", "BRCA1", "BRCA2", "CDKN2C", "FEV", "TP53", "PTEN", "RB1")
 ensembl <- useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl", version=67)
 genes <- toGRanges(getBM(attributes=c('chromosome_name', 'start_position', 'end_position', 'hgnc_symbol'),
                filters = 'hgnc_symbol', values =gene.symbols, mart = ensembl))
