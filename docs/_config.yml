@@ -1,5 +1,5 @@
 # Site title and subtitle. This is used in _includes/header.html
-title: 'karyoploteR Examples'
+title: 'karyoploteR Tutorial'
 subtitle: 'Tutorial and Examples on plotting genomes with karyoploteR'
 
 # if you wish to integrate disqus on pages set your shortname here
@@ -15,11 +15,11 @@ google_analytics_id: 'UA-98092676-1'
 navigation: 2
 
 # URL to source code, used in _includes/footer.html
-codeurl: 'https://github.com/bernatgel/karyoploter_examples'
+codeurl: 'https://github.com/bernatgel/karyoploter_tutorial'
 
 # Keep as an empty string if served up at the root. If served up at a specific
 # path (e.g. on GitHub pages) leave off the trailing slash, e.g. /my-project
-baseurl: '/karyoploter_examples/'
+baseurl: '/karyoploter_tutorial'
 
 # Dates are not included in permalinks
 permalink: none
