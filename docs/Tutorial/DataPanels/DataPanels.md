@@ -29,7 +29,5 @@ kpDataBackground(kp, data.panel = 2, col="red")
 
 ![plot of chunk Figure1](images//Figure1-1.png)
 
-Default data panel is always data panel 1, and if we try to plot on a non-existent
-data panel, karyoploteR will just ignore the commands. 
 
 

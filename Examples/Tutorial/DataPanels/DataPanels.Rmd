@@ -33,7 +33,5 @@ kpDataBackground(kp, data.panel = 2, col="red")
 
 ```
 
-Default data panel is always data panel 1, and if we try to plot on a non-existent
-data panel, karyoploteR will just ignore the commands. 
 
 

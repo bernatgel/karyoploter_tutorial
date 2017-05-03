@@ -27,6 +27,11 @@ tutorial:
         short_title: Data Panels
         url: /Tutorial/DataPanels/DataPanels.html
         text: Define the parts of the karyoplots where data can be added
+      - label: PlotTypes
+        title: Plot Types
+        short_title: Plot Types
+        url: /Tutorial/PlotTypes/PlotTypes.html
+        text: Select different ideogram and data layouts
   - title: Low-level Plotting Functions
     short_title: Low-level
     subfolderitems:
