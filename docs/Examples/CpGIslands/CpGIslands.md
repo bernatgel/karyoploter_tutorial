@@ -70,7 +70,7 @@ cpgs
 ##   seqinfo: 93 sequences (1 circular) from hg19 genome
 ```
 
-We can use ` kpPlotRegions ` to plot the CpG islands on the genome
+We can use `kpPlotRegions` to plot the CpG islands on the genome
 
 
 ```r
@@ -82,7 +82,7 @@ kpPlotRegions(kp, data=cpgs)
 ![plot of chunk Figure1](images//Figure1-1.png)
 
 With that many regions it's impossible to distinguish them but we can see there
-are regions with different densities of CpG islands. We can plt them together 
+are regions with different densities of CpG islands. We can plot them together 
 with their density to get a more informative plot.
 
 

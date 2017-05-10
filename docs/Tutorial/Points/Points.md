@@ -9,7 +9,7 @@ title: Points
 
 ## Plotting Points
 
-To plot points in a karyoplot we need to use the _kpPoints_ function. Given a
+To plot points in a karyoplot we need to use the `kpPoints` function. Given a
 character vector _chr_ two integer vectors _x_ and _y_ it will plot points 
 in the specifid positions. 
 
@@ -29,7 +29,7 @@ kpPoints(kp, chr="chr1", x=x, y=y)
 
 
 The glyphs used to represent the points can be customized with the same 
-graphical parameters as in the R base graphics _points_ function: pch, cex, col...
+graphical parameters as in the R base graphics `points` function: pch, cex, col...
 
 
 ```r

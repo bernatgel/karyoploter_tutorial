@@ -26,7 +26,7 @@ kp <- plotKaryotype(genome = custom.genome)
 
 ![plot of chunk Figure1](images//Figure1-1.png)
 
-or using regioneR's **toGRanges** to read the chromosome from a file, in this case 
+or using regioneR's `toGRanges` to read the chromosome from a file, in this case 
 [*mygenome.txt*](https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/Tutorial/CustomGenomes/mygenome.txt)
 
 
@@ -42,7 +42,7 @@ kp <- plotKaryotype(genome = custom.genome)
 
 As you can see, however, no cytobands are plotted (since no cytoband information is available)
 and the whole chromosomes are plotted in gray. If the cytobands information is available it
-can be provided to **plotKaryotype** as a **GRanges** object with two additional columns: 
+can be provided to `plotKaryotype` as a `GRanges` object with two additional columns: 
 **name** and **gieStain**. The **gieStain** levels are the ones used at UCSC: *gneg*, 
 *gpos25*, *gpos75*, *gpos100*, *gvar*, *acen*, *stalk*, etc. Here, for example, 
 we will use the [*mycytobands.txt*](https://raw.githubusercontent.com/bernatgel/karyoploter_examples/master/Examples/Tutorial/CustomGenomes/mycytobands.txt) file.

@@ -31,7 +31,7 @@ cpgs <- ahub[["AH5086"]]
 cpgs
 ```
 
-We can use ` kpPlotRegions ` to plot the CpG islands on the genome
+We can use `kpPlotRegions` to plot the CpG islands on the genome
 
 ```{r Figure1, message=FALSE, warning=FALSE}
 library(karyoploteR)
@@ -40,7 +40,7 @@ kpPlotRegions(kp, data=cpgs)
 ```
 
 With that many regions it's impossible to distinguish them but we can see there
-are regions with different densities of CpG islands. We can plt them together 
+are regions with different densities of CpG islands. We can plot them together 
 with their density to get a more informative plot.
 
 ```{r Figure2, message=FALSE, warning=FALSE}
