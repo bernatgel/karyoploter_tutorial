@@ -84,6 +84,12 @@ examples:
     image: /Examples/PlotGenes/images/Figure2-1.png
     url: /Examples/PlotGenes/PlotGenes.html
     text: Plot the location of a set of genes on the genome.
+  - label: CpGIslands
+    title: Plot CpG Islands
+    short_title: CpG Islands
+    image: /Examples/CpGIslands/images/Figure5-1.png
+    url: /Examples/CpGIslands/CpGIslands.html
+    text: Get the CpG islands using AnnotationHub and plot them on the genome along with their density
     
 
   

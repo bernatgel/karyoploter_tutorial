@@ -1,0 +1,87 @@
+---
+layout: example
+label: CpGIslands
+title: CpG Islands
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+```
+
+## Plot CpG Islands
+
+In this examples we'll create a plot depicting the CpG Islands founds in the 
+genome. There are about ~28K CpG islands scattered around the genome, representing
+a somewhat dense set of non-overlapping regions. To get the data we'll use the 
+excellent [AnnotationHub](https://bioconductor.org/packages/AnnotationHub) 
+R package. In this case we'll use it to get the full set of CpG islands from 
+UCSC in a GRanges object. You can find more information on how to serach and 
+retrieve data with the annotation hub in [its vignette](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub-HOWTO.html)
+ and in the [rtracklayer's import documentation](https://kasperdanielhansen.github.io/genbioconductor/html/rtracklayer_Import.html).
+
+
+```{r, message=FALSE, warning=FALSE}
+library(AnnotationHub)
+ahub <- AnnotationHub()
+ahub["AH5086"]
+cpgs <- ahub[["AH5086"]]
+cpgs
+```
+
+We can use ` kpPlotRegions ` to plot the CpG islands on the genome
+
+```{r Figure1, message=FALSE, warning=FALSE}
+library(karyoploteR)
+kp <- plotKaryotype()
+kpPlotRegions(kp, data=cpgs)
+```
+
+With that many regions it's impossible to distinguish them but we can see there
+are regions with different densities of CpG islands. We can plt them together 
+with their density to get a more informative plot.
+
+```{r Figure2, message=FALSE, warning=FALSE}
+kp <- plotKaryotype()
+kpPlotRegions(kp, data=cpgs, r0=0, r1=0.5)
+kpPlotDensity(kp, data=cpgs, r0=0.5, r1=1)
+```
+
+And we can futher refine the plot by plotting the regions with a lighter
+color and plotting the density below the ideogram.
+
+```{r Figure3, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(plot.type=2)
+kpPlotRegions(kp, data=cpgs, col="#AAAAAA", border="#AAAAAA")
+kpPlotDensity(kp, data=cpgs, data.panel=2, col="#AA88FF")
+```
+
+Or showing the denstity with different window sizes with an inverted histogram,
+a smaller data panel to plot the actual islands and, in this case, showing a 
+single chromosome.
+
+```{r Figure4, message=FALSE, warning=FALSE, fig.height=7}
+pp <- getDefaultPlotParams(plot.type = 2)
+pp$data1height <- 50
+kp <- plotKaryotype(chromosomes="chr9", plot.type=2, plot.params = pp)
+kpPlotRegions(kp, data=cpgs, col="#AAAAAA", border="#AAAAAA")
+kpPlotDensity(kp, data=cpgs, data.panel=2, col="#AA88FF", r0=0.5, r1=1)
+kpPlotDensity(kp, data=cpgs, data.panel=2, col="#FF88AA", window.size = 100000, r0=0.5, r1=0)
+```
+
+or making the CpG islands semitransparent to emphasize their accumulation in 
+certain regions and plotting on top of them their density with different window
+sizes.
+
+```{r Figure5, message=FALSE, warning=FALSE, fig.height=7}
+pp <- getDefaultPlotParams(plot.type = 2)
+pp$data1height <- 50
+kp <- plotKaryotype(chromosomes="chr9", plot.type=1)
+kpPlotRegions(kp, data=cpgs, col="#CCCCCC44", border="#CCCCCC44")
+kpPlotDensity(kp, data=cpgs, data.panel=1, col="#8844FF", window.size= 1000000, r0=0, r1=0.25)
+kpPlotDensity(kp, data=cpgs, data.panel=1, col="#AA66FF", window.size = 500000, r0=0.25, r1=0.5)
+kpPlotDensity(kp, data=cpgs, data.panel=1, col="#CC88FF", window.size = 200000, r0=0.5, r1=0.75)
+kpPlotDensity(kp, data=cpgs, data.panel=1, col="#EEAAFF", window.size = 100000, r0=0.75, r1=1)
+```

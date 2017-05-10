@@ -52,10 +52,17 @@ genome.
 ```r
 library(karyoploteR)
 kp <- plotKaryotype(genome="hg38")
-kpPlotMarkers(kp, data=sel.genes, labels=gene.labels)
 ```
 
 ![plot of chunk Figure1](images//Figure1-1.png)
+
+```r
+kpPlotMarkers(kp, data=sel.genes, labels=gene.labels)
+```
+
+```
+## Error in kpPlotMarkers(kp, data = sel.genes, labels = gene.labels): object 'sel.genes' not found
+```
 
 The gene labels are not readable since they overlap the ideograms. To solve this
 we will tweak the plot a bit: make the labels horizontal, reduce them and move
@@ -64,8 +71,15 @@ them closer to their ideograms specifying lower r1 and adjusting the label.margi
 
 ```r
 kp <- plotKaryotype(genome="hg38")
+```
+
+![plot of chunk Figure2](images//Figure2-1.png)
+
+```r
 kpPlotMarkers(kp, data=sel.genes, labels=gene.labels, text.orientation = "horizontal",
               r1=0.5, cex=0.8, adjust.label.position = FALSE)
 ```
 
-![plot of chunk Figure2](images//Figure2-1.png)
+```
+## Error in kpPlotMarkers(kp, data = sel.genes, labels = gene.labels, text.orientation = "horizontal", : object 'sel.genes' not found
+```
