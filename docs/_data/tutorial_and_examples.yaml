@@ -60,6 +60,11 @@ tutorial:
         short_title: Text
         url: /Tutorial/Text/Text.html
         text: Add text labels on the data part of a karyoplot
+      - label: Polygon
+        title: Polygons
+        short_title: Polygons
+        url: /Tutorial/Polygon/Polygon.html
+        text: Add polygons to a karyoplot
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
