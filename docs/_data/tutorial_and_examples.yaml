@@ -55,6 +55,11 @@ tutorial:
         short_title: Lines
         url: /Tutorial/Lines/Lines.html
         text: Plot lines on the genome
+      - label: Text
+        title: Text
+        short_title: Text
+        url: /Tutorial/Text/Text.html
+        text: Add text labels on the data part of a karyoplot
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
