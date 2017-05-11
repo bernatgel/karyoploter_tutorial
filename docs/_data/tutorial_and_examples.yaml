@@ -50,6 +50,11 @@ tutorial:
         short_title: Points
         url: /Tutorial/Points/Points.html
         text: Plot points to create scatter plots
+      - label: Lines
+        title: Lines
+        short_title: Lines
+        url: /Tutorial/Lines/Lines.html
+        text: Plot lines on the genome
   - title: High-level Plotting Functions
     short_title: High-level
     subfolderitems:
