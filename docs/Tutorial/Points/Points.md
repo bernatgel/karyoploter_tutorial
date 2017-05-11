@@ -29,7 +29,8 @@ kpPoints(kp, chr="chr1", x=x, y=y)
 
 
 The glyphs used to represent the points can be customized with the same 
-graphical parameters as in the R base graphics `points` function: pch, cex, col...
+[graphical parameters](https://www.rdocumentation.org/packages/graphics/topics/par)
+as in the R base graphics `points` function: _pch_, _cex_, _col_...
 
 
 ```r
