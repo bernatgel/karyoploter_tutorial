@@ -10,7 +10,7 @@ title: Points
 ## Plotting Points
 
 To plot points in a karyoplot we need to use the `kpPoints` function. Given a
-character vector _chr_ two integer vectors _x_ and _y_ it will plot points 
+character vector _chr_ and two integer vectors _x_ and _y_ it will plot points 
 in the specifid positions. 
 
 
