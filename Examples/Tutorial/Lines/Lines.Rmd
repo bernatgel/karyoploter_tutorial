@@ -31,8 +31,9 @@ kpLines(kp, chr="chr1", x=x, y=y)
 
 ```
 
-Lines are cutomizable with the same graphical parameters as in the R base 
-graphics `lines` function: _lwd_, _lty_, _col_...
+Lines are cutomizable with the same 
+[graphical parameters](https://www.rdocumentation.org/packages/graphics/topics/par)
+as in the R base graphics `lines` function: _lwd_, _lty_, _col_...
 
 ```{r Figure2, message=FALSE, warning=FALSE, fig.height=5}
 kp <- plotKaryotype(chromosomes="chr1")

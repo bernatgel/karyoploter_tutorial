@@ -27,8 +27,9 @@ kpLines(kp, chr="chr1", x=x, y=y)
 
 ![plot of chunk Figure1](images//Figure1-1.png)
 
-Lines are cutomizable with the same graphical parameters as in the R base 
-graphics `lines` function: _lwd_, _lty_, _col_...
+Lines are cutomizable with the same 
+[graphical parameters](https://www.rdocumentation.org/packages/graphics/topics/par)
+as in the R base graphics `lines` function: _lwd_, _lty_, _col_...
 
 
 ```r
