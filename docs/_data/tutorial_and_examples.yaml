@@ -95,13 +95,6 @@ examples:
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.
     only_devel: 0
-  - label: GeneDensity
-    title: Gene Density
-    short_title: Gene Density
-    image: /Examples/GeneDensity/images/Figure3-1.png
-    url: /Examples/GeneDensity/GeneDensity.html
-    text: Plot the density of genes along the genome.
-    only_devel: 0
   - label: SNPArray
     title: SNP-array raw data
     short_title: SNP-array data
@@ -115,6 +108,13 @@ examples:
     image: /Examples/PlotGenes/images/Figure2-1.png
     url: /Examples/PlotGenes/PlotGenes.html
     text: Plot the location of a set of genes on the genome.
+    only_devel: 0
+  - label: GeneDensity
+    title: Gene Density
+    short_title: Gene Density
+    image: /Examples/GeneDensity/images/Figure3-1.png
+    url: /Examples/GeneDensity/GeneDensity.html
+    text: Plot the density of genes along the genome.
     only_devel: 0
   - label: CpGIslands
     title: Plot CpG Islands
@@ -130,6 +130,7 @@ examples:
     url: /Examples/Rainfall/Rainfall.html
     text: Create a rainfall plot with the distance between somatic mutations with data from a pancretic tumor WGS
     only_devel: 1
+
   
 
   

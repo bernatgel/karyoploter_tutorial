@@ -151,6 +151,8 @@ p {
     padding: 5px;
     top: 20px;
     font-weight: 600;
+    box-shadow: -1px 2px 5px #888888;
+    text-shadow: none;
 }
 
 
