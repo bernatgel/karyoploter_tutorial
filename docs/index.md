@@ -53,6 +53,8 @@ from the [devtools](https://github.com/hadley/devtools) package.
 
 ## <a name="Tutorial"></a>Tutorial
 
+The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for clarification or new sections.
+
 {% for item in site.data.tutorial_and_examples.tutorial %}
   <h3>{{ item.title }}</h3>
   <ul>
