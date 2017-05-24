@@ -140,6 +140,20 @@ p {
   padding-right: 2em;
 }
 
+/*Mark the example only available in the devel version*/
+.devel-only {
+    position: absolute;
+    right: 16px;
+    border-left: 1px solid #DD6666;
+    border-top: 1px solid #DD6666;
+    border-bottom: 1px solid #DD6666;
+    background: #FF8888;
+    padding: 5px;
+    top: 20px;
+    font-weight: 600;
+}
+
+
 /*Off-canvas nav bar from http://www.bootply.com/new?visual=1 */
 
 body {

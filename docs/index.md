@@ -10,8 +10,8 @@ data along the genome to get broad genome-wide view to facilitate the identifica
 distributions.
 
 **karyoploteR** is based on base R graphics and mimicks its interface. You first create a plot with a call 
-to the _plotKaryotype_ function and then sequentially call a number of plotting functions (_kpLines_, _kpPoints_,
-_kpBars_…) to add data to the genome plot.
+to the `plotKaryotype` function and then sequentially call a number of plotting functions (`kpLines`, `kpPoints`,
+`kpBars`…) to add data to the genome plot.
 
 **karyoploteR** is a plotting tool and only a plotting tool. That means that it is not able to download or 
 retrieve any data. The downside of this is that the user is responsible of getting the data into R. The upside 
@@ -28,7 +28,7 @@ plot almost anything on a genome-wide scale.
 
 ## Getting Started
 
-karyoploteR is part of [Bioconductor](http://bioconductor.org). The package documentation, including  the [vignette](http://bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf)
+karyoploteR is part of [Bioconductor](http://bioconductor.org) since version BioC 3.5. The package documentation, including  the [vignette](http://bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf)
 and [user manual](http://bioconductor.org/packages/devel/bioc/manuals/karyoploteR/man/karyoploteR.pdf) is available at the karyoploteR's 
 Bioconductor landing page at [http://bioconductor.org/packages/karyoploteR](http://bioconductor.org/packages/karyoploteR).
 
@@ -38,6 +38,17 @@ To install the package, start R and enter:
   source("https://bioconductor.org/biocLite.R")
   biocLite("karyoploteR")
 {% endhighlight %}
+
+
+
+#### Usign the development version
+
+To use the [development version of karyoploteR](http://bioconductor.org/packages/devel/bioc/html/karyoploteR.html) 
+you should use the [devel version of Bioconductor](https://www.bioconductor.org/developers/how-to/useDevel/). The 
+devel version of the package might work with release version of Bioconductor, althought that's not expected to be
+always the case. You should be able to install the development version from the 
+[github repo](https://github.com/bernatgel/karyoploter) using `install_github()`
+from the [devtools](https://github.com/hadley/devtools) package.
 
 
 ## <a name="Tutorial"></a>Tutorial
@@ -59,6 +70,9 @@ To install the package, start R and enter:
 {% for item in site.data.tutorial_and_examples.examples %}
   <div class="col-md-4">
     <div class="thumbnail">
+      {% if item.only_devel == 1 %}
+	<div class="devel-only">devel only</div>
+      {% endif %}
       <a href="{{ site.baseurl }}/{{ item.url }}">
 	<img class="img-responsive" src="{{ site.baseurl }}/{{ item.image }}" alt="Image of example {{ item.title }}">
 	<div class="caption">
