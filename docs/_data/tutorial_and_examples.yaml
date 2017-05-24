@@ -7,31 +7,37 @@ tutorial:
         short_title: Plot ideograms
         url: /Tutorial/CreateIdeogram/CreateIdeogram.html
         text: Create ideograms for different organisms
+        only_devel: FALSE
       - label: FilterChromosomes
         title: Filter and reorder chromosomes
         short_title: Filter and reorder
         url: /Tutorial/FilterChromosomes/FilterChromosomes.html
         text: Create ideograms of a subset of chromosomes and plot them in any order
+        only_devel: FALSE
       - label: CustomGenomes
         title: Using custom genomes
         short_title: Custom genomes
         url: /Tutorial/CustomGenomes/CustomGenomes.html
         text: Create ideograms using your own custom genomes including specifying your own cytobands
+        only_devel: FALSE
       - label: BaseNumbers
         title: Adding base numbers and cytoband labels
         short_title: Base numbers & Cytoband labels
         url: /Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.html
         text: Add a base numbering guide to the ideograms and label the cytobands with their names
+        only_devel: FALSE
       - label: DataPanels
         title: Data Panels
         short_title: Data Panels
         url: /Tutorial/DataPanels/DataPanels.html
         text: Define the parts of the karyoplots where data can be added
+        only_devel: FALSE
       - label: PlotTypes
         title: Plot Types
         short_title: Plot Types
         url: /Tutorial/PlotTypes/PlotTypes.html
         text: Select different ideogram and data layouts
+        only_devel: FALSE
   - title: Low-level Plotting Functions
     short_title: Low-level plot functions
     subfolderitems:
@@ -40,31 +46,37 @@ tutorial:
         short_title: Low-level plotting overview
         url: /Tutorial/OverviewPlottingFunctions/OverviewPlottingFunctions.html
         text: Overview of the low-level plotting functions to plot basic graphical primitives (points, lines, arrows, poylgons...)
+        only_devel: FALSE
       - label: DataPositioning
         title: Data Positioning
         short_title: Data Positioning
         url: /Tutorial/DataPositioning/DataPositioning.html
         text: Manage and adjust the exact positioning of data when plotting
+        only_devel: FALSE
       - label: Points
         title: Points
         short_title: Points
         url: /Tutorial/Points/Points.html
         text: Plot points to create scatter plots
+        only_devel: FALSE
       - label: Lines
         title: Lines
         short_title: Lines
         url: /Tutorial/Lines/Lines.html
         text: Plot lines on the genome
+        only_devel: FALSE
       - label: Text
         title: Text
         short_title: Text
         url: /Tutorial/Text/Text.html
         text: Add text labels on the data part of a karyoplot
+        only_devel: FALSE
       - label: Polygon
         title: Polygons
         short_title: Polygons
         url: /Tutorial/Polygon/Polygon.html
         text: Add polygons to a karyoplot
+        only_devel: FALSE
   - title: High-level Plotting Functions
     short_title: High-level plot functions
     subfolderitems:
@@ -73,6 +85,7 @@ tutorial:
         short_title: Plotting markers
         url: /Tutorial/PlotMarkers/PlotMarkers.html
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
+        only_devel: FALSE
 
 examples:
   - label: MultipleData
@@ -81,30 +94,42 @@ examples:
     image: /Examples/MultipleDataTypes/images/Figure-1.png
     url: /Examples/MultipleDataTypes/MultipleDataTypes.html
     text: A plot with multiple data types plotted together.
+    only_devel: FALSE
   - label: GeneDensity
     title: Gene Density
     short_title: Gene Density
     image: /Examples/GeneDensity/images/Figure3-1.png
     url: /Examples/GeneDensity/GeneDensity.html
     text: Plot the density of genes along the genome.
+    only_devel: FALSE
   - label: SNPArray
     title: SNP-array raw data
     short_title: SNP-array data
     image: /Examples/SNPArray/images/Figure4-1.png
     url: /Examples/SNPArray/SNPArray.html
     text: Create a plot with raw data from an Illumina SNP array starting with real SNP-array data as extracted from GenomeStudio
+    only_devel: FALSE
   - label: PlotGenes
     title: Plot Genes
     short_title: Plot Genes
     image: /Examples/PlotGenes/images/Figure2-1.png
     url: /Examples/PlotGenes/PlotGenes.html
     text: Plot the location of a set of genes on the genome.
+    only_devel: FALSE
   - label: CpGIslands
     title: Plot CpG Islands
     short_title: CpG Islands
     image: /Examples/CpGIslands/images/Figure5-1.png
     url: /Examples/CpGIslands/CpGIslands.html
     text: Get the CpG islands using AnnotationHub and plot them on the genome along with their density
-    
+    only_devel: FALSE
+  - label: Rainfall
+    title: Rainfall Plots
+    short_title: Rainfall Plots
+    image: /Examples/Rainfall/images/Figure3-1.png
+    url: /Examples/Rainfall/Rainfall.html
+    text: Create a rainfall plot with the distance between somatic mutations with data from a pancretic tumor WGS
+    only_devel: TRUE
+  
 
   
