@@ -9,6 +9,56 @@ does not depend on other graphics packages. The aim of karyoploteR is to offer t
 data along the genome to get broad genome-wide view to facilitate the identification of genome wide relations and 
 distributions.
 
+<!-- A carousel showing some of the example images -->
+<div id="myCarousel" class="carousel slide" data-interval="false">
+ <!-- Indicators -->
+ <ol class="carousel-indicators">
+  {% assign counter = 1 %}
+  {% for item in site.data.tutorial_and_examples.examples %}
+   {% if counter == 1 %} 
+    <li data-target="#myCarousel" data-slide-to="{{ counter }}" class="active"></li>
+   {% else %}
+    <li data-target="#myCarousel" data-slide-to="{{ counter }}"></li>
+   {% endif %}
+   {% assign counter = counter | plus: 1 %}
+  {% endfor %}
+ </ol>
+
+  <!-- Wrapper for slides -->
+ <div class="carousel-inner">
+  {% assign counter = 1 %}
+  {% for item in site.data.tutorial_and_examples.examples %}
+    {% if counter == 1 %}
+      <div class="item active">
+    {% else %}
+      <div class="item">
+    {% endif %}
+    {% assign counter = counter | plus: 1 %}
+     <img class="carousel-img" src="{{ site.baseurl }}/{{ item.image }}" alt="Image of example {{ item.title }}">
+     {% if item.only_devel == 1 %}
+	<div class="devel-only">devel only</div>
+     {% endif %}
+     <div class="carousel-caption">
+      <h4>Example - {{ item.title}}</h4>
+      <a class="btn btn-lg btn-primary" href="{{ site.baseurl }}/{{ item.url }}" role="button">See Example</a>
+     </div>
+    </div>
+  {% endfor %}
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+&nbsp;
+
 **karyoploteR** is based on base R graphics and mimicks its interface. You first create a plot with a call 
 to the `plotKaryotype` function and then sequentially call a number of plotting functions (`kpLines`, `kpPoints`,
 `kpBars`…) to add data to the genome plot.

@@ -64,7 +64,7 @@ plotting parameters to reduce some of the blank space. In addition we'll make
 the plot height smaller to get a more adequate aspect ratio.
 
 
-```{r Figure3, message=FALSE, warning=FALSE, fig.height=6}
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=7}
 pp <- getDefaultPlotParams(plot.type = 4)
 pp$data1inmargin <- 0
 pp$bottommargin <- 20

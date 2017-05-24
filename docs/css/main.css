@@ -140,6 +140,46 @@ p {
   padding-right: 2em;
 }
 
+
+/*Carousel */
+#myCarousel {
+  max-width: 800px;
+  margin: auto;
+}
+
+.carousel-img {
+  max-height: 400px !important;
+  width: auto;
+}
+
+.carousel-indicators li {
+    border: 1px solid white;
+}
+
+.carousel-indicators .active {
+    background-color: white;
+}
+
+.carousel-caption {
+  color: white;
+  background: rgba(68, 68, 68, 0.7);
+  text-shadow: none;
+}
+
+.carousel-indicators {
+  margin-bottom: 3px;
+}
+
+.carousel-control {
+  color: #444;
+  background-image: none !important;
+}
+
+.carousel-control:focus, .carousel-control:hover {
+  color: #222;
+}
+
+
 /*Mark the example only available in the devel version*/
 .devel-only {
     position: absolute;
