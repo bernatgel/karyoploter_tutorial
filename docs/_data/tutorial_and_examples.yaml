@@ -77,6 +77,12 @@ tutorial:
         url: /Tutorial/Polygon/Polygon.html
         text: Add polygons to a karyoplot
         only_devel: 0
+      - label: Segments
+        title: Segments
+        short_title: Segments
+        url: /Tutorial/Segments/Segments.html
+        text: Add segments to a karyoplot
+        only_devel: 0
   - title: High-level Plotting Functions
     short_title: High-level plot functions
     subfolderitems:
