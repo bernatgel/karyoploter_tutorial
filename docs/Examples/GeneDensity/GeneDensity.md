@@ -74,7 +74,7 @@ kpPlotDensity(kp, all.genes)
 ![plot of chunk Figure2](images//Figure2-1.png)
 
 It is now easier to compare the density between the chromosomes, but the 
-data is maybe too "spyky" for a genome-wide view. We can smoothen it 
+data is maybe too "spyky" for a genome-wide view. We can smooth it 
 using a larger window size in the density computation. For example we can set 
 window.size to 10Mb instead of the default 1Mb. In addition we'll adjust the
 plotting parameters to reduce some of the blank space. In addition we'll make 
