@@ -7,7 +7,7 @@ title: Segments
 
 
 
-## Plotting Points
+## Plotting Segments
 
 To plot segments in a karyoplot we need to use the `kpSegments` function. Given a
 character vector _chr_ and 4 integer vectors _x0_, _y0_, _x1_ and _y1_ it 
