@@ -89,6 +89,12 @@ tutorial:
         url: /Tutorial/Rectangles/Rectangles.html
         text: Plot rectangles on a karyoplot
         only_devel: 0
+      - label: Arrows
+        title: Arrows
+        short_title: Arrows
+        url: /Tutorial/Arrows/Arrows.html
+        text: Plot arrows on a karyoplot
+        only_devel: 0
   - title: High-level Plotting Functions
     short_title: High-level plot functions
     subfolderitems:
