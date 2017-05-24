@@ -81,7 +81,13 @@ tutorial:
         title: Segments
         short_title: Segments
         url: /Tutorial/Segments/Segments.html
-        text: Add segments to a karyoplot
+        text: Plot segments on a karyoplot
+        only_devel: 0
+      - label: Rectangles
+        title: Rectangles
+        short_title: Rectangles
+        url: /Tutorial/Rectangles/Rectangles.html
+        text: Plot rectangles on a karyoplot
         only_devel: 0
   - title: High-level Plotting Functions
     short_title: High-level plot functions
