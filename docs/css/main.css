@@ -146,7 +146,7 @@ p {
 
 /* Button strip in the index top part */
 .button-bar {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .button-bar > .btn {
@@ -157,6 +157,7 @@ p {
     font-size: 19px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 10px;
 }
 
 
