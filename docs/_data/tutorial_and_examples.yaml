@@ -38,6 +38,12 @@ tutorial:
         url: /Tutorial/PlotTypes/PlotTypes.html
         text: Select different ideogram and data layouts
         only_devel: 0
+      - label: PlotParams
+        title: Changing the plotting parameters
+        short_title: Plotting parameters
+        url: /Tutorial/PlotParams/PlotParams.html
+        text: Customize general plotting parameters (margins, sizings and positions)
+        only_devel: 0
       - label: DataPositioning
         title: Data Positioning
         short_title: Data Positioning
