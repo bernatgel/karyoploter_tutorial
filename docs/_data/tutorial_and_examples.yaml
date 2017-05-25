@@ -38,6 +38,12 @@ tutorial:
         url: /Tutorial/PlotTypes/PlotTypes.html
         text: Select different ideogram and data layouts
         only_devel: 0
+      - label: DataPositioning
+        title: Data Positioning
+        short_title: Data Positioning
+        url: /Tutorial/DataPositioning/DataPositioning.html
+        text: Manage and adjust the exact positioning of data when plotting
+        only_devel: 0
   - title: Low-level Plotting Functions
     short_title: Low-level plot functions
     subfolderitems:
@@ -46,12 +52,6 @@ tutorial:
         short_title: Low-level plotting overview
         url: /Tutorial/OverviewPlottingFunctions/OverviewPlottingFunctions.html
         text: Overview of the low-level plotting functions to plot basic graphical primitives (points, lines, arrows, poylgons...)
-        only_devel: 0
-      - label: DataPositioning
-        title: Data Positioning
-        short_title: Data Positioning
-        url: /Tutorial/DataPositioning/DataPositioning.html
-        text: Manage and adjust the exact positioning of data when plotting
         only_devel: 0
       - label: Points
         title: Points
