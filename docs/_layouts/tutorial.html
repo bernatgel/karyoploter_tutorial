@@ -78,21 +78,21 @@
 			  {% if forloop.index0==0 %}
 			    {% unless outer_forloop.index0==0 %}
 			      {% assign prev_parent = outer_forloop.index0 | minus:1 %}
-			      <li class="previous"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.tutorial[prev_parent].subfolderitems.last.url }}">Previous -  {{ site.data.tutorial_and_examples.tutorial[prev_parent].subfolderitems.last.short_title }}</a></li>
+			      <li class="previous"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.tutorial[prev_parent].subfolderitems.last.url }}"> <span class="glyphicon glyphicon-chevron-left"></span> Previous -  {{ site.data.tutorial_and_examples.tutorial[prev_parent].subfolderitems.last.short_title }}</a></li>
 			    {% endunless %}
 			  {% else %}
 			    {% assign prev_i = forloop.index0 | minus: 1 %}
-			     <li class="previous"><a href="{{ site.baseurl }}/{{ item.subfolderitems[prev_i].url }}">Previous -  {{ item.subfolderitems[prev_i].short_title }}</a></li>
+			     <li class="previous"><a href="{{ site.baseurl }}/{{ item.subfolderitems[prev_i].url }}"> <span class="glyphicon glyphicon-chevron-left"></span> Previous -  {{ item.subfolderitems[prev_i].short_title }}</a></li>
 			  {% endif %}
 			  
 			  {% if forloop.last %}
 			    {% unless outer_forloop.rindex0==0 %}
 			      {% assign next_parent = outer_forloop.index0 | plus:1 %}
-			      <li class="next"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.tutorial[next_parent].subfolderitems.first.url }}">Next - {{ site.data.tutorial_and_examples.tutorial[next_parent].subfolderitems.first.short_title }}</a></li>
+			      <li class="next"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.tutorial[next_parent].subfolderitems.first.url }}">Next - {{ site.data.tutorial_and_examples.tutorial[next_parent].subfolderitems.first.short_title }}  <span class="glyphicon glyphicon-chevron-right"></span></a></li>
 			    {% endunless %}
 			  {% else %}
 			    {% assign next_i = forloop.index0 | plus: 1 %}
-			    <li class="next"><a href="{{ site.baseurl }}/{{ item.subfolderitems[next_i].url }}">Next - {{ item.subfolderitems[next_i].short_title }}</a></li>
+			    <li class="next"><a href="{{ site.baseurl }}/{{ item.subfolderitems[next_i].url }}">Next - {{ item.subfolderitems[next_i].short_title }}  <span class="glyphicon glyphicon-chevron-right"></span></a></li>
 			  {% endif %}
 			{% endif %}
 		    {% endfor %}

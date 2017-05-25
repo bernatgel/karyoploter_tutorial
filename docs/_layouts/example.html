@@ -79,11 +79,11 @@
 		    {% if item.label == page.label %}
 		      {% unless forloop.index0==0 %}
 			{% assign prev_i = forloop.index0 | minus: 1 %}
-			  <li class="previous"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.examples[prev_i].url }}">Previous -  {{ site.data.tutorial_and_examples.examples[prev_i].short_title }}</a></li>
+			  <li class="previous"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.examples[prev_i].url }}"><span class="glyphicon glyphicon-chevron-left"></span> Previous -  {{ site.data.tutorial_and_examples.examples[prev_i].short_title }}</a></li>
 		      {% endunless %}
 		      {% unless forloop.rindex0==0 %}
 			{% assign next_i = forloop.index0 | plus: 1 %}
-			  <li class="next"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.examples[next_i].url }}">Next - {{ site.data.tutorial_and_examples.examples[next_i].short_title }}</a></li>
+			  <li class="next"><a href="{{ site.baseurl }}/{{ site.data.tutorial_and_examples.examples[next_i].url }}">Next - {{ site.data.tutorial_and_examples.examples[next_i].short_title }}  <span class="glyphicon glyphicon-chevron-right"></span></a></li>
 		      {% endunless %}
 		    {% endif %}
 		  {% endfor %}
