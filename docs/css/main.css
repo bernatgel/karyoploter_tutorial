@@ -34,10 +34,14 @@ code {
 }
 
 #footer {
-    margin: 20px 0;
-    font-size: 0.85em;
-    color: #999;
+    margin: 0 0;
+    font-size: 0.9em;
+    color: #444;
     text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    background-color: #eee;
+    width: 100%;
 }
 
 #content > .page-header:first-child {
@@ -138,6 +142,21 @@ p {
   border-right: 1px solid #dddddd;
   padding-left: 2em;
   padding-right: 2em;
+}
+
+/* Button strip in the index top part */
+.button-bar {
+  padding-top: 20px;
+}
+
+.button-bar > .btn {
+    color: #337ab7;
+    background-color: none;
+    border-color: #444;
+    text-shadow: none;
+    font-size: 19px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 

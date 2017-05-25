@@ -76,7 +76,7 @@ rainfall plots to detect kataegis. Since it is not tied to any data type or sour
 plot almost anything on a genome-wide scale.
 
 
-## Getting Started
+## <a name="GettingStarted"></a>Getting Started
 
 karyoploteR is part of [Bioconductor](http://bioconductor.org) since version BioC 3.5. The package documentation, including  the [vignette](http://bioconductor.org/packages/devel/bioc/vignettes/karyoploteR/inst/doc/karyoploteR.pdf)
 and [user manual](http://bioconductor.org/packages/devel/bioc/manuals/karyoploteR/man/karyoploteR.pdf) is available at the karyoploteR's 
@@ -135,5 +135,7 @@ The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@ig
     </div>
   </div>
 {% endfor %}
+
+
 
  
