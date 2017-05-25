@@ -15,9 +15,9 @@ set.seed(1234)
 ## Adjusting plotting parameters
 
 Once we have selected a 
-[plot.type]({{ site.baseurl }}{% link Tutorial/PlotTypes/PlotTypes.md %}
+[plot.type]({{ site.baseurl }}{% link Tutorial/PlotTypes/PlotTypes.md %})
 with its chromosome organization and its 
-[data panels]({{ site.baseurl }}{% link Tutorial/DataPanels/DataPanels.md %}, 
+[data panels]({{ site.baseurl }}{% link Tutorial/DataPanels/DataPanels.md %}), 
 we can further customize the general plot apperance using plotting parameters.
 Plotting parameters define the relative sizing of the different elements, their
 margins and positions.

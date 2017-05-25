@@ -110,6 +110,12 @@ tutorial:
         url: /Tutorial/PlotMarkers/PlotMarkers.html
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
         only_devel: 0
+      - label: PlotRegions
+        title: Plotting Genomic Regions
+        short_title: Plot Regions
+        url: /Tutorial/PlotRegions/PlotRegions.html
+        text: Plot regions on the genome with automatic layering to avoid overlapping
+        only_devel: 0
 
 examples:
   - label: MultipleData
