@@ -116,7 +116,13 @@ tutorial:
         url: /Tutorial/PlotRegions/PlotRegions.html
         text: Plot regions on the genome with automatic layering to avoid overlapping
         only_devel: 0
-
+      - label: PlotDensity
+        title: Plotting the Density of Genomic Features
+        short_title: Plot Density
+        url: /Tutorial/PlotDensity/PlotDensity.html
+        text: Plot the density of features along the genome
+        only_devel: 0
+        
 examples:
   - label: MultipleData
     title: Multiple Data Types
