@@ -25,7 +25,7 @@ We will create a set of random regions using
 `createRandomRegions` function and plot them on the genome.
 
 
-```{r Figure1, message=FALSE, warning=FALSE, fig.height=7}
+```{r Figure1, message=FALSE, warning=FALSE}
 library(karyoploteR)
 regions <- createRandomRegions(nregions=400, length.mean = 3e6, mask=NA)
 kp <- plotKaryotype()
@@ -36,7 +36,7 @@ The height of the rectangles is adjusted so the tallest pile of regions fits in
 the data panel, making the regions flatter if needed. For example, plotting 40K 
 regions produces a plot like this.
 
-```{r Figure2, message=FALSE, warning=FALSE, fig.height=7}
+```{r Figure2, message=FALSE, warning=FALSE}
 many.regions <- createRandomRegions(nregions=40000, length.mean = 3e6, mask=NA)
 kp <- plotKaryotype()
 kpPlotRegions(kp, data=many.regions)
