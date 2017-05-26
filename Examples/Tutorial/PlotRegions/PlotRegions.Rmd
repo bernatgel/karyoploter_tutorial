@@ -44,7 +44,7 @@ kpPlotRegions(kp, data=many.regions)
 
 It is possible to customize the appearance of the regions using the same 
 parameters used for
-[kpRect]({{ site.baseurl }}{% link Tutorial/PlotTypes/PlotTypes.md %}) plus the
+[kpRect]({{ site.baseurl }}{% link Tutorial/Rectangles/Rectangles.md %}) plus the
 additional parameters _avoid.overlapping_, _num.layers_ and _layer.margin_ to 
 control the layering of the regions.
 
