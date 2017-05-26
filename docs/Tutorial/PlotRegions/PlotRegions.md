@@ -52,7 +52,8 @@ control the layering of the regions.
 
 ```r
 kp <- plotKaryotype(chromosomes="chr1")
-kpPlotRegions(kp, data=many.regions, col="#AACCFF", layer.margin = 0.001, border=NA)
+kpPlotRegions(kp, data=regions, col="#AACCFF", layer.margin = 0.01, border=NA, r0=0, r1=0.5)
+kpPlotRegions(kp, data=extendRegions(regions, extend.end = 10e6), col="#FFEECC", layer.margin = 0.05, border="#FFCCAA", r0=0.6, r1=1)
 ```
 
 ![plot of chunk Figure3](images//Figure3-1.png)
