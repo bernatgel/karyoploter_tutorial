@@ -54,7 +54,7 @@ kpPlotRegions(kp, data=more.regions, data.panel=2)
 
 ![plot of chunk Figure3](images//Figure3-1.png)
 
-It is possible to customize the appearance of the regions using the same 
+It is possible to customize the appearance of the density plot using the same 
 parameters used for 
 [kpPolygon]({{ site.baseurl }}{% link Tutorial/Polygon/Polygon.md %}).
 It is possible to specify different colors for the border (_border_) and the 

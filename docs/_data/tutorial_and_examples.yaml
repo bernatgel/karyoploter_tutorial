@@ -122,6 +122,12 @@ tutorial:
         url: /Tutorial/PlotDensity/PlotDensity.html
         text: Plot the density of features along the genome
         only_devel: 0
+      - label: PlotCoverage
+        title: Plotting the per base Coverage of Genomic Features
+        short_title: Plot Coverage
+        url: /Tutorial/PlotCoverage/PlotCoverage.html
+        text: Plot the coverage of features for every individual base in the genome
+        only_devel: 0
         
 examples:
   - label: MultipleData
