@@ -16,6 +16,9 @@
         <!-- Our own CSS to customize the styles -->
         <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
         
+        
+         {% include header.html %}
+        
         <link rel="icon" href="/karyoploter_examples/images/karyo_256.png">
         
         <!-- Undo the body padding only for the main page -->
@@ -35,6 +38,7 @@
 	    <p class="lead text-muted text-center">A tutorial and a set of examples on using the R/Bioconductor package karyoploteR to plot whole genomes with arbitrary data on them</p>
 	    <div class="button-bar">
 	      <a role="button" href="{{ site.baseurl }}/#GettingStarted" class="btn">Getting Started</a>
+	      <a role="button" href="{{ site.baseurl }}/#Citing" class="btn">Citing</a>
 	      <a role="button" href="{{ site.baseurl }}/#Tutorial" class="btn">Tutorial</a>
 	      <a role="button" href="{{ site.baseurl }}/#Examples" class="btn">Examples</a>
 	      <!-- <a role="button" href="{{ site.baseurl }}/#Tutorial" class="btn btn-primary">Citing</a> -->

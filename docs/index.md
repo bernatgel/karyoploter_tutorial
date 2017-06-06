@@ -100,10 +100,24 @@ always the case. You should be able to install the development version from the
 [github repo](https://github.com/bernatgel/karyoploter) using `install_github()`
 from the [devtools](https://github.com/hadley/devtools) package.
 
+## <a name="Citing"></a>Citing karyoploteR
+
+karyoploteR has been developed by **Bernat Gel** [<i class="fa fa-envelope" aria-hidden="true"></i>](mailto:bgel@igtp.cat)
+[<i class="fa fa-twitter" aria-hidden="true"></i>](https://twitter.com/bernatgel) 
+[<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/bernatgel)
+  and   **Eduard Serra** [<i class="fa fa-envelope" aria-hidden="true"></i>](mailto:eserra@igtp.cat) at [IGTP](http://www.germanstrias.org/)
+Hereditary Cancer Group.
+
+If you use karyoploteR in your research, please cite the Bioinformatics paper describing it:
+
+Bernat Gel & Eduard Serra. (2017). *karyoploteR: an R/Bioconductor package to plot customizable genomes displaying arbitrary data*. Bioinformatics, 31–33. [doi:10.1093/bioinformatics/btx346](https://doi.org/10.1093/bioinformatics/btx346)
+
+
+
 
 ## <a name="Tutorial"></a>Tutorial
 
-The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for clarification or new sections.
+The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for any clarification or proposa a new section.
 
 {% for item in site.data.tutorial_and_examples.tutorial %}
   <h3>{{ item.title }}</h3>
