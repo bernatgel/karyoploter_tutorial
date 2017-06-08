@@ -128,6 +128,12 @@ tutorial:
         url: /Tutorial/PlotCoverage/PlotCoverage.html
         text: Plot the coverage of features for every individual base in the genome
         only_devel: 0
+      - label: PlotLinks
+        title: Plotting links betwee genomic regions
+        short_title: Plot Links
+        url: /Tutorial/PlotLinks/PlotLinks.html
+        text: Plot links between different genomic regions (even in different chromosomes) to represent genomic rearrangements
+        only_devel: 1
         
 examples:
   - label: MultipleData
