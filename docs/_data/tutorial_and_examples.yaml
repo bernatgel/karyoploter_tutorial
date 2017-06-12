@@ -101,12 +101,18 @@ tutorial:
         url: /Tutorial/Arrows/Arrows.html
         text: Plot arrows on a karyoplot
         only_devel: 0
+      - label: Bars
+        title: Bars
+        short_title: Bars
+        url: /Tutorial/Bars/Bars.html
+        text: Plot bars on a karyoplot
+        only_devel: 0
   - title: High-level Plotting Functions
     short_title: High-level plot functions
     subfolderitems:
       - label: PlotMarkers
         title: Plotting markers (genes, snps, ...)
-        short_title: Plotting markers
+        short_title: Plot Markers
         url: /Tutorial/PlotMarkers/PlotMarkers.html
         text: Plot markers (a line with a label) on the genome representing entities with a given position and idetified with a label, for example genes, snps, etc...  
         only_devel: 0
