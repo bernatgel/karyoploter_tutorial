@@ -184,7 +184,13 @@ examples:
     url: /Examples/Rainfall/Rainfall.html
     text: Create a rainfall plot with the distance between somatic mutations with data from a pancretic tumor WGS
     only_devel: 1
-
+  - label: PVivaxGenes
+    title: Plasmodium Vivax Genes from GFF
+    short_title: P. Vivax Genes
+    image: /Examples/PVivaxGenes/images/Figure6-1.png
+    url: /Examples/PVivaxGenes/PVivaxGenes.html
+    text: Get the genes and genome of Plasmodium Vivax from a GFF file and plot them
+    only_devel: 0
   
 
   
