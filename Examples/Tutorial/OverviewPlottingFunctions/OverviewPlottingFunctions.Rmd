@@ -69,7 +69,7 @@ passed, it will be used instead of the one from data.
 
 For example, we can create a GRanges object with the data used in the previous plot
 
-```{r Figure2, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE}
 
 mydata <- toGRanges(data.frame(chr=rep("chr1", 23), start=x, end=x, y=y))
 head(mydata)
@@ -80,7 +80,7 @@ And create the same plot using this object, except for the arrows where we have
 to specify the _y0_ and _y1_ values since the columns in _data_ need to have the
 same names as the parameters they stand for.
 
-```{r Figure3, message=FALSE, warning=FALSE, fig.height=5}
+```{r Figure2, message=FALSE, warning=FALSE, fig.height=5}
 
 kp <- plotKaryotype(chromosomes="chr1")
 
@@ -95,7 +95,7 @@ kpArrows(kp, data=mydata, y0=0, y1=y, col="#DDDDDD")
 And in all cases, if _y_, _y0_ or _y1_ are explicitly stated, they will take 
 precedence before the values derived from _data_
 
-```{r Figure4, message=FALSE, warning=FALSE, fig.height=5}
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=5}
 
 kp <- plotKaryotype(chromosomes="chr1")
 
