@@ -9,6 +9,7 @@ library(ezknitr)
 
 force.knit.all <- FALSE
 
+
 base.page.dir <- "../docs"
 
 dirs <- list.dirs(".", recursive = TRUE, full.names = TRUE)
