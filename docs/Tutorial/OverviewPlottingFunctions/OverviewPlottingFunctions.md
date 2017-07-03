@@ -100,7 +100,7 @@ kpLines(kp, data=mydata, col="#FFAADD")
 kpArrows(kp, data=mydata, y0=0, y1=y, col="#DDDDDD")
 ```
 
-![plot of chunk Figure3](images//Figure3-1.png)
+![plot of chunk Figure2](images//Figure2-1.png)
 
 And in all cases, if _y_, _y0_ or _y1_ are explicitly stated, they will take 
 precedence before the values derived from _data_
@@ -114,6 +114,6 @@ kpPoints(kp, data=mydata, y=y+0.2, col="red")
 kpPoints(kp, data=mydata, y=y-0.2, col="green")
 ```
 
-![plot of chunk Figure4](images//Figure4-1.png)
+![plot of chunk Figure3](images//Figure3-1.png)
 
 
