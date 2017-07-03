@@ -139,6 +139,6 @@ kpAddCytobandsAsLine(kp)
 kpAddMainTitle(kp, "Plasmodium Vivax - PvP01 with genes", cex=2)
 kpPlotRegions(kp, data=genes[strand(genes)=="+"], avoid.overlapping = FALSE, col="deepskyblue")
 kpPlotRegions(kp, data=genes[strand(genes)=="-"], avoid.overlapping = FALSE, col="gold", data.panel=2)
-kpAddLabels(kp, "strand +", cex=0.8, col="#888888") 
+kpAddLabels(kp, "strand +", cex=0.8, col="#888888")
 kpAddLabels(kp, "strand -", data.panel=2, cex=0.8, col="#888888")
 ```
