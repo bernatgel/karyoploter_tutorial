@@ -18,7 +18,7 @@ genome. There are about ~28K CpG islands scattered around the genome, representi
 a somewhat dense set of non-overlapping regions. To get the data we'll use the 
 excellent [AnnotationHub](https://bioconductor.org/packages/AnnotationHub) 
 R package. In this case we'll use it to get the full set of CpG islands from 
-UCSC in a GRanges object. You can find more information on how to serach and 
+UCSC in a GRanges object. You can find more information on how to search and 
 retrieve data with the annotation hub in [its vignette](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub-HOWTO.html)
  and in the [rtracklayer's import documentation](https://kasperdanielhansen.github.io/genbioconductor/html/rtracklayer_Import.html).
 
