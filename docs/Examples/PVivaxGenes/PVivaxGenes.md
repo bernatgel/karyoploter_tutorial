@@ -27,7 +27,7 @@ this problem, but it works.
 ```r
 library(karyoploteR)
 
-gff.file <- "http://plasmodb.org/common/downloads/Current_Release/PvivaxP01/gff/data/PlasmoDB-32_PvivaxP01.gff"
+gff.file <- "http://plasmodb.org/common/downloads/Current_Release/PvivaxP01/gff/data/PlasmoDB-33_PvivaxP01.gff"
 
 header.lines <- readLines(gff.file, n = 30)
 
