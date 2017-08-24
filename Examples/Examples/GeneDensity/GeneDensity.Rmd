@@ -16,9 +16,9 @@ knitr::opts_chunk$set(fig.height = 14)
 This example shows how to plot the density of genes along the genome. We'll need 
 the position of all human genes and we'll get it from the 
 [TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/TxDb.Hsapiens.UCSC.hg19.knownGene)
-Bioconductor package. 
+Bioconductor package.  
 
-We'll start by using the _genes_ function to create a GRanges object
+We'll start by using the `genes` function to create a GRanges object
 with all genes.
 
 
@@ -29,7 +29,7 @@ all.genes <- genes(txdb)
 head(all.genes)
 ```
 
-To plot the density of the genes we'll use karyoploteR's _kpPlotDensity_, 
+To plot the density of the genes we'll use karyoploteR's `kpPlotDensity`, 
 a function that computed the density of a GRanges object over the genome 
 and plots it. 
 
