@@ -22,7 +22,7 @@ for(d in dirs) {
     files <- list.files(path = d, pattern = "*.Rmd", full.names = TRUE)
     
     for(f in files) {
-      message("Cheking source file: ", f)
+      message("Checking source file: ", f)
       
       #page.dir <- file.path(base.page.dir, gsub(".Rmd", "", basename(f)))
       page.dir <- file.path(base.page.dir, d)
@@ -36,7 +36,7 @@ for(d in dirs) {
             message("No changes in ", f, ". Skipping.")
             next;
           }
-        }
+       } 
         
       } else {
         dir.create(page.dir, recursive = TRUE)
