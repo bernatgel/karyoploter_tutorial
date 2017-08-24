@@ -1,0 +1,328 @@
+---
+layout: example
+label: GeneExpressionDESeq2
+title: Gene Expression - DESeq2
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+```
+
+## Gene expression results from DESeq2
+
+Since karyoploteR knows nothing about the data being plotted, it can be used to
+plot almost anything on the genome. In this example we'll see how to plot 
+the differential expression results obtained with DESeq2. We can plot 
+differential expression results in many different ways, but in this case we'll
+map the differentially expressed genes onto the genome and plot them with
+karyoploteR.
+
+As an example, we'll work with example data available in Bioconductor, but
+the steps to produce the final plots should be mostly the same with any other
+dataset.
+
+We'll perform the differential expression analysis exactly as described in the 
+[DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#count-matrix-input)
+and we will use the data from the 
+[pasilla](http://bioconductor.org/packages/pasilla/) 
+dataset, which is RNA-seq data from Drosophila and is briefly described in 
+[a section of the DESeq2 vignette](http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html#about-the-pasilla-dataset).
+
+We'll start with the preparation of the DESeq2 object from the initial gene 
+counts and the annotation data.
+
+```{r, message=FALSE, warning=FALSE}
+#Code extracted from the DESeq2 vignette
+
+library("pasilla")
+library("DESeq2")
+
+pasCts <- system.file("extdata", "pasilla_gene_counts.tsv", package="pasilla", mustWork=TRUE)
+pasAnno <- system.file("extdata", "pasilla_sample_annotation.csv", package="pasilla", mustWork=TRUE)
+cts <- as.matrix(read.csv(pasCts,sep="\t",row.names="gene_id"))
+coldata <- read.csv(pasAnno, row.names=1)
+coldata <- coldata[,c("condition","type")]
+
+rownames(coldata) <- sub("fb", "", rownames(coldata))
+cts <- cts[, rownames(coldata)]
+
+dds <- DESeqDataSetFromMatrix(countData = cts,
+                              colData = coldata,
+                              design = ~ condition)
+dds$condition <- relevel(dds$condition, ref = "untreated")
+dds
+```
+
+And run `DESeq` to perfrom the differential analysis
+
+
+```{r, message=FALSE, warning=FALSE}
+dds <- DESeq(dds)
+res <- results(dds)
+res
+```
+
+Once we have the differential expression results we'll need to map the genes
+to the genome and to do that we'll use the Drosophila TranscriptDb package 
+[TxDb.Dmelanogaster.UCSC.dm6.ensGene](http://bioconductor.org/packages/TxDb.Dmelanogaster.UCSC.dm6.ensGene/). 
+
+We'll start by using the `genes` function to create a GRanges object
+with all genes.
+
+
+```{r, message=FALSE, warning=FALSE}
+library(TxDb.Dmelanogaster.UCSC.dm6.ensGene)
+txdb <- TxDb.Dmelanogaster.UCSC.dm6.ensGene
+dm.genes <- genes(txdb)
+dm.genes
+```
+
+and we'll add the columns with the differential expression results to it as 
+metadata columns (mcols) so we end up with an annotated GRanges.
+
+
+```{r, message=FALSE, warning=FALSE}
+mcols(dm.genes) <- res[names(dm.genes), c("log2FoldChange", "lfcSE", "stat", "pvalue", "padj")]
+head(dm.genes, n=4)
+```
+
+Once we have this object available, the fun begins and we can start plotting.
+
+Since we are working with Drosophila we'll have to specify the genome to 
+`plotKaryotype`. We we'll start with an empty karyoplot.
+
+```{r Figure1, message=FALSE, warning=FALSE}
+library(karyoploteR)
+kp <- plotKaryotype(genome="dm6")
+```
+
+And we can start adding data. We can start by plotting the 10 most 
+differentially expressed genes. We can use 
+[kpPlotMarkers]({{ site.baseurl }}{% link Tutorial/PlotMarkers/PlotMarkers.md %}) 
+for this.
+
+
+```{r Figure2, message=FALSE, warning=FALSE}
+ordered <- dm.genes[order(dm.genes$padj, na.last = TRUE),]
+kp <- plotKaryotype(genome="dm6")
+kp <- kpPlotMarkers(kp, ordered[1:10], labels = names(ordered[1:10]), text.orientation = "horizontal")
+```
+
+Ok, we can see the position of some of the genes, but that's not very 
+informative. What about getting a more general view?
+
+We could create a plot with the p-values of all significant genes, for example.
+To do that, we'll need first to transform the adjusted p-value into 
+something that we can easily represent. A minus logarithimic transformation 
+is the usual trick. We'll also first filter out the genes with _NA_ in the _padj_ 
+column.
+
+```{r, message=FALSE, warning=FALSE}
+filtered.dm.genes <- dm.genes[!is.na(dm.genes$padj)]
+log.pval <- -log10(filtered.dm.genes$padj)
+mcols(filtered.dm.genes)$log.pval <- log.pval
+filtered.dm.genes
+```
+
+And now we can plot the significant genes (_padj_ < 0.05) represented as 
+points on the genome using the 
+[kpPoints]({{ site.baseurl }}{% link Tutorial/Points/Points.md %}) function,
+with their y position determined by their pvalue.
+
+```{r Figure3, message=FALSE, warning=FALSE}
+sign.genes <- filtered.dm.genes[filtered.dm.genes$padj < 0.05,]
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log.pval)
+```
+
+WOW! What happened here? There are points floating everywhere!
+
+This is due to the fact that `ymin` and `ymax` are 0 and 1 by default but our 
+y values are in a much larger range: 
+
+```{r, message=FALSE, warning=FALSE}
+range(sign.genes$log.pval)
+```
+
+So to tame the floating points we simply need to set `ymax` to the maximum value we want to plot.
+
+```{r Figure4, message=FALSE, warning=FALSE}
+sign.genes <- filtered.dm.genes[filtered.dm.genes$padj < 0.05,]
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log.pval, ymax=max(sign.genes$log.pval))
+```
+
+That's better and makes more sense. We can see lots of genes with a relatively
+high p-value (and low -log10(pval)) and a few genes with a very small p-pvalue
+(and a high -log10(pval)). We cal also see how these points are in the same
+positions as the markers in the first plot, as expected. 
+
+The log2 of the fold change is another value we could plot. It has a smaller
+range and might be more suitable to be used as the y value in a scatter plot.
+
+We'll start studying it's range:
+
+```{r, message=FALSE, warning=FALSE}
+range(sign.genes$log2FoldChange)
+```
+
+We can see the values are distributted above and below 0, so we'll have to 
+adjust both `ymin` and `ymax`. To make it more clear, we'll center the 0. 
+
+```{r Figure5, message=FALSE, warning=FALSE}
+fc.ymax <- ceiling(max(abs(range(sign.genes$log2FoldChange))))
+fc.ymin <- -fc.ymax
+
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, ymax=fc.ymax, ymin=fc.ymin)
+```
+
+And we can add a y axis and a label to explain what the data represents.
+
+```{r Figure6, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, ymax=fc.ymax, ymin=fc.ymin)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin)
+kpAddLabels(kp, labels = "log2 Fold Change", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin)
+```
+
+Now we can clearly see the fold changes but the significance level of the
+differentially expressed genes is not represented. How can we include it into 
+the plot? We can use the size of the points to represent the p-value information
+using the `cex` parameter of `kpPoints`. We can apply a square root to the 
+log pval so the area of the circle is proportional to the pval, and scale it up
+or down with a fixed factor depending on the available space to improve the 
+perception of the data.
+
+
+
+```{r Figure7, message=FALSE, warning=FALSE}
+cex.val <- sqrt(sign.genes$log.pval)/3
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin)
+kpAddLabels(kp, labels = "log2 Fold Change", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin)
+```
+
+With this representation we see some interesting things such the fact that the
+too very close top 10 significant genes in chrX are in fact regulated in
+oposite directions, with one overexpressed and the other one underexpressed.
+
+Can we combine the two plots into a single one so we get the general view plus
+the name of the most significant genes? Sure! On option is to plot everything 
+together, with markers on top of the data points by simply adding a call to
+`kpPlotMarkers` as in the second plot.
+
+```{r Figure8, message=FALSE, warning=FALSE}
+top.genes <- ordered[1:10]
+
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin)
+kpAddLabels(kp, labels = "log2 Fold Change", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin)
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal")
+```
+
+This kind of works... but it's not very aesthetically pleasing. We can easily 
+separate the two representations in two different vertical areas with the `r0`
+and `r1` arguments. We can set the lower 80% of the area for the data points 
+telling them to finish at 0.8 with `r1=0.8` and the top 20% for the markers 
+telling them to start at 0.8 with `r0=0.8`. 
+
+```{r Figure9, message=FALSE, warning=FALSE}
+points.top <- 0.8
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAddLabels(kp, labels = "log2 FC", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal", r0=points.top)
+```
+
+Ok, that's better. But could extend the markers to the exact point they are
+annotating? So we can visually relate them better? We cannot extend the markers 
+down in a non-uniform way, but we can simulate that drawing a few vertical 
+segments from the center of the points up to the top of the data part of the 
+plot. To do that we'll set `x0` and `x1` to the center of the gene, `y0` to the y 
+value as determined by the log fold change and `y1` to the _fc.max_ previously
+computed.
+
+```{r Figure10, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAddLabels(kp, labels = "log2 FC", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal", r0=points.top)
+gene.mean <- start(top.genes) + (end(top.genes) - start(top.genes))/2
+kpSegments(kp, chr=as.character(seqnames(top.genes)), x0=gene.mean, x1=gene.mean, y0=top.genes$log2FoldChange, y1=fc.ymax, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+```
+
+That's better, but we could add some color to differentiate between over- and 
+underexpressed genes. We'll make the color partially transparent so we can see
+more clearly when different data points overlap. 
+
+```{r Figure11, message=FALSE, warning=FALSE}
+col.over <- "#FFBD07AA"
+col.under <- "#00A6EDAA"
+sign.col <- rep(col.over, length(sign.genes))
+sign.col[sign.genes$log2FoldChange<0] <- col.under
+
+kp <- plotKaryotype(genome="dm6")
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin, r1=points.top, col=sign.col)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAddLabels(kp, labels = "log2 FC", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+gene.mean <- start(top.genes) + (end(top.genes) - start(top.genes))/2
+kpSegments(kp, chr=as.character(seqnames(top.genes)), x0=gene.mean, x1=gene.mean, y0=top.genes$log2FoldChange, y1=fc.ymax, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal", r0=points.top)
+
+```
+
+There seems to be some regions of the genome somehow depleted of significant 
+genes. Is it because there are just a few genes in those regions or might be 
+caused by some other factor? To explore this possibility we can add a second
+data panel below the ideograms (setting `plot.type` to 2) and plot there the 
+gene density.
+
+```{r Figure12, message=FALSE, warning=FALSE}
+kp <- plotKaryotype(genome="dm6", plot.type=2)
+#Data panel 1
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin, r1=points.top, col=sign.col)
+kpAxis(kp, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpAddLabels(kp, labels = "log2 FC", srt=90, pos=1, label.margin = 0.04, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+gene.mean <- start(top.genes) + (end(top.genes) - start(top.genes))/2
+kpSegments(kp, chr=as.character(seqnames(top.genes)), x0=gene.mean, x1=gene.mean, y0=top.genes$log2FoldChange, y1=fc.ymax, ymax=fc.ymax, ymin=fc.ymin, r1=points.top)
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal", r0=points.top)
+
+#Data panel 2
+kp <- kpPlotDensity(kp, data=dm.genes, window.size = 10e4, data.panel = 2)
+
+```
+
+We can see that this is the case for some regions (for example the end of chrX 
+but not for others).
+
+To finish up our plot we can adjust some plotting parameters to make the 
+ideograms and the second data panel smaller and to leave some margin between the
+marker labels. We can also remove the axis and labels if desired, and adjust 
+some of the colors.
+
+```{r Figure13, message=FALSE, warning=FALSE}
+pp <- getDefaultPlotParams(plot.type = 2)
+pp$data2height <- 75
+pp$ideogramheight <- 10
+kp <- plotKaryotype(genome="dm6", plot.type=2, plot.params = pp)
+kpAddMainTitle(kp, main = "pasilla gene expression - Treated vs Untreated")
+#Data panel 1
+kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin, r1=points.top, col=sign.col)
+gene.mean <- start(top.genes) + (end(top.genes) - start(top.genes))/2
+kpSegments(kp, chr=as.character(seqnames(top.genes)), x0=gene.mean, x1=gene.mean, y0=top.genes$log2FoldChange, y1=fc.ymax, ymax=fc.ymax, ymin=fc.ymin, r1=points.top, col="#777777")
+kpPlotMarkers(kp, top.genes, labels = names(top.genes), text.orientation = "horizontal", r0=points.top, label.dist = 0.008, label.color="#444444", line.color = "#777777")
+
+#Data panel 2
+kp <- kpPlotDensity(kp, data=dm.genes, window.size = 10e4, data.panel = 2)
+
+```
+
+
