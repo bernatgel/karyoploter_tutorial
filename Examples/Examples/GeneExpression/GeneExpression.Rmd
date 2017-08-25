@@ -62,6 +62,7 @@ And run `DESeq` to perfrom the differential analysis
 ```{r, message=FALSE, warning=FALSE}
 dds <- DESeq(dds)
 res <- results(dds)
+res <- lfcShrink(dds, coef = 2, res = res)
 res
 ```
 
@@ -85,7 +86,7 @@ metadata columns (mcols) so we end up with an annotated GRanges.
 
 
 ```{r, message=FALSE, warning=FALSE}
-mcols(dm.genes) <- res[names(dm.genes), c("log2FoldChange", "lfcSE", "stat", "pvalue", "padj")]
+mcols(dm.genes) <- res[names(dm.genes), c("log2FoldChange", "stat", "pvalue", "padj")]
 head(dm.genes, n=4)
 ```
 
