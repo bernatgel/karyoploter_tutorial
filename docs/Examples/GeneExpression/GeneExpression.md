@@ -9,7 +9,7 @@ title: Gene Expression - DESeq2
 
 ## Gene expression results from DESeq2
 
-Since karyoploteR knows nothing about the data being plotted, it can be used to
+Since karyoploteR knows nothing about the data being plotted, it can be used to 
 plot almost anything on the genome. In this example we'll see how to plot 
 the differential expression results obtained with DESeq2. We can plot 
 differential expression results in many different ways, but in this case we'll
@@ -364,7 +364,7 @@ together, with markers on top of the data points by simply adding a call to
 
 
 ```r
-top.genes <- ordered[1:10]
+top.genes <- ordered[1:20]
 
 kp <- plotKaryotype(genome="dm6")
 kpPoints(kp, data=sign.genes, y=sign.genes$log2FoldChange, cex=cex.val, ymax=fc.ymax, ymin=fc.ymin)

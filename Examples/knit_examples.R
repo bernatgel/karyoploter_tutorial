@@ -2,12 +2,13 @@
 #into md's in the docs folder so they can be served by jekyll
 #on the GitHub Pages
 
-
+library(pasilla)
 
 library(knitr)
 library(ezknitr)
 
 force.knit.all <- FALSE
+
 
 
 base.page.dir <- "../docs"
