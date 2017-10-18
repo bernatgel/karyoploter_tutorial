@@ -50,6 +50,12 @@ tutorial:
         url: /Tutorial/DataPositioning/DataPositioning.html
         text: Manage and adjust the exact positioning of data when plotting
         only_devel: 0
+      - label: Zoom
+        title: Zooming for a detail view
+        short_title: Zoom
+        url: /Tutorial/Zoom/Zoom.html
+        text: Zoom into a single region of the genome to get a detailed view of your data there.
+        only_devel: 1
   - title: Low-level Plotting Functions
     short_title: Low-level plot functions
     subfolderitems:
