@@ -9,7 +9,7 @@ title: Area
 
 ## Plotting Areas
 
-`kpArea` is similar to [`kpLines`]({{ site.baseurl }}{% link Tutorial/Area/Area.md %})
+`kpArea` is similar to [`kpLines`]({{ site.baseurl }}{% link Tutorial/Lines/Lines.md %})
 but in addition to plotting the defined line, it fills the area below the line 
 with the specified color. It might be a useful representation for coverage, 
 or for continuous values such as methylation levels, etc. 

@@ -152,7 +152,7 @@ tutorial:
         url: /Tutorial/PlotLinks/PlotLinks.html
         text: Plot links between different genomic regions (even in different chromosomes) to represent genomic rearrangements
         only_devel: 0
-        
+      
 examples:
   - label: MultipleData
     title: Multiple Data Types
