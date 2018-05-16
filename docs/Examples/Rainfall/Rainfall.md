@@ -59,32 +59,19 @@ sm.gr
 
 ```
 ## GRanges object with 10170 ranges and 3 metadata columns:
-##           seqnames                 ranges strand |    mut.type         ref
-##              <Rle>              <IRanges>  <Rle> | <character> <character>
-##       [1]    chr10 [100455463, 100455463]      * |        subs           T
-##       [2]    chr10 [100463182, 100463182]      * |        subs           C
-##       [3]    chr10 [100922694, 100922694]      * |        subs           C
-##       [4]    chr10 [101137819, 101137819]      * |        subs           C
-##       [5]    chr10 [101200589, 101200589]      * |        subs           G
-##       ...      ...                    ...    ... .         ...         ...
-##   [10166]     chrX   [99576784, 99576784]      * |        subs           T
-##   [10167]     chrX   [99762728, 99762728]      * |        subs           A
-##   [10168]     chrY   [13269826, 13269826]      * |        subs           T
-##   [10169]     chrY   [13417920, 13417920]      * |        subs           G
-##   [10170]     chrY   [59020275, 59020275]      * |        subs           C
-##                   alt
-##           <character>
-##       [1]           C
-##       [2]           T
-##       [3]           T
-##       [4]           A
-##       [5]           C
-##       ...         ...
-##   [10166]           C
-##   [10167]           G
-##   [10168]           C
-##   [10169]           C
-##   [10170]           A
+##           seqnames    ranges strand |    mut.type         ref         alt
+##              <Rle> <IRanges>  <Rle> | <character> <character> <character>
+##       [1]    chr10 100455463      * |        subs           T           C
+##       [2]    chr10 100463182      * |        subs           C           T
+##       [3]    chr10 100922694      * |        subs           C           T
+##       [4]    chr10 101137819      * |        subs           C           A
+##       [5]    chr10 101200589      * |        subs           G           C
+##       ...      ...       ...    ... .         ...         ...         ...
+##   [10166]     chrX  99576784      * |        subs           T           C
+##   [10167]     chrX  99762728      * |        subs           A           G
+##   [10168]     chrY  13269826      * |        subs           T           C
+##   [10169]     chrY  13417920      * |        subs           G           C
+##   [10170]     chrY  59020275      * |        subs           C           A
 ##   -------
 ##   seqinfo: 24 sequences from an unspecified genome; no seqlengths
 ```

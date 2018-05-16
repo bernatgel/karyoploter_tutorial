@@ -34,16 +34,16 @@ head(genes)
 
 ```
 ## GRanges object with 6 ranges and 1 metadata column:
-##       seqnames                 ranges strand | hgnc_symbol
-##          <Rle>              <IRanges>  <Rle> |    <factor>
-##   [1]     chr5 [112707498, 112846239]      * |         APC
-##   [2]    chr22 [ 23179704,  23318037]      * |         BCR
-##   [3]    chr11 [102317450, 102339403]      * |       BIRC3
-##   [4]     chr7 [140719327, 140924764]      * |        BRAF
-##   [5]    chr17 [ 43044295,  43170245]      * |       BRCA1
-##   [6]    chr13 [ 32315474,  32400266]      * |       BRCA2
+##       seqnames              ranges strand | hgnc_symbol
+##          <Rle>           <IRanges>  <Rle> |    <factor>
+##   [1]     chr5 112707498-112846239      * |         APC
+##   [2]    chr22   23179704-23318037      * |         BCR
+##   [3]    chr11 102317450-102339403      * |       BIRC3
+##   [4]     chr7 140719327-140924928      * |        BRAF
+##   [5]    chr17   43044295-43170245      * |       BRCA1
+##   [6]    chr13   32315474-32400266      * |       BRCA2
 ##   -------
-##   seqinfo: 9 sequences from an unspecified genome; no seqlengths
+##   seqinfo: 10 sequences from an unspecified genome; no seqlengths
 ```
 
 Once we have the data prepared we can use `kpPlotMarkers` to plot them on the

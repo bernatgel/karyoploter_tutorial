@@ -5,7 +5,7 @@
 library(pasilla)
 
 library(knitr)
-library(ezknitr)
+library(ezknitr) #This allows knitting in other dirs
 
 force.knit.all <- FALSE
 

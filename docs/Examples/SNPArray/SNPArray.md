@@ -97,14 +97,14 @@ head(snp.data)
 
 ```
 ## GRanges object with 6 ranges and 2 metadata columns:
-##       seqnames                 ranges strand |       BAF       LRR
-##          <Rle>              <IRanges>  <Rle> | <numeric> <numeric>
-##   [1]    chr18 [ 59864223,  59864223]      * |    0.6157   -0.3307
-##   [2]     chr7 [156089537, 156089537]      * |    0.4573    0.1754
-##   [3]     chr2 [215283259, 215283259]      * |         1   -0.0784
-##   [4]    chr16 [   951045,    951045]      * |         1   -0.1139
-##   [5]     chr4 [145513053, 145513053]      * |         0   -0.0547
-##   [6]     chr3 [112534069, 112534069]      * |    0.3379   -0.1655
+##       seqnames    ranges strand |       BAF       LRR
+##          <Rle> <IRanges>  <Rle> | <numeric> <numeric>
+##   [1]    chr18  59864223      * |    0.6157   -0.3307
+##   [2]     chr7 156089537      * |    0.4573    0.1754
+##   [3]     chr2 215283259      * |         1   -0.0784
+##   [4]    chr16    951045      * |         1   -0.1139
+##   [5]     chr4 145513053      * |         0   -0.0547
+##   [6]     chr3 112534069      * |    0.3379   -0.1655
 ##   -------
 ##   seqinfo: 26 sequences from an unspecified genome; no seqlengths
 ```
@@ -167,15 +167,6 @@ Biomart as in the Plot Genes example.
 library(biomaRt)
 gene.symbols <- c("AKT", "APC", "BCR", "BIRC3", "BRAF", "BRCA1", "BRCA2", "CDKN2C", "FEV", "TP53", "PTEN", "RB1")
 ensembl <- useEnsembl(biomart="ensembl", dataset="hsapiens_gene_ensembl", version=67)
-```
-
-```
-## Note: requested host was redirected from e67.ensembl.org to http://may2012.archive.ensembl.org:80/biomart/martservice
-## When using archived Ensembl versions this sometimes can result in connecting to a newer version than the intended Ensembl version
-## Check your ensembl version using listMarts(mart)
-```
-
-```r
 genes <- toGRanges(getBM(attributes=c('chromosome_name', 'start_position', 'end_position', 'hgnc_symbol'),
                filters = 'hgnc_symbol', values =gene.symbols, mart = ensembl))
 seqlevelsStyle(genes) <- "UCSC"

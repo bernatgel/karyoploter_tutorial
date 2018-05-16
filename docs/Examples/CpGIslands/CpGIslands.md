@@ -28,7 +28,7 @@ ahub["AH5086"]
 
 ```
 ## AnnotationHub with 1 record
-## # snapshotDate(): 2017-04-25 
+## # snapshotDate(): 2018-04-23 
 ## # names(): AH5086
 ## # $dataprovider: UCSC
 ## # $species: Homo sapiens
@@ -53,19 +53,19 @@ cpgs
 
 ```
 ## GRanges object with 28691 ranges and 1 metadata column:
-##                        seqnames           ranges strand |        name
-##                           <Rle>        <IRanges>  <Rle> | <character>
-##       [1]                  chr1 [ 28736,  29810]      * |    CpG:_116
-##       [2]                  chr1 [135125, 135563]      * |     CpG:_30
-##       [3]                  chr1 [327791, 328229]      * |     CpG:_29
-##       [4]                  chr1 [437152, 438164]      * |     CpG:_84
-##       [5]                  chr1 [449274, 450544]      * |     CpG:_99
-##       ...                   ...              ...    ... .         ...
-##   [28687]  chr9_gl000201_random [ 15651,  15909]      * |     CpG:_30
-##   [28688]  chr9_gl000201_random [ 26397,  26873]      * |     CpG:_43
-##   [28689] chr11_gl000202_random [ 16284,  16540]      * |     CpG:_23
-##   [28690] chr17_gl000204_random [ 54686,  57368]      * |    CpG:_228
-##   [28691] chr17_gl000205_random [117501, 117801]      * |     CpG:_23
+##                        seqnames        ranges strand |        name
+##                           <Rle>     <IRanges>  <Rle> | <character>
+##       [1]                  chr1   28736-29810      * |    CpG:_116
+##       [2]                  chr1 135125-135563      * |     CpG:_30
+##       [3]                  chr1 327791-328229      * |     CpG:_29
+##       [4]                  chr1 437152-438164      * |     CpG:_84
+##       [5]                  chr1 449274-450544      * |     CpG:_99
+##       ...                   ...           ...    ... .         ...
+##   [28687]  chr9_gl000201_random   15651-15909      * |     CpG:_30
+##   [28688]  chr9_gl000201_random   26397-26873      * |     CpG:_43
+##   [28689] chr11_gl000202_random   16284-16540      * |     CpG:_23
+##   [28690] chr17_gl000204_random   54686-57368      * |    CpG:_228
+##   [28691] chr17_gl000205_random 117501-117801      * |     CpG:_23
 ##   -------
 ##   seqinfo: 93 sequences (1 circular) from hg19 genome
 ```

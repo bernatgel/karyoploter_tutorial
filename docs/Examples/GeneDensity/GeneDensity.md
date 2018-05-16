@@ -28,14 +28,14 @@ head(all.genes)
 
 ```
 ## GRanges object with 6 ranges and 1 metadata column:
-##             seqnames                 ranges strand |     gene_id
-##                <Rle>              <IRanges>  <Rle> | <character>
-##           1    chr19 [ 58858172,  58874214]      - |           1
-##          10     chr8 [ 18248755,  18258723]      + |          10
-##         100    chr20 [ 43248163,  43280376]      - |         100
-##        1000    chr18 [ 25530930,  25757445]      - |        1000
-##       10000     chr1 [243651535, 244006886]      - |       10000
-##   100008586     chrX [ 49217763,  49233491]      + |   100008586
+##             seqnames              ranges strand |     gene_id
+##                <Rle>           <IRanges>  <Rle> | <character>
+##           1    chr19   58858172-58874214      - |           1
+##          10     chr8   18248755-18258723      + |          10
+##         100    chr20   43248163-43280376      - |         100
+##        1000    chr18   25530930-25757445      - |        1000
+##       10000     chr1 243651535-244006886      - |       10000
+##   100008586     chrX   49217763-49233491      + |   100008586
 ##   -------
 ##   seqinfo: 93 sequences (1 circular) from hg19 genome
 ```

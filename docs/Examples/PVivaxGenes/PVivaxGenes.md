@@ -48,19 +48,19 @@ PvP01.genome
 
 ```
 ## GRanges object with 16 ranges and 0 metadata columns:
-##            seqnames       ranges strand
-##               <Rle>    <IRanges>  <Rle>
-##    [1]  PvP01_01_v1 [1, 1021664]      *
-##    [2]  PvP01_02_v1 [1,  956327]      *
-##    [3]  PvP01_03_v1 [1,  896704]      *
-##    [4]  PvP01_04_v1 [1, 1012024]      *
-##    [5]  PvP01_05_v1 [1, 1524814]      *
-##    ...          ...          ...    ...
-##   [12]  PvP01_12_v1 [1, 3182763]      *
-##   [13]  PvP01_13_v1 [1, 2093556]      *
-##   [14]  PvP01_14_v1 [1, 3153402]      *
-##   [15] PvP01_API_v1 [1,   29582]      *
-##   [16] PvP01_MIT_v1 [1,    5989]      *
+##            seqnames    ranges strand
+##               <Rle> <IRanges>  <Rle>
+##    [1]  PvP01_01_v1 1-1021664      *
+##    [2]  PvP01_02_v1  1-956327      *
+##    [3]  PvP01_03_v1  1-896704      *
+##    [4]  PvP01_04_v1 1-1012024      *
+##    [5]  PvP01_05_v1 1-1524814      *
+##    ...          ...       ...    ...
+##   [12]  PvP01_12_v1 1-3182763      *
+##   [13]  PvP01_13_v1 1-2093556      *
+##   [14]  PvP01_14_v1 1-3153402      *
+##   [15] PvP01_API_v1   1-29582      *
+##   [16] PvP01_MIT_v1    1-5989      *
 ##   -------
 ##   seqinfo: 16 sequences from an unspecified genome; no seqlengths
 ```
