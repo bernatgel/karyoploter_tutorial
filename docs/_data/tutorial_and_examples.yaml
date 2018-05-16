@@ -89,6 +89,12 @@ tutorial:
         url: /Tutorial/Polygon/Polygon.html
         text: Add polygons to a karyoplot
         only_devel: 0
+      - label: Area
+        title: Area
+        short_title: Area
+        url: /Tutorial/Area/Area.html
+        text: Plot a line and shade the area below
+        only_devel: 0
       - label: Segments
         title: Segments
         short_title: Segments
@@ -145,7 +151,7 @@ tutorial:
         short_title: Plot Links
         url: /Tutorial/PlotLinks/PlotLinks.html
         text: Plot links between different genomic regions (even in different chromosomes) to represent genomic rearrangements
-        only_devel: 1
+        only_devel: 0
         
 examples:
   - label: MultipleData
