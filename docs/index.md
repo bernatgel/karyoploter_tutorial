@@ -82,11 +82,14 @@ karyoploteR is part of [Bioconductor](http://bioconductor.org) since version Bio
 and [user manual](http://bioconductor.org/packages/devel/bioc/manuals/karyoploteR/man/karyoploteR.pdf) is available at the karyoploteR's 
 Bioconductor landing page at [http://bioconductor.org/packages/karyoploteR](http://bioconductor.org/packages/karyoploteR).
 
-To install the package, start R and enter:
+To install the package you'll need to use [Bioconductor's own package manager](https://www.bioconductor.org/install/), called [`BiocManager`](https://cran.r-project.org/web/packages/BiocManager/index.html).
+
+To do so, simply start R and enter the following code:
 
 {% highlight r %}
-  source("https://bioconductor.org/biocLite.R")
-  biocLite("karyoploteR")
+  if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+  BiocManager::install("karyoploteR")
 {% endhighlight %}
 
 
