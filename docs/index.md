@@ -120,6 +120,9 @@ Bernat Gel & Eduard Serra. (2017). *karyoploteR: an R/Bioconductor package to pl
 
 ## <a name="Tutorial"></a>Tutorial
 
+**Important Note:** All documentation here refers to the latest released version of Bioconductor. Some functionality may be missing in older version. If a 
+documented function is only available in the `devel` version of the package, it will be clearly stated that it's not yet available in release.
+
 The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for any clarification or propose a a new section.
 
 {% for item in site.data.tutorial_and_examples.tutorial %}
