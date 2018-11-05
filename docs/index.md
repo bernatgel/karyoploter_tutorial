@@ -117,7 +117,7 @@ Bernat Gel & Eduard Serra. (2017). *karyoploteR: an R/Bioconductor package to pl
 
 ## <a name="Tutorial"></a>Tutorial
 
-The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for any clarification or proposa a new section.
+The tutorial is a work in progress yet. Feel free to [contact us](mailto:bgel@igtp.cat) to ask for any clarification or propose a a new section.
 
 {% for item in site.data.tutorial_and_examples.tutorial %}
   <h3>{{ item.title }}</h3>
