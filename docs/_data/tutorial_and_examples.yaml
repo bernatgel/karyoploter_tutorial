@@ -44,6 +44,18 @@ tutorial:
         url: /Tutorial/PlotParams/PlotParams.html
         text: Customize general plotting parameters (margins, sizings and positions)
         only_devel: 0
+      - label: Labels
+        title: Labels
+        short_title: Labels
+        url: /Tutorial/Labels/Labels.html
+        text: Add labels on the margins of data panels
+        only_devel: 0
+      - label: Axis
+        title: Axis
+        short_title: Axis
+        url: /Tutorial/Axis/Axis.html
+        text: Add y axis to data panels to define the range of the plotted data
+        only_devel: 0
       - label: DataPositioning
         title: Data Positioning
         short_title: Data Positioning
