@@ -201,6 +201,13 @@ examples:
     url: /Examples/GeneDensity/GeneDensity.html
     text: Plot the density of genes along the genome.
     only_devel: 0
+  - label: GeneDensityIdeogram
+    title: Gene Density on the Ideogram
+    short_title: Gene Density Ideogram
+    image: /Examples/GeneDensityIdeograms/images/Figure9-1.png
+    url: /Examples/GeneDensityIdeograms/GeneDensityIdeograms.html
+    text: Plot the density of genes on the ideograms.
+    only_devel: 0
   - label: CpGIslands
     title: Plot CpG Islands
     short_title: CpG Islands
