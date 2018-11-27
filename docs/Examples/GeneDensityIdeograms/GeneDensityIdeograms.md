@@ -19,7 +19,6 @@ use the gene position information from the
 [TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/TxDb.Hsapiens.UCSC.hg19.knownGene)
 Bioconductor package.  
 
-
 We'll start by using the `genes` function to create a GRanges object
 with all genes.
 
@@ -62,11 +61,12 @@ kp <- kpPlotDensity(kp, all.genes)
 
 We can see the plot density computed with the default window size, 1 megabse.
 Changing the window size to 500 kilobases we'll get a less smoothed version of
-the data.
+the data. We can also enlarge the chromosome name changing the `cex` parameter
+(character expansion) in `plotKaryotype`.
 
 
 ```r
-kp <- plotKaryotype(plot.type=1, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=1, chromosomes="chr1", cex=1.6)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6)
 ```
 
@@ -79,7 +79,7 @@ but on the ideogram.
 
 
 ```r
-kp <- plotKaryotype(plot.type=1, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=1, chromosomes="chr1", cex=1.6)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram")
 ```
 
@@ -94,7 +94,7 @@ removed and only the ideogram is available.
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=6, chromosomes="chr1", cex=1.6)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram")
 ```
 
@@ -106,7 +106,7 @@ apparent.
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=6, chromosomes="chr1", cex=1.6)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF")
 ```
 
@@ -118,7 +118,7 @@ with an r0 smaller than r1 to get a more interesting.
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=6, chromosomes="chr1", cex=1.6)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=1)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=0)
 ```
@@ -136,7 +136,7 @@ red).
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, chromosomes="chr1")
+kp <- plotKaryotype(plot.type=6, chromosomes="chr1", cex=1.6)
 kpDataBackground(kp, color = "#FFFFFFAA")
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=1)
 kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=0)
@@ -149,7 +149,7 @@ of gene density on the ideograms.
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, main="Gene Density")
+kp <- plotKaryotype(plot.type=6, main="Gene Density",  cex=1.8)
 kpDataBackground(kp, color = "#FFFFFFAA")
 kp <- kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=1)
 kp <- kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=0)
@@ -157,13 +157,14 @@ kp <- kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", c
 
 ![plot of chunk Figure8](images//Figure8-1.png)
 
+
 If we want to go farther, we can actually replace the ideograms with the gene
 density data. To do that we'll set `ideogram.plotter` to NULL in the call 
 to `plotKaryotype` and plot the densities as we have been doing.
 
 
 ```r
-kp <- plotKaryotype(plot.type=6, main="Gene Density", ideogram.plotter = NULL)
+kp <- plotKaryotype(plot.type=6, main="Gene Density", ideogram.plotter = NULL, cex=1.8)
 kp <- kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=1)
 kp <- kpPlotDensity(kp, all.genes, window.size = 0.5e6, data.panel="ideogram", col="#3388FF", border="#3388FF", r0=0.5, r1=0)
 ```
