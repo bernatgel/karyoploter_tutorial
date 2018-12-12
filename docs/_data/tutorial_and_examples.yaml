@@ -180,12 +180,19 @@ examples:
     url: /Examples/GeneExpression/GeneExpression.html
     text: Create a plot with differential expression results from the DESeq2 vignette
     only_devel: 0
-  - label: PVivaxGenes
-    title: Plasmodium Vivax Genes from GFF
-    short_title: P. Vivax Genes
-    image: /Examples/PVivaxGenes/images/Figure6-1.png
-    url: /Examples/PVivaxGenes/PVivaxGenes.html
-    text: Get the genes and genome of Plasmodium Vivax from a GFF file and plot them
+  - label: GeneDensityIdeogram
+    title: Gene Density on the Ideogram
+    short_title: Gene Density Ideogram
+    image: /Examples/GeneDensityIdeograms/images/Figure9-1.png
+    url: /Examples/GeneDensityIdeograms/GeneDensityIdeograms.html
+    text: Plot the density of genes over the genome instead of the ideograms.
+    only_devel: 0
+  - label: NucleotideFrequency
+    title: Nucleotide Frequency
+    short_title: Nucleotide Frequency
+    image: /Examples/NucleotideFrequency/images/Figure11-1.png
+    url: /Examples/NucleotideFrequency/NucleotideFrequency.html
+    text: Compute the frequency of each nucleotide along the genome and plot them as a stacked area plot.
     only_devel: 0
   - label: SNPArray
     title: SNP-array raw data
@@ -193,27 +200,6 @@ examples:
     image: /Examples/SNPArray/images/Figure4-1.png
     url: /Examples/SNPArray/SNPArray.html
     text: Create a plot with raw data from an Illumina SNP array starting with real SNP-array data as extracted from GenomeStudio
-    only_devel: 0
-  - label: GeneDensity
-    title: Gene Density
-    short_title: Gene Density
-    image: /Examples/GeneDensity/images/Figure3-1.png
-    url: /Examples/GeneDensity/GeneDensity.html
-    text: Plot the density of genes along the genome.
-    only_devel: 0
-  - label: GeneDensityIdeogram
-    title: Gene Density on the Ideogram
-    short_title: Gene Density Ideogram
-    image: /Examples/GeneDensityIdeograms/images/Figure9-1.png
-    url: /Examples/GeneDensityIdeograms/GeneDensityIdeograms.html
-    text: Plot the density of genes on the ideograms.
-    only_devel: 0
-  - label: CpGIslands
-    title: Plot CpG Islands
-    short_title: CpG Islands
-    image: /Examples/CpGIslands/images/Figure5-1.png
-    url: /Examples/CpGIslands/CpGIslands.html
-    text: Get the CpG islands using AnnotationHub and plot them on the genome along with their density
     only_devel: 0
   - label: Rainfall
     title: Rainfall Plots
@@ -229,6 +215,29 @@ examples:
     url: /Examples/PlotGenes/PlotGenes.html
     text: Plot the location of a set of genes on the genome.
     only_devel: 0
+  - label: PVivaxGenes
+    title: Plasmodium Vivax Genes from GFF
+    short_title: P. Vivax Genes
+    image: /Examples/PVivaxGenes/images/Figure6-1.png
+    url: /Examples/PVivaxGenes/PVivaxGenes.html
+    text: Get the genes and genome of Plasmodium Vivax from a GFF file and plot them
+    only_devel: 0
+  - label: GeneDensity
+    title: Gene Density
+    short_title: Gene Density
+    image: /Examples/GeneDensity/images/Figure3-1.png
+    url: /Examples/GeneDensity/GeneDensity.html
+    text: Plot the density of genes along the genome.
+    only_devel: 0
+  - label: CpGIslands
+    title: Plot CpG Islands
+    short_title: CpG Islands
+    image: /Examples/CpGIslands/images/Figure5-1.png
+    url: /Examples/CpGIslands/CpGIslands.html
+    text: Get the CpG islands using AnnotationHub and plot them on the genome along with their density
+    only_devel: 0
+  
+  
   
 
   
