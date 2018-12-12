@@ -16,7 +16,7 @@ part of the genome (in this case, the APC gene region). We'll also add
 CpG islands location in the genome to see how they relate to the CG sequence
 content.
 
-# Data
+### Data
 
 In this examples we'll use data from different sources:
 
@@ -36,7 +36,7 @@ retrieve data with the annotation hub in
 [its vignette](https://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/AnnotationHub-HOWTO.html) and in the 
 [rtracklayer's import documentation](https://kasperdanielhansen.github.io/genbioconductor/html/rtracklayer_Import.html)
 
-# Let's start
+### Let's start
 
 We'll start loading the required libraries and loading the CpG islands from 
 `AnnotationHub`. The CpG Islands are the source with identifier *AH5086*. 
