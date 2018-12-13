@@ -44,6 +44,12 @@ tutorial:
         url: /Tutorial/PlotParams/PlotParams.html
         text: Customize general plotting parameters (margins, sizings and positions)
         only_devel: 0
+      - label: Colors
+        title: Colors
+        short_title: Colors
+        url: /Tutorial/Colors/Colors.html
+        text: karyoploteR functions to manage and assign colors
+        only_devel: 0
       - label: Labels
         title: Labels
         short_title: Labels

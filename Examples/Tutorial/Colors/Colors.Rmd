@@ -1,0 +1,151 @@
+---
+layout: tutorial
+label: Colors
+title: Colors
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+```
+
+## Functions to manage colors in karyoploteR
+
+Many functions in karyoploteR accept colors as parameters, either to plot data 
+elements (
+[`kpPoints`]({{ site.baseurl }}{% link Tutorial/Points/Points.md %}), 
+[`kpLines`]({{ site.baseurl }}{% link Tutorial/Lines/Lines.md %}), 
+[`kpText`]({{ site.baseurl }}{% link Tutorial/Text/Text.md %}), 
+[`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %})
+...) or accompaining non-data elements (
+[axis]({{ site.baseurl }}{% link Tutorial/Axis/Axis.md %}), 
+[labels]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %}),
+[base numbers]({{ site.baseurl }}{% link Tutorial/BaseNumbersAndBandNames/BaseNumbersAndBandNames.md %})
+...). karyoploteR includes a few functions to help managing and manipulating
+colors.
+
+### Darker and Lighter colors
+
+The functions `darker` and `lighter` recieve a color and return a darker or 
+lighter color, changed in a specific amount. These functions are used 
+extensively in the functions creating polygon delimited by lines (
+[`kpArea`]({{ site.baseurl }}{% link Tutorial/Area/Area.md %}), 
+`kpPlotRibbon`...). 
+
+```{r Figure1, message=FALSE, warning=FALSE, fig.height=7}
+library(karyoploteR)
+
+regs <- toGRanges(c("chr1:10000000-20000000",
+                  "chr1:30000000-50000000",
+                  "chr1:70000000-120000000"))
+
+colors <- c("red", "#889F34", lighter(rainbow(n = 18)[12], 50))
+
+kp <- plotKaryotype(chromosomes = "chr1")
+kpPlotRegions(kp, data=regs, r0=0, r1=0.45, col = lighter(colors), border=colors, lwd=3)
+kpPlotRegions(kp, data=regs, r0=0.55, r1=1, col = colors, border=darker(colors, 50), lwd=3)
+
+```
+
+
+
+### Assign colors to data points
+
+Another type of color functions in karyoploteR is function to assign a color to
+the data points depending on their features. This is a group of functions that
+will be probably expanded in the future.
+
+#### Color per chromosome
+
+The `colByChr` function will assign a color to each data point depending on its 
+chromosome. It is possible to specify the exact colors for each chromosome 
+using a named vector, to specify the colors of the chomosomes using a non-named
+vector (that will be recycled if needed) or to specify any of the predefined 
+color schemes.
+
+These are the available color schemes:
+```{r Figure2, message=FALSE, warning=FALSE, include=FALSE, fig.height=7}
+cc <- list(
+ "2grays"=c("#888888", "#444444"),
+ "2blues"=c("#6caeff", "#2b5d9b"),
+ "blackgreen"=c("black", "green"),
+ "greengray"=c("#c6ffb7", "#888888"),
+ "brewer.set1"=c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"),
+ "brewer.set2"=c("#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3"),
+ "brewer.set3"=c("#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5", "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F"),
+ "brewer.pastel1"=c("#FBB4AE", "#B3CDE3", "#CCEBC5", "#DECBE4", "#FED9A6", "#FFFFCC", "#E5D8BD", "#FDDAEC", "#F2F2F2"),
+ "brewer.pastel2"=c("#B3E2CD", "#FDCDAC", "#CBD5E8", "#F4CAE4", "#E6F5C9", "#FFF2AE", "#F1E2CC", "#CCCCCC"),
+ "rainbow"=rainbow(n=24)
+)
+pp <- getDefaultPlotParams(1)
+pp$topmargin <- 10
+pp$bottommargin <- 10
+pp$rightmargin <- 0.05
+pp$leftmargin <- 0.15
+pp$ideogramheight <- 0
+pp$data1inmargin <- 0
+pp$data1outmargin <- 0
+kp <- plotKaryotype(zoom=toGRanges("chr1:1-250"), ideogram.plotter=NULL, labels.plotter = NULL, plot.params = pp)
+for(i in seq_len(length(cc))) {
+  r0 <-  autotrack(length(cc)-i+1, length(cc), 0.3)$r0
+  r1 <-  autotrack(length(cc)-i+1, length(cc), 0.3)$r1
+  regs <- toGRanges("chr1", (1:length(cc[[i]]))*10, (1:length(cc[[i]]))*10+8)
+  kpPlotRegions(kp, regs, col=cc[[i]], r0=r0, r1=r1)
+  kpAddLabels(kp, labels=names(cc)[i], r0=r0, r1=r1, cex=1.6)
+}
+
+```
+
+
+The rainbow palette will adjust itself to the total number of chromosomes in
+visualized
+
+
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=7}
+
+kp <- plotKaryotype(plot.type = 4, ideogram.plotter = NULL, labels.plotter = NULL)
+kpAddCytobandsAsLine(kp)
+kpAddChromosomeNames(kp, srt=45)
+
+points <- unlist(tileGenome(kp$chromosome.lengths, tilewidth = 100e3))
+points$y <- rnorm(n = length(points), mean = 0.5, sd = 0.1)
+
+kpPoints(kp, data = points, col=colByChr(points, colors = "rainbow"))
+
+
+```
+
+While the other palettes will be recycled 
+
+```{r Figure4, message=FALSE, warning=FALSE, fig.height=7}
+
+kp <- plotKaryotype(plot.type = 4, ideogram.plotter = NULL, labels.plotter = NULL)
+kpAddCytobandsAsLine(kp)
+kpAddChromosomeNames(kp, srt=45)
+
+kpPoints(kp, data = points, col=colByChr(points, colors = "brewer.set1"), r1=0.45)
+kpPoints(kp, data = points, col=colByChr(points, colors = "2blues"), r0=0.55)
+
+
+```
+
+In addition to the predefined color schemes, we can specify the chromosome
+colors by name. For example, to plot chr7 in red and chr9 in purple we can give 
+a named color vector with two elements and all other chromosomes will take the 
+default color.
+
+```{r Figure5, message=FALSE, warning=FALSE, fig.height=7}
+
+cols <- c(chr7="red", chr9="orchid")
+
+kp <- plotKaryotype(plot.type = 4, ideogram.plotter = NULL, labels.plotter = NULL)
+kpAddCytobandsAsLine(kp)
+kpAddChromosomeNames(kp, srt=45)
+
+kpPoints(kp, data = points, col=colByChr(points, colors = cols))
+
+
+```
+
+
