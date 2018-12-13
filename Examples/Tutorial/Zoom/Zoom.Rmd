@@ -205,4 +205,25 @@ in this case extending the red line on the lateral margins of the plot. If
 finer control is needed, it might be necessary to adjust the data points and
 filter them before passing them to the plotting functions.
 
+### Zoom specification
 
+The zoom parameter is passed through 
+[regioneR's `toGRanges` function](http://bioconductor.org/packages/release/bioc/vignettes/regioneR/inst/doc/regioneR.html#region-sets),
+so any definition of a region accepted by `toGRanges` can be used to define the
+zoom. A very useful example of this is to use the IGV-like format "chr:XXX-YYY"
+to define it, since it makes the plot creation easier to read.
+
+
+```{r Figure7, message=FALSE, warning=FALSE, fig.height=5}
+
+kp <- plotKaryotype(zoom="chr1:20000000-60000000")
+kpDataBackground(kp)
+kpAddBaseNumbers(kp)
+kpAddCytobandLabels(kp)
+
+kpLines(kp, chr="chr1", x=x, y=y, r0=0.5, r1=1, col="#FF0000")
+
+kpLines(kp, chr="chr1", x=x, y=y, r0=0.5, r1=0, col="#0000FF")
+
+
+```
