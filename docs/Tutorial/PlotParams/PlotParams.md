@@ -70,19 +70,6 @@ kpDataBackground(kp, data.panel = 2, color = "#BBBBFF")
 
 ![plot of chunk Figure3](images//Figure3-1.png)
 
-Or we can even hackishly use a negative margin to move the data panel 2 into 
-the ideogram to plot over the ideogram itself. A new plot type with a panel on 
-the ideogram is expected to be introduced soon to get this feature without
-dubious tricks.
-
-
-```r
-pp <- getDefaultPlotParams(plot.type=2)
-pp$data2height <- pp$ideogramheight
-pp$data2inmargin <- -1 * pp$ideogramheight
-kp <- plotKaryotype(chromosomes=c("chr1", "chr2"), plot.type=2, plot.params = pp)
-kpDataBackground(kp, data.panel = 1, color = "#BBFFBB")
-kpDataBackground(kp, data.panel = 2, color = "#BBBBFFAA")
-```
-
-![plot of chunk Figure4](images//Figure4-1.png)
+**Note:** The example on how to plot on the ideograms has been removed. To plot
+on the ideograms, please use the new `data.panel="ideogram"` as explained in 
+[data panels]({{ site.baseurl }}{% link Tutorial/DataPanels/DataPanels.md %}).
