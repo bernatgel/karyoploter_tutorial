@@ -12,7 +12,7 @@ In addtion to using prebuilt genomes it is possible to plot ideograms using cust
 The only required information to do that, is a **GRanges** object with one range representing
 each chromosome. 
 
-For example, to create an ideogram of a cutom genome with chromosomes *A* 
+For example, to create an ideogram of a custom genome with chromosomes *A* 
 and *B* of 100 and 200 bases we can do something like
 
 
