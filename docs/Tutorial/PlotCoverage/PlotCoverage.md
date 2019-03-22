@@ -17,11 +17,15 @@ Conceptually, it is equivalent to `kpPlotDensity` with _window.size_ set to 1 bu
 much faster, since internally it uses the `coverage` method from 
 [GenomicRanges](https://bioconductor.org/packages/GenomicRanges).
 
+As an example, we'll create ten thousand random regions of one megabase of mean
+length using `createRandomRegions` from package 
+[regioneR](http://bioconductor.org/packages/regioneR/). We set 
+`non.overlapping` to FALSE to allow for overlapping between random regions.
 
 
 ```r
 library(karyoploteR)
-regions <- createRandomRegions(nregions=10000, length.mean = 1e6, mask=NA)
+regions <- createRandomRegions(nregions=10000, length.mean = 1e6, mask=NA, non.overlapping=FALSE)
 kp <- plotKaryotype()
 kpPlotCoverage(kp, data=regions)
 ```
@@ -50,7 +54,7 @@ parameters used for
 
 
 ```r
-more.regions <- createRandomRegions(nregions=40000, length.mean = 1e6, mask=NA)
+more.regions <- createRandomRegions(nregions=40000, length.mean = 1e6, mask=NA, non.overlapping = FALSE)
 kp <- plotKaryotype(plot.type=1, chromosomes = "chr21")
 kpPlotCoverage(kp, data=more.regions, r0=0.7, r1=1, col="#0e87eb")
 kpPlotCoverage(kp, data=more.regions, r0=0.7, r1=0.85, col="#ffdb50")

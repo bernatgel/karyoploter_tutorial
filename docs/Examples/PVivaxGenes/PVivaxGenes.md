@@ -97,11 +97,12 @@ read the file content into a GRanges object. The function is automatically
 imported when loading karyoploteR. 
 
 Since the gff file contains featues of many different typesm we'll filter it and
-keep only the genes, since this is what we want to plot.
+keep only the genes, since this is what we want to plot. 
 
 
 
 ```r
+library(rtracklayer)
 features <- import(gff.file)
 table(features$type)
 ```

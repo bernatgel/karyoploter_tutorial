@@ -32,11 +32,11 @@ kpPlotRegions(kp, data=regions)
 
 The height of the rectangles is adjusted so the tallest pile of regions fits in
 the data panel, making the regions flatter if needed. For example, plotting 40K 
-regions produces a plot like this.
+regions produces a plot like this. 
 
 
 ```r
-many.regions <- createRandomRegions(nregions=40000, length.mean = 3e6, mask=NA)
+many.regions <- createRandomRegions(nregions=40000, length.mean = 3e6, mask=NA, non.overlapping = FALSE)
 kp <- plotKaryotype()
 kpPlotRegions(kp, data=many.regions)
 ```

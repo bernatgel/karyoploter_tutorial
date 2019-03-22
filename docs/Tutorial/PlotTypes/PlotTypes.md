@@ -43,13 +43,6 @@ kpText(kp, chr="chr1", x=60e6, y=0.5, labels="data.panel=1", data.panel = 1)
 
 ```r
 kp <- plotKaryotype(plot.type=2, main="plot.type=2")
-```
-
-```
-## Error in ccf(x = start(cyto), chr = as.character(seqnames(cyto))): In coordChangeFunction: data.panel is required
-```
-
-```r
 kpDataBackground(kp, data.panel = 1)
 kpText(kp, chr="chr1", x=60e6, y=0.5, labels="data.panel=1", data.panel = 1)
 kpDataBackground(kp, data.panel = 2)
@@ -63,13 +56,6 @@ kpText(kp, chr="chr1", x=60e6, y=0.5, labels="data.panel=2", data.panel = 2)
 
 ```r
 kp <- plotKaryotype(plot.type=3, main="plot.type=3")
-```
-
-```
-## Error in ccf(x = start(cyto), chr = as.character(seqnames(cyto))): In coordChangeFunction: data.panel is required
-```
-
-```r
 kpDataBackground(kp, data.panel = 1)
 kpText(kp, chr="chr1", x=60e6, y=0.5, labels="data.panel=1", data.panel = 1)
 kpDataBackground(kp, data.panel = 2)

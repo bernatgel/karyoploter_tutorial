@@ -68,7 +68,7 @@ set.seed(1234)
   mcols(marks) <- data.frame(labels=paste0("rs", floor(runif(num.marks, min = 10000, max=99999))))
 
   #medium regions
-  mid.regs <- createRandomRegions(nregions = num.mid.regions, length.mean = 5000000, length.sd = 1000000)
+  mid.regs <- createRandomRegions(nregions = num.mid.regions, length.mean = 5000000, length.sd = 1000000, non.overlapping = FALSE)
 
 ```
 

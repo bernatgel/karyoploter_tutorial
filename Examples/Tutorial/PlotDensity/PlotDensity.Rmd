@@ -23,7 +23,7 @@ will count the number of feature overlapping each of the windows.
 
 ```{r Figure1, message=FALSE, warning=FALSE}
 library(karyoploteR)
-regions <- createRandomRegions(nregions=10000, length.mean = 1e6, mask=NA)
+regions <- createRandomRegions(nregions=10000, length.mean = 1e6, mask=NA, non.overlapping = FALSE)
 kp <- plotKaryotype()
 kpPlotDensity(kp, data=regions)
 ```
@@ -42,7 +42,7 @@ genome in 1Mb wide windows. Take into account that much smaller windows might sl
 down the density computation.
 
 ```{r Figure3, message=FALSE, warning=FALSE, fig.height=7}
-more.regions <- createRandomRegions(nregions=80000, length.mean = 1e6, mask=NA)
+more.regions <- createRandomRegions(nregions=80000, length.mean = 1e6, mask=NA, non.overlapping = FALSE)
 kp <- plotKaryotype(plot.type=2, chromosomes = "chr21")
 kpPlotDensity(kp, data=more.regions, r0=0, r1=0.3, window.size = 10000)
 kpPlotDensity(kp, data=more.regions, r0=0.33, r1=0.63, window.size = 100000)

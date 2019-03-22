@@ -13,7 +13,7 @@ knitr::opts_chunk$set(fig.height = 14)
 
 ## Plot CpG Islands
 
-In this examples we'll create a plot depicting the CpG Islands founds in the 
+In this examples we'll create a plot depicting the CpG Islands founds in the  
 genome. There are about ~28K CpG islands scattered around the genome, representing
 a somewhat dense set of non-overlapping regions. To get the data we'll use the 
 excellent [AnnotationHub](https://bioconductor.org/packages/AnnotationHub) 

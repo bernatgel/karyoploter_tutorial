@@ -9,7 +9,7 @@ title: CpG Islands
 
 ## Plot CpG Islands
 
-In this examples we'll create a plot depicting the CpG Islands founds in the 
+In this examples we'll create a plot depicting the CpG Islands founds in the  
 genome. There are about ~28K CpG islands scattered around the genome, representing
 a somewhat dense set of non-overlapping regions. To get the data we'll use the 
 excellent [AnnotationHub](https://bioconductor.org/packages/AnnotationHub) 
@@ -28,7 +28,7 @@ ahub["AH5086"]
 
 ```
 ## AnnotationHub with 1 record
-## # snapshotDate(): 2018-04-23 
+## # snapshotDate(): 2018-10-24 
 ## # names(): AH5086
 ## # $dataprovider: UCSC
 ## # $species: Homo sapiens
