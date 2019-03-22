@@ -152,6 +152,12 @@ tutorial:
         url: /Tutorial/PlotRegions/PlotRegions.html
         text: Plot regions on the genome with automatic layering to avoid overlapping
         only_devel: 0
+      - label: PlotLinks
+        title: Plotting links betwee genomic regions
+        short_title: Plot Links
+        url: /Tutorial/PlotLinks/PlotLinks.html
+        text: Plot links between different genomic regions (even in different chromosomes) to represent genomic rearrangements
+        only_devel: 0
       - label: PlotDensity
         title: Plotting the Density of Genomic Features
         short_title: Plot Density
@@ -164,12 +170,13 @@ tutorial:
         url: /Tutorial/PlotCoverage/PlotCoverage.html
         text: Plot the coverage of features for every individual base in the genome
         only_devel: 0
-      - label: PlotLinks
-        title: Plotting links betwee genomic regions
-        short_title: Plot Links
-        url: /Tutorial/PlotLinks/PlotLinks.html
-        text: Plot links between different genomic regions (even in different chromosomes) to represent genomic rearrangements
+      - label: PlotBAMCoverage
+        title: Plotting BAM coverage
+        short_title: Plot BAM Coverage
+        url: /Tutorial/PlotBAMCoverage/PlotBAMCoverage.html
+        text: Plot the per-base coverage of a BAM file
         only_devel: 0
+      
       
 examples:
   - label: MultipleData
