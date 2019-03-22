@@ -23,7 +23,7 @@ We will create a set of random regions using
 
 ```r
 library(karyoploteR)
-regions <- createRandomRegions(nregions=400, length.mean = 3e6, mask=NA)
+regions <- createRandomRegions(nregions=400, length.mean = 3e6, mask=NA, non.overlapping = FALSE)
 kp <- plotKaryotype()
 kpPlotRegions(kp, data=regions)
 ```
