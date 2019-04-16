@@ -59,6 +59,34 @@ kpPlotRegions(kp, data=extendRegions(regions, extend.end = 10e6), col="#FFEECC",
 ![plot of chunk Figure3](images//Figure3-1.png)
 
 
+# Input Regions
+
+As in most functions in karyoploteR, `kpPlotRegions` uses internally the 
+`toGRanges`function from 
+[regioneR](https://bioconductor.org/packages/regioneR/). This means that it's
+possible to call `kpPlotRegions` with a bed-like file, even a remote one,
+a data.frame or even an array of characters defining the regions. You can find
+more information on the valid formats in 
+[regioneR's vignette](http://bioconductor.org/packages/release/bioc/vignettes/regioneR/inst/doc/regioneR.html#region-sets).
+
+
+```r
+kp <- plotKaryotype(chromosomes="chr1")
+kpPlotRegions(kp, data=c("chr1:1-50000000", "chr1:100e6-150e6"), col="#AACCFF", r0=0, r1=0.25)
+df <- data.frame(chr=c("chr1", "chr1", "chr1"), start=c(30e6, 70e6, 150e6), end=c(50e6, 90e6, 170e6))
+kpPlotRegions(kp, data=df, col="#FFEECC", border="#FFCCAA", r0=0.3, r1=0.55)
+```
+
+![plot of chunk Figure4](images//Figure4-1.png)
+
+```r
+kpPlotRegions(kp, data="regions.txt", col="#EEFFCC", border=darker("#EEFFCC"), r0=0.6, r1=0.85)
+```
+
+```
+## Error in toGRanges(data): Error when parsing the genomic region definition strings. There are 1 malformed strings: regions.txt.
+```
+
 
 
 
