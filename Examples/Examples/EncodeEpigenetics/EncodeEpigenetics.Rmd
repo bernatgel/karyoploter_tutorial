@@ -1,0 +1,197 @@
+---
+layout: example
+label: EncodeEpigenetics
+title: Epigenetic data from ENCODE BigWigs
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 14)
+knitr::opts_chunk$set(fig.height = 14)
+```
+
+## ENCODE Data
+
+The [ENCODE Project](https://www.encodeproject.org/) generated a wealth of data 
+[and publications](https://www.encodeproject.org/publications/) on DNA and RNA 
+regulatory elements. All this data is 
+[freely accesible in their web](https://www.encodeproject.org/matrix/?type=Experiment&status=released)
+and most of it also via other sources.
+
+In this example we'll use ENCODE data downloaded from the UCSC at
+[http://http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/] to study the
+chromatin conformation of a small genomic region in the K562 cell line.
+
+We'll plot the TP53 region and our plot will contain: the genes in the region, 
+the chromatin state as defined by a hidden markov model (HMM) and the peak
+profiles for a number of histone modifications and a few DNA-binding elements.
+
+## Let's start
+
+We'll start by defining the region we want to plot and 
+creating a basic karyoplot of that region.
+
+```{r Figure1, message=FALSE, warning=FALSE, fig.height=4}
+TP53.region <- toGRanges("chr17:7,564,422-7,602,719")
+
+kp <- plotKaryotype(zoom = TP53.region)
+```
+
+And we'll start by plotting the genes in this region using `kpPlotGenes`. 
+We'll first load the 
+[TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/release/data/annotation/html/TxDb.Hsapiens.UCSC.hg19.knownGene.html), and create a `gene.data` structure with it
+so `kpPlotGenes` can work.
+
+```{r Figure2, message=FALSE, warning=FALSE, fig.height=14}
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+
+genes.data <- makeGenesDataFromTxDb(TxDb.Hsapiens.UCSC.hg19.knownGene,
+                                    karyoplot=kp,
+                                    plot.transcripts = TRUE, 
+                                    plot.transcripts.structure = TRUE)
+
+kp <- plotKaryotype(zoom = TP53.region)
+kpPlotGenes(kp, data=genes.data)
+```
+
+We can see all different transcripts for the genes in this region and a number
+istead of a gene symbol. We'll use `mergeTranscripts` to merge all trascripts 
+of each gene into one and `addGeneNames` to transform the identifiers into
+standard gene symbols using the data in [`org.Hs.eg.db`](	http://bioconductor.org/packages/org.Hs.eg.db/). Since we have created the 
+`genes.data` automatically, `addGeneNames` will recognize and load the required
+orgDB object automatically. We'll also use `cex` to increase the size of the 
+chromosome name.
+
+
+```{r Figure3, message=FALSE, warning=FALSE, fig.height=14}
+genes.data <- addGeneNames(genes.data)
+genes.data <- mergeTranscripts(genes.data)
+
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data)
+```
+
+Ok, now we have a more suitable representation of the genes for our purpose.
+
+The next step will be use 
+[r0 and r1]({{ site.baseurl }}{% link Tutorial/DataPositioning/DataPositioning.md %}))
+to plot the genes at the bottom of the plotting area to leave space for the
+other data elements. We'll also increase the font text size using 
+`gene.name.cex`. 
+
+```{r Figure4, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+```
+
+In our next step, we'll load the genome state HMM results. We will first use
+[BiocFileCache](http://bioconductor.org/packages/BiocFileCache/) to download 
+the data file and make it persistent between sessions. This means that we'll 
+download the file once to our disk and it will be there for us next time. 
+
+To load the data into R we'll use `toGRanges` from package
+[regioneR](http://bioconductor.org/packages/regioneR/).
+
+```{r Figure5, message=FALSE, warning=FALSE, fig.height=4}
+library(BiocFileCache)
+bfc <- BiocFileCache(ask=FALSE)
+K562.hmm.file <- bfcrpath(bfc, "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHmm/wgEncodeBroadHmmK562HMM.bed.gz")
+K562.hmm <- toGRanges(K562.hmm.file)
+K562.hmm
+```
+
+We can see that for each region we have a name and a color. We'll use the
+color column to set the colors of the regions when calling 
+[`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %})).
+
+```{r Figure6, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+```
+We can see that we have the most interesting part in the region where
+the two genes overlap. To start identifying the elements in the plot we'll use 
+[`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %})).
+
+
+```{r Figure2, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+```
+
+
+
+
+
+
+
+
+cols <- c(Hepg2="#FFD700", K562="#1E90FF")
+
+```
+
+And run `DESeq` to perfrom the differential analysis
+
+
+
+```{r}
+
+histone.marks <- c(H3K27ac="wgEncodeBroadHistoneK562H3k27acStdSig.bigWig",
+                   H3K9ac="wgEncodeBroadHistoneK562H3k9acStdSig.bigWig",
+                   H3K27me3="wgEncodeBroadHistoneK562H3k27me3StdSig.bigWig",
+                   H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
+                   H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig")
+
+base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
+
+#K562
+K562.ctcf.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562CtcfStdSig.bigWig"
+
+
+
+
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+
+TP53.region <- toGRanges("chr17:7,564,422-7,602,719")
+
+bfc <- BiocFileCache::BiocFileCache(ask = FALSE)
+K562.hmm.file <- BiocFileCache::bfcadd(bfc, "Broad.K562.HMM.bed", fpath = "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHmm/wgEncodeBroadHmmK562HMM.bed.gz")
+K562.hmm <- toGRanges(K562.hmm.file)
+
+
+kp <- plotKaryotype(zoom = TP53.region)
+
+genes.data <- makeGenesDataFromTxDb(kp, TxDb.Hsapiens.UCSC.hg19.knownGene, plot.transcripts = TRUE, plot.transcripts.structure = TRUE)
+
+kp <- plotKaryotype(zoom = TP53.region)
+#kpPlotGenes(kp, genes.data, r1=0.5, transcript.names = FALSE)
+kpPlotRegions(kp, data=K562.hmm, col = K562.hmm$itemRgb, r0=0.52, r1=0.62)
+kpPlotBigWig(kp, data=K562.h3k27ac.bw, r0=0.65, r1=0.75, ymax = "visible.region", border=cols["K562"])
+kpPlotBigWig(kp, data=K562.h3k27me3.bw, r0=0.77, r1=0.87, ymax = "visible.region",  border=cols["K562"])
+kpPlotBigWig(kp, data=K562.h3k4me3.bw, r0=0.89, r1=0.99, ymax = "visible.region", border=cols["K562"])
+
+
+
+
+
+
+
+kp <- plotKaryotype(zoom = TP53.region)
+kpPlotGenes(kp, genes.data, r1=0.5, transcript.names = FALSE)
+kpPlotRegions(kp, data=K562.hmm, col = K562.hmm$itemRgb, r0=0.52, r1=0.62)
+kp <- kpPlotBigWig(kp, data=K562.ctcf.bw, r0=0.65, r1=0.75, ymax = "visible.region", border=cols["K562"])
+kpAxis(kp, ymax = kp$latest.plot$computed.values$ymax, tick.pos = c(0, floor(kp$latest.plot$computed.values$ymax)), r0=0.65, r1=0.75)
+kpPlotBigWig(kp, data=K562.h3k27me3.bw, r0=0.77, r1=0.87, ymax = "visible.region",  border=cols["K562"])
+kpPlotBigWig(kp, data=K562.h3k4me3.bw, r0=0.89, r1=0.99, ymax = "visible.region", border=cols["K562"])
+
+kpPlotBigWig(kp, data="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeOpenChromDnase/wgEncodeOpenChromDnaseK562BaseOverlapSignal.bigWig", 
+             r0=0.89, r1=0.99, ymax = "visible.region", border=cols["K562"])
+
+
+kpPlotBigWig
+
+
+```
