@@ -115,26 +115,180 @@ the two genes overlap. To start identifying the elements in the plot we'll use
 [`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %})).
 
 
-```{r Figure2, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure7, message=FALSE, warning=FALSE, fig.height=14}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 ```
 
+Now that we have the context, we can start adding the epigenetic data. In 
+this case we'll plot data contained in 
+[BigWig files](http://genome.ucsc.edu/goldenPath/help/bigWig.html) using 
+`kpPlotBigWig`. Internally, `kpPlotBigWig` uses 
+[rtracklayer](http://bioconductor.org/packages/rtracklayer/)'s
+[BigWigFile](https://rdrr.io/bioc/rtracklayer/man/BigWigFile.html) to import 
+BigWig data. This allows it to take advantage of the BigWig index and remote
+loading: we can plot bigwig files either in our own computer or in external 
+servers (as we will see now) and in any case, only the data required to 
+our plot will be loaded. In this example we'll use the ENCODE data passing 
+the remote file URL to `kpPlotBigWig` and the function will only download 
+the data overlapping the visible part of the genome.
 
+**IMPORTANT!** Due to restrictions in `rtracklayer` bigwig management, 
+`kpPlotBigWig` **does not work on Windows**. It only works on Linux and Mac
+computers.
 
+As a first example, we'll plot the trimethylation levels of the lysine 4 of the
+histone 3 (H3K4me3). And we will plot it bewteen 0.35 and 1.
 
+```{r Figure8, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
+bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
 
-
-
-cols <- c(Hepg2="#FFD700", K562="#1E90FF")
+kpPlotBigWig(kp, data=bigwig.file, r0=0.35, r1=1)
 
 ```
 
-And run `DESeq` to perfrom the differential analysis
+We can see a new gray line with a tiny wiggle in the red region. This is not 
+very informative. The problem we are seeing is that the default `ymax` value 
+is set to "global", that is, ymax will be automatically set to the height of the 
+tallest peak in the genome, which is much higher than the signal we see in our 
+region. If we set `ymax="visible.region"`, ymax will be adjusted to the height 
+of the peaks in the visible region, producing a much nicer plot (and usually 
+more informative).
 
+```{r Figure9, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+
+bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
+
+kpPlotBigWig(kp, data=bigwig.file, ymax="visible.region", r0=0.35, r1=1)
+
+```
+
+To produce this plot, `kpPlotBigWig` connected to the UCSC servers, extracted 
+the data in the bigwig file overlapping the visible region, computed the maximum
+value to set `ymax` and plotted the data.
+
+We can now add other histone modifications to the plot, for example, histone 3
+lysine 36 trimethylation (H3K36me3). For that well have to adjust the r0 and r1 
+specifications.
+
+```{r Figure10, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+
+H3K4me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
+kp <- kpPlotBigWig(kp, data=H3K4me3.bw, ymax="visible.region", r0=0.35, r1=0.65)
+
+H3K36me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig"
+kpPlotBigWig(kp, data=H3K36me3.bw, ymax="visible.region", r0=0.7, r1=1)
+
+```
+
+And we can see a pretty different peak profile. However, we are missing 
+some information here: are these peaks comparable? What is the relative height 
+of each one? To help us interpret what we see we can add y axis. 
+
+To automatically adjust the axis we will take advantage of the fact that 
+`kpPlotBigWig` returns the original karyoplot object with the computed value 
+for `ymax` attached. We have to assign the result of `kpPlotBigWig` to `kp` and
+access the values at `kp$latest.plot$computed.values`.
+
+We wil also add a label to identify each chromatin mark. 
+
+```{r Figure11, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+
+H3K4me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
+kp <- kpPlotBigWig(kp, data=H3K4me3.bw, ymax="visible.region", r0=0.35, r1=0.65)
+computed.ymax <- kp$latest.plot$computed.values$ymax
+kpAxis(kp, ymin=0, ymax=computed.ymax, r0=0.35, r1=0.65)
+kpAddLabels(kp, labels = "H3K4me3", r0=0.35, r1=0.65, cex=1.6, label.margin = 0.035)
+
+H3K36me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig"
+kp <- kpPlotBigWig(kp, data=H3k36me3.bw, ymax="visible.region", r0=0.7, r1=1)
+computed.ymax <- kp$latest.plot$computed.values$ymax
+kpAxis(kp, ymin=0, ymax=computed.ymax, r0=0.7, r1=1)
+kpAddLabels(kp, labels = "H3K36me3", r0=0.7, r1=1, cex=1.6, label.margin = 0.035)
+
+```
+
+And we can see that the values for H3K4me3 are about four times higher than 
+the ones for H3K36me3. 
+
+What we can also see is that we have started repeating code and that it
+would be better to use a loop for that. We will use the 
+`autotrack` function to automatically get the `r0` and `r1` values.
+
+In addition, we will improve the axis definition with a `ceiling` call.
+
+```{r Figure12, message=FALSE, warning=FALSE, fig.height=14}
+histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
+                   H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig")
+
+base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
+
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+
+for(i in seq_len(length(histone.marks))) {
+  bigwig.file <- paste0(base.url, histone.marks[i])
+  at <- autotrack(i, length(histone.marks), r0=0.35, r1=1)
+  kp <- kpPlotBigWig(kp, data=bigwig.file, ymax="visible.region", 
+                     r0=at$r0, r1=at$r1)
+  computed.ymax <- ceiling(kp$latest.plot$computed.values$ymax)
+  kpAxis(kp, ymin=0, ymax=computed.ymax, numticks = 2, r0=at$r0, r1=at$r1)
+  kpAddLabels(kp, labels = names(histone.marks)[i], r0=at$r0, r1=at$r1, 
+              cex=1.6, label.margin = 0.035)
+}
+
+```
+
+Once we have the for loop and the `autotrack` in place, we can increase the 
+number of histone marks and everything will autoadjust.
+
+```{r Figure13, message=FALSE, warning=FALSE, fig.height=14}
+histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
+                   H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
+                   H3K27ac="wgEncodeBroadHistoneK562H3k27acStdSig.bigWig",
+                   H3K9ac="wgEncodeBroadHistoneK562H3k9acStdSig.bigWig",
+                   H3K27me3="wgEncodeBroadHistoneK562H3k27me3StdSig.bigWig")
+
+base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
+
+kp <- plotKaryotype(zoom = TP53.region, cex=2)
+kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
+kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
+
+for(i in seq_len(length(histone.marks))) {
+  bigwig.file <- paste0(base.url, histone.marks[i])
+  at <- autotrack(i, length(histone.marks), r0=0.35, r1=1)
+  kp <- kpPlotBigWig(kp, data=bigwig.file, ymax="visible.region", 
+                     r0=at$r0, r1=at$r1)
+  computed.ymax <- ceiling(kp$latest.plot$computed.values$ymax)
+  kpAxis(kp, ymin=0, ymax=computed.ymax, numticks = 2, r0=at$r0, r1=at$r1)
+  kpAddLabels(kp, labels = names(histone.marks)[i], r0=at$r0, r1=at$r1, 
+              cex=1.6, label.margin = 0.035)
+}
+
+```
 
 
 ```{r}
