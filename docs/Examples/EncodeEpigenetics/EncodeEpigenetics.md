@@ -5,11 +5,7 @@ title: Epigenetic data from ENCODE BigWigs
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.width = 14)
-knitr::opts_chunk$set(fig.height = 14)
-```
+
 
 ## ENCODE Data
 
@@ -32,18 +28,22 @@ profiles for a number of histone modifications and a few DNA-binding elements.
 We'll start by defining the region we want to plot and 
 creating a basic karyoplot of that region.
 
-```{r Figure1, message=FALSE, warning=FALSE, fig.height=4}
+
+```r
 TP53.region <- toGRanges("chr17:7,564,422-7,602,719")
 
 kp <- plotKaryotype(zoom = TP53.region)
 ```
+
+![plot of chunk Figure1](images//Figure1-1.png)
 
 And we'll start by plotting the genes in this region using `kpPlotGenes`. 
 We'll first load the 
 [TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/release/data/annotation/html/TxDb.Hsapiens.UCSC.hg19.knownGene.html), and create a `gene.data` structure with it
 so `kpPlotGenes` can work.
 
-```{r Figure2, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 genes.data <- makeGenesDataFromTxDb(TxDb.Hsapiens.UCSC.hg19.knownGene,
@@ -55,6 +55,8 @@ kp <- plotKaryotype(zoom = TP53.region)
 kpPlotGenes(kp, data=genes.data)
 ```
 
+![plot of chunk Figure2](images//Figure2-1.png)
+
 We can see all different transcripts for the genes in this region and a number
 istead of a gene symbol. We'll use `mergeTranscripts` to merge all trascripts 
 of each gene into one and `addGeneNames` to transform the identifiers into
@@ -64,13 +66,16 @@ orgDB object automatically. We'll also use `cex` to increase the size of the
 chromosome name.
 
 
-```{r Figure3, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 genes.data <- addGeneNames(genes.data)
 genes.data <- mergeTranscripts(genes.data)
 
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data)
 ```
+
+![plot of chunk Figure3](images//Figure3-1.png)
 
 Ok, now we have a more suitable representation of the genes for our purpose.
 
@@ -80,10 +85,13 @@ to plot the genes at the bottom of the plotting area to leave space for the
 other data elements. We'll also increase the font text size using 
 `gene.name.cex`. 
 
-```{r Figure4, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 ```
+
+![plot of chunk Figure4](images//Figure4-1.png)
 
 In our next step, we'll load the genome state HMM results. We will first use
 [BiocFileCache](http://bioconductor.org/packages/BiocFileCache/) to download 
@@ -93,7 +101,8 @@ download the file once to our disk and it will be there for us next time.
 To load the data into R we'll use `toGRanges` from package
 [regioneR](http://bioconductor.org/packages/regioneR/).
 
-```{r Figure5, message=FALSE, warning=FALSE, fig.height=4}
+
+```r
 library(BiocFileCache)
 bfc <- BiocFileCache(ask=FALSE)
 K562.hmm.file <- bfcrpath(bfc, "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHmm/wgEncodeBroadHmmK562HMM.bed.gz")
@@ -101,26 +110,64 @@ K562.hmm <- toGRanges(K562.hmm.file)
 K562.hmm
 ```
 
+```
+## GRanges object with 622257 ranges and 4 metadata columns:
+##            seqnames              ranges strand |              name
+##               <Rle>           <IRanges>  <Rle> |       <character>
+##        [1]     chr1         10001-10600      * | 15_Repetitive/CNV
+##        [2]     chr1         10601-10937      * | 13_Heterochrom/lo
+##        [3]     chr1         10938-11937      * |       8_Insulator
+##        [4]     chr1         11938-12337      * | 5_Strong_Enhancer
+##        [5]     chr1         12338-13137      * |   7_Weak_Enhancer
+##        ...      ...                 ...    ... .               ...
+##   [622253]     chrX 155256807-155257806      * |       11_Weak_Txn
+##   [622254]     chrX 155257807-155259206      * |       8_Insulator
+##   [622255]     chrX 155259207-155259406      * |   6_Weak_Enhancer
+##   [622256]     chrX 155259407-155259606      * |   7_Weak_Enhancer
+##   [622257]     chrX 155259607-155260406      * | 15_Repetitive/CNV
+##                score     itemRgb               thick
+##            <numeric> <character>           <IRanges>
+##        [1]         0     #F5F5F5         10001-10600
+##        [2]         0     #F5F5F5         10601-10937
+##        [3]         0     #0ABEFE         10938-11937
+##        [4]         0     #FACA00         11938-12337
+##        [5]         0     #FFFC04         12338-13137
+##        ...       ...         ...                 ...
+##   [622253]         0     #99FF66 155256807-155257806
+##   [622254]         0     #0ABEFE 155257807-155259206
+##   [622255]         0     #FFFC04 155259207-155259406
+##   [622256]         0     #FFFC04 155259407-155259606
+##   [622257]         0     #F5F5F5 155259607-155260406
+##   -------
+##   seqinfo: 23 sequences from an unspecified genome; no seqlengths
+```
+
 We can see that for each region we have a name and a color. We'll use the
 color column to set the colors of the regions when calling 
 [`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %})).
 
-```{r Figure6, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
 ```
+
+![plot of chunk Figure6](images//Figure6-1.png)
 We can see that we have the most interesting part in the region where
 the two genes overlap. To start identifying the elements in the plot we'll use 
 [`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %})).
 
 
-```{r Figure7, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 ```
+
+![plot of chunk Figure7](images//Figure7-1.png)
 
 Now that we have the context, we can start adding the epigenetic data. In 
 this case we'll plot data contained in 
@@ -142,7 +189,8 @@ computers.
 As a first example, we'll plot the trimethylation levels of the lysine 4 of the
 histone 3 (H3K4me3). And we will plot it bewteen 0.35 and 1.
 
-```{r Figure8, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -151,8 +199,9 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
 
 kpPlotBigWig(kp, data=bigwig.file, r0=0.35, r1=1)
-
 ```
+
+![plot of chunk Figure8](images//Figure8-1.png)
 
 We can see a new gray line with a tiny wiggle in the red region. This is not 
 very informative. The problem we are seeing is that the default `ymax` value 
@@ -162,7 +211,8 @@ region. If we set `ymax="visible.region"`, ymax will be adjusted to the height
 of the peaks in the visible region, producing a much nicer plot (and usually 
 more informative).
 
-```{r Figure9, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -171,8 +221,9 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
 
 kpPlotBigWig(kp, data=bigwig.file, ymax="visible.region", r0=0.35, r1=1)
-
 ```
+
+![plot of chunk Figure9](images//Figure9-1.png)
 
 To produce this plot, `kpPlotBigWig` connected to the UCSC servers, extracted 
 the data in the bigwig file overlapping the visible region, computed the maximum
@@ -182,7 +233,8 @@ We can now add other histone modifications to the plot, for example, histone 3
 lysine 36 trimethylation (H3K36me3). For that well have to adjust the r0 and r1 
 specifications.
 
-```{r Figure10, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -193,8 +245,9 @@ kp <- kpPlotBigWig(kp, data=H3K4me3.bw, ymax="visible.region", r0=0.35, r1=0.65)
 
 H3K36me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig"
 kpPlotBigWig(kp, data=H3K36me3.bw, ymax="visible.region", r0=0.7, r1=1)
-
 ```
+
+![plot of chunk Figure10](images//Figure10-1.png)
 
 And we can see a pretty different peak profile. However, we are missing 
 some information here: are these peaks comparable? What is the relative height 
@@ -207,7 +260,8 @@ access the values at `kp$latest.plot$computed.values`.
 
 We wil also add a label to identify each chromatin mark. 
 
-```{r Figure11, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -224,8 +278,9 @@ kp <- kpPlotBigWig(kp, data=H3k36me3.bw, ymax="visible.region", r0=0.7, r1=1)
 computed.ymax <- kp$latest.plot$computed.values$ymax
 kpAxis(kp, ymin=0, ymax=computed.ymax, r0=0.7, r1=1)
 kpAddLabels(kp, labels = "H3K36me3", r0=0.7, r1=1, cex=1.6, label.margin = 0.035)
-
 ```
+
+![plot of chunk Figure11](images//Figure11-1.png)
 
 And we can see that the values for H3K4me3 are about four times higher than 
 the ones for H3K36me3. 
@@ -236,7 +291,8 @@ would be better to use a loop for that. We will use the
 
 In addition, we will improve the axis definition with a `ceiling` call.
 
-```{r Figure12, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig")
 
@@ -257,13 +313,15 @@ for(i in seq_len(length(histone.marks))) {
   kpAddLabels(kp, labels = names(histone.marks)[i], r0=at$r0, r1=at$r1, 
               cex=1.6, label.margin = 0.035)
 }
-
 ```
+
+![plot of chunk Figure12](images//Figure12-1.png)
 
 Once we have the for loop and the `autotrack` in place, we can increase the 
 number of histone marks and everything will autoadjust.
 
-```{r Figure13, message=FALSE, warning=FALSE, fig.height=14}
+
+```r
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
                    H3K27ac="wgEncodeBroadHistoneK562H3k27acStdSig.bigWig",
@@ -287,8 +345,9 @@ for(i in seq_len(length(histone.marks))) {
   kpAddLabels(kp, labels = names(histone.marks)[i], r0=at$r0, r1=at$r1, 
               cex=1.6, label.margin = 0.035)
 }
-
 ```
+
+![plot of chunk Figure13](images//Figure13-1.png)
 
 We can now adjust the 
 [plotting parameters]({{ site.baseurl }}{% link Tutorial/PlotParams/PlotParams.md %}))
@@ -298,8 +357,8 @@ the plot.
 
 
 
-```{r Figure14, message=FALSE, warning=FALSE, fig.height=14}
 
+```r
 pp <- getDefaultPlotParams(plot.type=1)
 pp$leftmargin <- 0.15
 pp$topmargin <- 15
@@ -324,13 +383,15 @@ for(i in seq_len(length(histone.marks))) {
   kpAddLabels(kp, labels = names(histone.marks)[i], r0=at$r0, r1=at$r1, 
               cex=1.6, label.margin = 0.035)
 }
-
 ```
+
+![plot of chunk Figure14](images//Figure14-1.png)
 
 And we can even add other experimental peaks and use nested `autotrack`s to
 position them all.
 
-```{r Figure15, message=FALSE, warning=FALSE, fig.height=20}
+
+```r
 base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
@@ -388,14 +449,15 @@ for(i in seq_len(length(DNA.binding))) {
   kpAddLabels(kp, labels = names(DNA.binding)[i], r0=at$r0, r1=at$r1, 
               cex=1.6, label.margin = 0.035)
 }
-
-
 ```
+
+![plot of chunk Figure15](images//Figure15-1.png)
 
 And add a main title, a couple of additional labels and adjust a few parameters
 (text sizes, etc...) to get a better final image.
 
-```{r Figure16, message=FALSE, warning=FALSE, fig.height=20}
+
+```r
 base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
@@ -461,17 +523,17 @@ for(i in seq_len(length(DNA.binding))) {
   kpAddLabels(kp, labels = names(DNA.binding)[i], r0=at$r0, r1=at$r1, 
               cex=2.2, label.margin = 0.035)
 }
-
-
 ```
+
+![plot of chunk Figure16](images//Figure16-1.png)
 
 
 As always with karyoploteR, we can change the plotting region (zoom in this 
 case) to plot any part of the genome, for example, a detailed view of the 
 overlapping zone.
 
-```{r Figure17, message=FALSE, warning=FALSE, fig.height=20}
 
+```r
 TP53.promoter.region <- toGRanges("chr17:7586000-7596000")
 kp <- plotKaryotype(zoom = TP53.promoter.region, cex=3, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
@@ -515,7 +577,7 @@ for(i in seq_len(length(DNA.binding))) {
   kpAddLabels(kp, labels = names(DNA.binding)[i], r0=at$r0, r1=at$r1, 
               cex=1.6, label.margin = 0.035)
 }
-
-
 ```
+
+![plot of chunk Figure17](images//Figure17-1.png)
 
