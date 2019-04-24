@@ -193,12 +193,12 @@ examples:
     url: /Examples/GeneExpression/GeneExpression.html
     text: Create a plot with differential expression results from the DESeq2 vignette
     only_devel: 0
-  - label: GeneDensityIdeogram
-    title: Gene Density on the Ideogram
-    short_title: Gene Density Ideogram
-    image: /Examples/GeneDensityIdeograms/images/Figure9-1.png
-    url: /Examples/GeneDensityIdeograms/GeneDensityIdeograms.html
-    text: Plot the density of genes over the genome instead of the ideograms.
+  - label: EncodeEpigenetics
+    title: Epigenetic data from ENCODE
+    short_title: ENCODE Epigenetics
+    image: /Examples/EncodeEpigenetics/images/Figure16-1.png
+    url: /Examples/EncodeEpigenetics/EncodeEpigenetics.html
+    text: Plot ChIP-seq data from ENCODE BigWig files representing histone modifications and DNA-binding proteins
     only_devel: 0
   - label: NucleotideFrequency
     title: Nucleotide Frequency
@@ -234,6 +234,13 @@ examples:
     image: /Examples/PVivaxGenes/images/Figure6-1.png
     url: /Examples/PVivaxGenes/PVivaxGenes.html
     text: Get the genes and genome of Plasmodium Vivax from a GFF file and plot them
+    only_devel: 0
+  - label: GeneDensityIdeogram
+    title: Gene Density on the Ideogram
+    short_title: Gene Density Ideogram
+    image: /Examples/GeneDensityIdeograms/images/Figure9-1.png
+    url: /Examples/GeneDensityIdeograms/GeneDensityIdeograms.html
+    text: Plot the density of genes over the genome instead of the ideograms.
     only_devel: 0
   - label: GeneDensity
     title: Gene Density
