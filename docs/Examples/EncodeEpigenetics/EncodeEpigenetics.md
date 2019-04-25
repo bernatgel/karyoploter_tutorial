@@ -77,10 +77,10 @@ kpPlotGenes(kp, data=genes.data)
 
 ![plot of chunk Figure3](images//Figure3-1.png)
 
-Ok, now we have a more suitable representation of the genes for our purpose.
+This is a more suitable representation of the genes for our purpose.
 
-The next step will be use 
-[r0 and r1]({{ site.baseurl }}{% link Tutorial/DataPositioning/DataPositioning.md %}))
+The next step will be using 
+[r0 and r1]({{ site.baseurl }}{% link Tutorial/DataPositioning/DataPositioning.md %})
 to plot the genes at the bottom of the plotting area to leave space for the
 other data elements. We'll also increase the font text size using 
 `gene.name.cex`. 
@@ -144,7 +144,7 @@ K562.hmm
 
 We can see that for each region we have a name and a color. We'll use the
 color column to set the colors of the regions when calling 
-[`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %})).
+[`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %}).
 
 
 ```r
@@ -156,7 +156,7 @@ kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 ![plot of chunk Figure6](images//Figure6-1.png)
 We can see that we have the most interesting part in the region where
 the two genes overlap. To start identifying the elements in the plot we'll use 
-[`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %})).
+[`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %}).
 
 
 
@@ -287,7 +287,7 @@ the ones for H3K36me3.
 
 What we can also see is that we have started repeating code and that it
 would be better to use a loop for that. We will use the 
-`autotrack` function to automatically get the `r0` and `r1` values.
+[`autotrack`]({{ site.baseurl }}{% link Tutorial/Autotrack/Autotrack.md %}) function to automatically get the `r0` and `r1` values.
 
 In addition, we will improve the axis definition with a `ceiling` call.
 
@@ -317,7 +317,7 @@ for(i in seq_len(length(histone.marks))) {
 
 ![plot of chunk Figure12](images//Figure12-1.png)
 
-Once we have the for loop and the `autotrack` in place, we can increase the 
+Once we have the for loop and the [`autotrack`]({{ site.baseurl }}{% link Tutorial/Autotrack/Autotrack.md %}) in place, we can increase the 
 number of histone marks and everything will autoadjust.
 
 
@@ -350,7 +350,7 @@ for(i in seq_len(length(histone.marks))) {
 ![plot of chunk Figure13](images//Figure13-1.png)
 
 We can now adjust the 
-[plotting parameters]({{ site.baseurl }}{% link Tutorial/PlotParams/PlotParams.md %}))
+[plotting parameters]({{ site.baseurl }}{% link Tutorial/PlotParams/PlotParams.md %})
 to reduce the margins and the 
 ideogram height and change the colors to improve the general appearance of
 the plot.
@@ -387,7 +387,8 @@ for(i in seq_len(length(histone.marks))) {
 
 ![plot of chunk Figure14](images//Figure14-1.png)
 
-And we can even add other experimental peaks and use nested `autotrack`s to
+And we can even add other experimental peaks and use nested 
+[`autotrack`]({{ site.baseurl }}{% link Tutorial/Autotrack/Autotrack.md %}) to
 position them all.
 
 
