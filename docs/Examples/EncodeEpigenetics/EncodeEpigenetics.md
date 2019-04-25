@@ -474,7 +474,7 @@ DNA.binding <- c(CTCF="wgEncodeBroadHistoneK562CtcfStdSig.bigWig",
 
 
 pp <- getDefaultPlotParams(plot.type=1)
-pp$leftmargin <- 0.13
+pp$leftmargin <- 0.15
 pp$topmargin <- 15
 pp$bottommargin <- 15
 pp$ideogramheight <- 5
@@ -493,7 +493,7 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 total.tracks <- length(histone.marks)+length(DNA.binding)
 out.at <- autotrack(1:length(histone.marks), total.tracks, margin = 0.3, r0=0.23)
 kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3.5,
-            srt=90, pos=1, label.margin = 0.12)
+            srt=90, pos=1, label.margin = 0.14)
 
 for(i in seq_len(length(histone.marks))) {
   bigwig.file <- paste0(base.url, histone.marks[i])
@@ -511,7 +511,7 @@ for(i in seq_len(length(histone.marks))) {
 out.at <- autotrack((length(histone.marks)+1):total.tracks, total.tracks, margin = 0.3, r0=0.23)
 
 kpAddLabels(kp, labels = "DNA-binding proteins", r0 = out.at$r0, r1=out.at$r1,
-             cex=3.5, srt=90, pos=1, label.margin = 0.12)
+             cex=3.5, srt=90, pos=1, label.margin = 0.14)
 for(i in seq_len(length(DNA.binding))) {
   bigwig.file <- paste0(base.url, DNA.binding[i])
   at <- autotrack(i, length(DNA.binding), r0=out.at$r0, r1=out.at$r1, margin = 0.1)
@@ -538,7 +538,7 @@ TP53.promoter.region <- toGRanges("chr17:7586000-7596000")
 kp <- plotKaryotype(zoom = TP53.promoter.region, cex=3, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=2, tick.len = 3)
-kpAddMainTitle(kp, "K652 Epigenetic Regulation", cex=4)
+kpAddMainTitle(kp, "Epigenetic Regulation in K652", cex=4)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2.5)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
@@ -546,8 +546,8 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 #Histone marks
 total.tracks <- length(histone.marks)+length(DNA.binding)
 out.at <- autotrack(1:length(histone.marks), total.tracks, margin = 0.3, r0=0.23)
-kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3,
-            srt=90, pos=1, label.margin = 0.12)
+kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3.5,
+            srt=90, pos=1, label.margin = 0.14)
 
 for(i in seq_len(length(histone.marks))) {
   bigwig.file <- paste0(base.url, histone.marks[i])
@@ -565,7 +565,7 @@ for(i in seq_len(length(histone.marks))) {
 out.at <- autotrack((length(histone.marks)+1):total.tracks, total.tracks, margin = 0.3, r0=0.23)
 
 kpAddLabels(kp, labels = "DNA-binding proteins", r0 = out.at$r0, r1=out.at$r1,
-             cex=3, srt=90, pos=1, label.margin = 0.1)
+             cex=3.5, srt=90, pos=1, label.margin = 0.14)
 for(i in seq_len(length(DNA.binding))) {
   bigwig.file <- paste0(base.url, DNA.binding[i])
   at <- autotrack(i, length(DNA.binding), r0=out.at$r0, r1=out.at$r1, margin = 0.1)
@@ -575,7 +575,7 @@ for(i in seq_len(length(DNA.binding))) {
   kpAxis(kp, ymin=0, ymax=computed.ymax, tick.pos = computed.ymax, 
          r0=at$r0, r1=at$r1, cex=1.6)
   kpAddLabels(kp, labels = names(DNA.binding)[i], r0=at$r0, r1=at$r1, 
-              cex=1.6, label.margin = 0.035)
+              cex=2.2, label.margin = 0.035)
 }
 ```
 

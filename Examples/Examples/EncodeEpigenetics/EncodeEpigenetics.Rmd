@@ -7,8 +7,8 @@ title: Epigenetic data from ENCODE BigWigs
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(fig.width = 14)
-knitr::opts_chunk$set(fig.height = 14)
+knitr::opts_chunk$set(fig.width = 24)
+knitr::opts_chunk$set(fig.height = 24)
 ```
 
 ## ENCODE Data
@@ -32,7 +32,7 @@ profiles for a number of histone modifications and a few DNA-binding elements.
 We'll start by defining the region we want to plot and 
 creating a basic karyoplot of that region.
 
-```{r Figure1, message=FALSE, warning=FALSE, fig.height=4}
+```{r Figure1, message=FALSE, warning=FALSE, fig.height=8}
 TP53.region <- toGRanges("chr17:7,564,422-7,602,719")
 
 kp <- plotKaryotype(zoom = TP53.region)
@@ -43,7 +43,7 @@ We'll first load the
 [TxDb.Hsapiens.UCSC.hg19.knownGene](https://bioconductor.org/packages/release/data/annotation/html/TxDb.Hsapiens.UCSC.hg19.knownGene.html), and create a `gene.data` structure with it
 so `kpPlotGenes` can work.
 
-```{r Figure2, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure2, message=FALSE, warning=FALSE}
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 genes.data <- makeGenesDataFromTxDb(TxDb.Hsapiens.UCSC.hg19.knownGene,
@@ -64,7 +64,7 @@ orgDB object automatically. We'll also use `cex` to increase the size of the
 chromosome name.
 
 
-```{r Figure3, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure3, message=FALSE, warning=FALSE}
 genes.data <- addGeneNames(genes.data)
 genes.data <- mergeTranscripts(genes.data)
 
@@ -80,7 +80,7 @@ to plot the genes at the bottom of the plotting area to leave space for the
 other data elements. We'll also increase the font text size using 
 `gene.name.cex`. 
 
-```{r Figure4, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure4, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 ```
@@ -105,7 +105,7 @@ We can see that for each region we have a name and a color. We'll use the
 color column to set the colors of the regions when calling 
 [`kpPlotRegions`]({{ site.baseurl }}{% link Tutorial/PlotRegions/PlotRegions.md %})).
 
-```{r Figure6, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure6, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -115,7 +115,7 @@ the two genes overlap. To start identifying the elements in the plot we'll use
 [`kpAddLabels`]({{ site.baseurl }}{% link Tutorial/Labels/Labels.md %})).
 
 
-```{r Figure7, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure7, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -142,7 +142,7 @@ computers.
 As a first example, we'll plot the trimethylation levels of the lysine 4 of the
 histone 3 (H3K4me3). And we will plot it bewteen 0.35 and 1.
 
-```{r Figure8, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure8, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -162,7 +162,7 @@ region. If we set `ymax="visible.region"`, ymax will be adjusted to the height
 of the peaks in the visible region, producing a much nicer plot (and usually 
 more informative).
 
-```{r Figure9, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure9, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -182,7 +182,7 @@ We can now add other histone modifications to the plot, for example, histone 3
 lysine 36 trimethylation (H3K36me3). For that well have to adjust the r0 and r1 
 specifications.
 
-```{r Figure10, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure10, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -207,7 +207,7 @@ access the values at `kp$latest.plot$computed.values`.
 
 We wil also add a label to identify each chromatin mark. 
 
-```{r Figure11, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure11, message=FALSE, warning=FALSE}
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
@@ -236,7 +236,7 @@ would be better to use a loop for that. We will use the
 
 In addition, we will improve the axis definition with a `ceiling` call.
 
-```{r Figure12, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure12, message=FALSE, warning=FALSE}
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig")
 
@@ -263,7 +263,7 @@ for(i in seq_len(length(histone.marks))) {
 Once we have the for loop and the `autotrack` in place, we can increase the 
 number of histone marks and everything will autoadjust.
 
-```{r Figure13, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure13, message=FALSE, warning=FALSE}
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
                    H3K27ac="wgEncodeBroadHistoneK562H3k27acStdSig.bigWig",
@@ -298,7 +298,7 @@ the plot.
 
 
 
-```{r Figure14, message=FALSE, warning=FALSE, fig.height=14}
+```{r Figure14, message=FALSE, warning=FALSE}
 
 pp <- getDefaultPlotParams(plot.type=1)
 pp$leftmargin <- 0.15
@@ -330,7 +330,7 @@ for(i in seq_len(length(histone.marks))) {
 And we can even add other experimental peaks and use nested `autotrack`s to
 position them all.
 
-```{r Figure15, message=FALSE, warning=FALSE, fig.height=20}
+```{r Figure15, message=FALSE, warning=FALSE}
 base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
@@ -395,7 +395,7 @@ for(i in seq_len(length(DNA.binding))) {
 And add a main title, a couple of additional labels and adjust a few parameters
 (text sizes, etc...) to get a better final image.
 
-```{r Figure16, message=FALSE, warning=FALSE, fig.height=20}
+```{r Figure16, message=FALSE, warning=FALSE}
 base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/"
 histone.marks <- c(H3K4me3="wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig",
                    H3K36me3="wgEncodeBroadHistoneK562H3k36me3StdSig.bigWig",
@@ -412,7 +412,7 @@ DNA.binding <- c(CTCF="wgEncodeBroadHistoneK562CtcfStdSig.bigWig",
 
 
 pp <- getDefaultPlotParams(plot.type=1)
-pp$leftmargin <- 0.13
+pp$leftmargin <- 0.15
 pp$topmargin <- 15
 pp$bottommargin <- 15
 pp$ideogramheight <- 5
@@ -431,7 +431,7 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 total.tracks <- length(histone.marks)+length(DNA.binding)
 out.at <- autotrack(1:length(histone.marks), total.tracks, margin = 0.3, r0=0.23)
 kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3.5,
-            srt=90, pos=1, label.margin = 0.12)
+            srt=90, pos=1, label.margin = 0.14)
 
 for(i in seq_len(length(histone.marks))) {
   bigwig.file <- paste0(base.url, histone.marks[i])
@@ -449,7 +449,7 @@ for(i in seq_len(length(histone.marks))) {
 out.at <- autotrack((length(histone.marks)+1):total.tracks, total.tracks, margin = 0.3, r0=0.23)
 
 kpAddLabels(kp, labels = "DNA-binding proteins", r0 = out.at$r0, r1=out.at$r1,
-             cex=3.5, srt=90, pos=1, label.margin = 0.12)
+             cex=3.5, srt=90, pos=1, label.margin = 0.14)
 for(i in seq_len(length(DNA.binding))) {
   bigwig.file <- paste0(base.url, DNA.binding[i])
   at <- autotrack(i, length(DNA.binding), r0=out.at$r0, r1=out.at$r1, margin = 0.1)
@@ -470,13 +470,13 @@ As always with karyoploteR, we can change the plotting region (zoom in this
 case) to plot any part of the genome, for example, a detailed view of the 
 overlapping zone.
 
-```{r Figure17, message=FALSE, warning=FALSE, fig.height=20}
+```{r Figure17, message=FALSE, warning=FALSE}
 
 TP53.promoter.region <- toGRanges("chr17:7586000-7596000")
 kp <- plotKaryotype(zoom = TP53.promoter.region, cex=3, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=2, tick.len = 3)
-kpAddMainTitle(kp, "K652 Epigenetic Regulation", cex=4)
+kpAddMainTitle(kp, "Epigenetic Regulation in K652", cex=4)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2.5)
 kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
@@ -484,8 +484,8 @@ kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 #Histone marks
 total.tracks <- length(histone.marks)+length(DNA.binding)
 out.at <- autotrack(1:length(histone.marks), total.tracks, margin = 0.3, r0=0.23)
-kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3,
-            srt=90, pos=1, label.margin = 0.12)
+kpAddLabels(kp, labels = "Histone marks", r0 = out.at$r0, r1=out.at$r1, cex=3.5,
+            srt=90, pos=1, label.margin = 0.14)
 
 for(i in seq_len(length(histone.marks))) {
   bigwig.file <- paste0(base.url, histone.marks[i])
@@ -503,7 +503,7 @@ for(i in seq_len(length(histone.marks))) {
 out.at <- autotrack((length(histone.marks)+1):total.tracks, total.tracks, margin = 0.3, r0=0.23)
 
 kpAddLabels(kp, labels = "DNA-binding proteins", r0 = out.at$r0, r1=out.at$r1,
-             cex=3, srt=90, pos=1, label.margin = 0.1)
+             cex=3.5, srt=90, pos=1, label.margin = 0.14)
 for(i in seq_len(length(DNA.binding))) {
   bigwig.file <- paste0(base.url, DNA.binding[i])
   at <- autotrack(i, length(DNA.binding), r0=out.at$r0, r1=out.at$r1, margin = 0.1)
@@ -513,9 +513,7 @@ for(i in seq_len(length(DNA.binding))) {
   kpAxis(kp, ymin=0, ymax=computed.ymax, tick.pos = computed.ymax, 
          r0=at$r0, r1=at$r1, cex=1.6)
   kpAddLabels(kp, labels = names(DNA.binding)[i], r0=at$r0, r1=at$r1, 
-              cex=1.6, label.margin = 0.035)
+              cex=2.2, label.margin = 0.035)
 }
-
-
 ```
 
