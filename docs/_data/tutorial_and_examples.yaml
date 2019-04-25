@@ -68,6 +68,12 @@ tutorial:
         url: /Tutorial/DataPositioning/DataPositioning.html
         text: Manage and adjust the exact positioning of data when plotting
         only_devel: 0
+      - label: Autotrack
+        title: Autotrack
+        short_title: Autotrack
+        url: /Tutorial/Autotrack/Autotrack.html
+        text: Automatically set r0 and r1 to create multiple non-overlapping tracks
+        only_devel: 0
       - label: Zoom
         title: Zooming for a detail view
         short_title: Zoom
