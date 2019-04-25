@@ -150,7 +150,7 @@ color column to set the colors of the regions when calling
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 ```
 
 ![plot of chunk Figure6](images//Figure6-1.png)
@@ -163,7 +163,7 @@ the two genes overlap. To start identifying the elements in the plot we'll use
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 ```
 
@@ -193,7 +193,7 @@ histone 3 (H3K4me3). And we will plot it bewteen 0.35 and 1.
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
@@ -215,7 +215,7 @@ more informative).
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 bigwig.file <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
@@ -237,7 +237,7 @@ specifications.
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 H3K4me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
@@ -264,7 +264,7 @@ We wil also add a label to identify each chromatin mark.
 ```r
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 H3K4me3.bw <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBroadHistone/wgEncodeBroadHistoneK562H3k4me3StdSig.bigWig"
@@ -300,7 +300,7 @@ base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBr
 
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 for(i in seq_len(length(histone.marks))) {
@@ -332,7 +332,7 @@ base.url <- "http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeBr
 
 kp <- plotKaryotype(zoom = TP53.region, cex=2)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.15, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.22, r1=0.3)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.22, r1=0.3)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.22, r1=0.3, cex=2)
 
 for(i in seq_len(length(histone.marks))) {
@@ -370,7 +370,7 @@ kp <- plotKaryotype(zoom = TP53.region, cex=2, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=1.3, digits = 6)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2)
 
 for(i in seq_len(length(histone.marks))) {
@@ -418,7 +418,7 @@ kp <- plotKaryotype(zoom = TP53.region, cex=2, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=1.3, digits = 6)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2)
 
 #Histone marks
@@ -484,9 +484,9 @@ pp$data1outmargin <- 0
 kp <- plotKaryotype(zoom = TP53.region, cex=3, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=2, tick.len = 3)
-kpAddMainTitle(kp, "Epigenetic Regulation in K652", cex=4)
+kpAddMainTitle(kp, "Epigenetic Regulation in K562", cex=4)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2.5)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 
 #Histone marks
@@ -538,9 +538,9 @@ TP53.promoter.region <- toGRanges("chr17:7586000-7596000")
 kp <- plotKaryotype(zoom = TP53.promoter.region, cex=3, plot.params = pp)
 kpAddBaseNumbers(kp, tick.dist = 10000, minor.tick.dist = 2000,
                  add.units = TRUE, cex=2, tick.len = 3)
-kpAddMainTitle(kp, "Epigenetic Regulation in K652", cex=4)
+kpAddMainTitle(kp, "Epigenetic Regulation in K562", cex=4)
 kpPlotGenes(kp, data=genes.data, r0=0, r1=0.1, gene.name.cex = 2.5)
-kpPlotRegions(kp, K652.hmm, col=K652.hmm$itemRgb, r0=0.15, r1=0.18)
+kpPlotRegions(kp, K562.hmm, col=K562.hmm$itemRgb, r0=0.15, r1=0.18)
 kpAddLabels(kp, labels = "Chromatin\nState (HMM)", r0=0.15, r1=0.18, cex=2.5)
 
 #Histone marks
