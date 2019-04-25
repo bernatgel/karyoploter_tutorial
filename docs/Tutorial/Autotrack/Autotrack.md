@@ -7,10 +7,10 @@ title: Using autotrack to compute r0 and r1
 
 
 
-## Data Positioning in karyoploteR
+## Automated Data Positioning in karyoploteR
 
 As seen in the 
-[data positioning]({{ site.baseurl }}{% link Tutorial/DataPositioning/DataPositioning.md %}).
+[data positioning]({{ site.baseurl }}{% link Tutorial/DataPositioning/DataPositioning.md %})
 section, `r0`and `r1`can be used to define the vertical regions of the
 data panels where a function will plot. 
 
