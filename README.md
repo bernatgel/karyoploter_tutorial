@@ -8,7 +8,7 @@ data.
 
 They can be found at [https://bernatgel.github.io/karyoploter_tutorial/](https://bernatgel.github.io/karyoploter_tutorial/)
 
-![Multiple Data Types Figure](docs/Examples/MultipleDataTypes/figure/Figure-1.png?raw=true "Multiple Data Types")
+![Multiple Data Types Figure](https://raw.githubusercontent.com/bernatgel/karyoploter_tutorial/master/docs/Examples/MultipleDataTypes/images/Figure-1.png "Multiple Data Types")
 
 The examples are written in RMarkdown, processed with knitr and published by Jekyll on the Github Pages platform. This code could be easily adapted to create examples pages for other packages if needed.
 
