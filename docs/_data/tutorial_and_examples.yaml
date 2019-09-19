@@ -182,7 +182,12 @@ tutorial:
         url: /Tutorial/PlotBAMCoverage/PlotBAMCoverage.html
         text: Plot the per-base coverage of a BAM file
         only_devel: 0
-      
+      - label: PlotHorizon
+        title: Plotting Horizon plots
+        short_title: Plot Horizon plots
+        url: /Tutorial/PlotHorizon/PlotHorizon.html
+        text: Plot a horizon plot (aka horizon graph) on the genome
+        only_devel: 1
       
 examples:
   - label: MultipleData
