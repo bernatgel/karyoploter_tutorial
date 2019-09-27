@@ -191,7 +191,7 @@ tutorial:
       - label: PlotManhattan
         title: Creating Manhattan plots
         short_title: Manhattan plots
-        url: /Tutorial/PlotPlotManhattan/PlotManhattan.html
+        url: /Tutorial/PlotManhattan/PlotManhattan.html
         text: Plot a manhattan plot, the one usually used for GWAS studies, in your genome
         only_devel: 1
       
