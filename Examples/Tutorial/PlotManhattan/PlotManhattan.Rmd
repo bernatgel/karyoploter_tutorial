@@ -349,12 +349,27 @@ kpPlotDensity(kp, data=snps, col="lightskyblue1", r0=0.82, window.size = 10e6)
 kpAddLabels(kp, labels = "Density", srt=90, pos=3, cex=1.2, label.margin = 0.025, r0=0.82)
 ```
 
+And you can plot them with different chromosome distributions simply changing
+`plot.type` to get a completely different visual effect.
+
+
+```{r Figure21, message=FALSE, warning=FALSE, fig.height=14}
+kp <- plotKaryotype(plot.type=1)
+kpAxis(kp, ymin=0, ymax=10)
+kp <- kpPlotManhattan(kp, data=ds$snps, points.col = "brewer.set3", ymax=10)
+kpPlotMarkers(kp, data = genes, labels = paste0("Gene", seq_along(genes)), 
+              text.orientation = "horizontal", cex=1.2, y=0.85, pos=4)
+
+```
+
+
+
 ## Zooming
 
 As with any other karyoploteR plot, it's possible to zoom in using 
 [`zoom`]({{ site.baseurl }}{% link Tutorial/Zoom/Zoom.md %})
 
-```{r Figure21, message=FALSE, warning=FALSE, fig.height=7}
+```{r Figure22, message=FALSE, warning=FALSE, fig.height=7}
 kp <- plotKaryotype(plot.type=4, zoom="chr1:50e6-90e6")
 kpAddBaseNumbers(kp, add.units = TRUE, cex=1)
 kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, cex=1.8, label.margin = 0.025)
@@ -372,7 +387,7 @@ kpAddLabels(kp, labels = "Density", srt=90, pos=3, cex=1.2, label.margin = 0.025
 And we can then add the genes in the zoomed region to the plot, to investigate
 the relation between top SNPs and genes.
 
-```{r Figure22, message=FALSE, warning=FALSE, fig.height=7}
+```{r Figure23, message=FALSE, warning=FALSE, fig.height=7}
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 
 kp <- plotKaryotype(plot.type=4, zoom="chr1:68e6-73e6")
