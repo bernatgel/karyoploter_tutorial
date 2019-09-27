@@ -36,8 +36,8 @@ set.seed(123456)
 
 createDataset <- function(num.snps=20000, max.peaks=5) {
   hg19.genome <- filterChromosomes(getGenome("hg19"))
-  snps <- sort(createRandomRegions(nregions=num.snps, length.mean=1, length.sd=0,
-                            genome=filterChromosomes(getGenome("hg19"))))
+  snps <- sort(createRandomRegions(nregions=num.snps, length.mean=1, 
+                    length.sd=0, genome=filterChromosomes(getGenome("hg19"))))
   names(snps) <- paste0("rs", seq_len(num.snps))
   snps$pval <- rnorm(n = num.snps, mean = 0.5, sd = 1)
   snps$pval[snps$pval<0] <- -1*snps$pval[snps$pval<0]
@@ -46,7 +46,8 @@ createDataset <- function(num.snps=20000, max.peaks=5) {
   peaks
   for(npeak in seq_along(peaks)) {
     snps.in.peak <- which(overlapsAny(snps, peaks[npeak]))
-    snps$pval[snps.in.peak] <- runif(n = length(snps.in.peak), min=0.1, max=runif(1,6,8))
+    snps$pval[snps.in.peak] <- runif(n = length(snps.in.peak), 
+                                     min=0.1, max=runif(1,6,8))
   }
   snps$pval <- 10^(-1*snps$pval)
   return(list(peaks=peaks, snps=snps))
@@ -214,26 +215,96 @@ kp <- kpPlotManhattan(kp, data=ds$snps, ymax=10)
 kpAxis(kp, ymin = 0, ymax=10, numticks = 11)
 ```
 
-## Combining it
+## Labeling SNPs
 
-In adidtion to adding axis, it's possible to combine `kpPlotManhattan` with
+As with the axis, to label SNPs we have the full flexibility of karyoploteR
+functions. There is no automatic labelling of top SNPs in place, but you can 
+label any SNP in multiple ways.
+
+For example, we can select the top SNP per chromosome over the suggestive 
+threshold with code like this.
+
+```{r Figure13, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4)
+kp <- kpPlotManhattan(kp, data=ds$snps, ymax=10)
+kpAxis(kp, ymin = 0, ymax=10, numticks = 11)
+
+snps <- kp$latest.plot$computed.values$data
+suggestive.thr <- kp$latest.plot$computed.values$suggestiveline
+#Get the names of the top SNP per chr
+top.snps <- tapply(seq_along(snps), seqnames(snps), function(x) {
+  in.chr <- snps[x]
+  top.snp <- in.chr[which.max(in.chr$y)]
+  return(names(top.snp))
+})
+#Filter by suggestive line
+top.snps <- top.snps[snps[top.snps]$y>suggestive.thr]
+#And select all snp information based on the names
+top.snps <- snps[top.snps]
+
+top.snps
+```
+
+And now we can plot the names on top of the manhattan plot. We can use 
+[`kpText`]({{ site.baseurl }}{% link Tutorial/Text/Text.md %}) to plot
+the labels next to the SNP dots. `kpText` will automatically use the content
+of the `data$y` if such a column is present.
+
+```{r Figure14, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4)
+kp <- kpPlotManhattan(kp, data=ds$snps, ymax=10)
+kpAxis(kp, ymin = 0, ymax=10, numticks = 11)
+
+kpText(kp, data = top.snps, labels = names(top.snps), ymax=10, pos=3)
+```
+
+And we can use additional visual elements to highlight them
+
+```{r Figure15, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4)
+kp <- kpPlotManhattan(kp, data=ds$snps, ymax=10)
+kpAxis(kp, ymin = 0, ymax=10, numticks = 11)
+
+kpText(kp, data = top.snps, labels = names(top.snps), ymax=10, pos=4, cex=1.6, col="red")
+kpPoints(kp, data = top.snps, pch=1, cex=1.6, col="red", lwd=2, ymax=10)
+```
+
+Or we can use 
+[`kpPlotMarkers`]({{ site.baseurl }}{% link Tutorial/PlotMarkers/PlotMarkers.md %})
+to annotate them
+
+```{r Figure16, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4)
+kp <- kpPlotManhattan(kp, data=ds$snps, ymax=10)
+kpAxis(kp, ymin = 0, ymax=10, numticks = 11)
+
+kpPlotMarkers(kp, data=top.snps, labels=names(top.snps), srt=45, y=0.9, 
+              ymax=10, r0=0.8, line.color="red")
+kpSegments(kp, data=top.snps, y0=top.snps$y, y1=8, ymax=10, col="red")
+
+```
+
+
+## Combining plots
+
+In addidtion to adding axis, it's possible to combine `kpPlotManhattan` with
 any other karyoploteR functions and plots. For example, with r0 and r1 (with
 help from 
-[`autotrack`]()
+[`autotrack`]({{ site.baseurl }}{% link Tutorial/Autotrack/Autotrack.md %})
 we can plot a manhattan plot in a fraction of the vertical space and combine
 different manhattan plots of different datasets and use `kpRect` to highlight a 
 specific region.
 
-```{r Figure13, message=FALSE, warning=FALSE, fig.height=7}
+```{r Figure17, message=FALSE, warning=FALSE, fig.height=7}
 reg <- extendRegions(ds$peaks, 15e6, 15e6)
 kp <- plotKaryotype(plot.type=4)
-kpAddLabels(kp, labels = "Trait1", srt=90, pos=3, r0=autotrack(1,4))
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, r0=autotrack(1,4))
 kp <- kpPlotManhattan(kp, data=ds$snps, highlight = ds$peaks, r0=autotrack(1,4))
-kpAddLabels(kp, labels = "Trait2", srt=90, pos=3, r0=autotrack(2,4))
+kpAddLabels(kp, labels = "Trait 2", srt=90, pos=3, r0=autotrack(2,4))
 kp <- kpPlotManhattan(kp, data=createDataset()$snps,  r0=autotrack(2,4))
-kpAddLabels(kp, labels = "Trait3", srt=90, pos=3, r0=autotrack(3,4))
+kpAddLabels(kp, labels = "Trait 3", srt=90, pos=3, r0=autotrack(3,4))
 kp <- kpPlotManhattan(kp, data=createDataset()$snps,  r0=autotrack(3,4))
-kpAddLabels(kp, labels = "Trait4", srt=90, pos=3, r0=autotrack(4,4))
+kpAddLabels(kp, labels = "Trait 4", srt=90, pos=3, r0=autotrack(4,4))
 kp <- kpPlotManhattan(kp, data=createDataset()$snps,  r0=autotrack(4,4))
 
 kpRect(kp, data=reg, y0=0, y1=1, col=NA, border="red", lwd=3)
@@ -241,25 +312,84 @@ kpRect(kp, data=reg, y0=0, y1=1, col=NA, border="red", lwd=3)
 ```
 
 
-```{r Figure14, message=FALSE, warning=FALSE, fig.height=7}
-reg <- extendRegions(ds$peaks, 15e6, 15e6)
+```{r Figure18, message=FALSE, warning=FALSE, fig.height=7}
 kp <- plotKaryotype(plot.type=4)
-kpAddLabels(kp, labels = "Trait1", srt=90, pos=3, r0=0.5, r1=1)
-
- Add axis  and bigger labels
- 
-kp <- kpPlotManhattan(kp, data=ds$snps, highlight = ds$peaks, r0=0.5, r1=1)
-kpAddLabels(kp, labels = "Trait2", srt=90, pos=3, r0=0, r1=0.5)
-kp <- kpPlotManhattan(kp, data=createDataset()$snps,  r0=0.5, r1=0)
-kpAbline(kp, h=0.5, col="blue", lwd=3)
-kpRect(kp, data=reg, y0=0, y1=1, col=NA, border="red", lwd=3)
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, r0=0.5, r1=1, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10, r0=0.5)
+kp <- kpPlotManhattan(kp, data=ds$snps, highlight = ds$peaks, r0=0.5, r1=1, ymax=10)
+kpAddLabels(kp, labels = "Trait 2", srt=90, pos=3, r0=0, r1=0.5, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10, r0=0.5, r1=0, tick.pos = c(5,10))
+kp <- kpPlotManhattan(kp, data=createDataset()$snps, r0=0.5, r1=0, ymax=10, points.col = "2blues")
 
 ```
 
-Label SNPs!!! Its own section?
+Or we can add positional markers for genes, for examples, using 
+[`kpPlotMarkers`]({{ site.baseurl }}{% link Tutorial/PlotMarkers/PlotMarkers.md %})
 
-Combine with a line plot or similar (join the max of every 100 SNPs?)
+```{r Figure19, message=FALSE, warning=FALSE, fig.height=7}
+genes <- createRandomRegions(nregions = 5, genome = hg19.genome)
+kp <- plotKaryotype(plot.type=4)
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10)
+kp <- kpPlotManhattan(kp, data=ds$snps, points.col = "brewer.set3", ymax=10)
 
-Combine with markers for genes!
+kpPlotMarkers(kp, data = genes, labels = paste0("Gene", seq_along(genes)), cex=1.8, y=0.85)
+```
 
-Zoom in and plot genes!!!
+Or in general, combine them with any other plot. Fo example, we can plotthe SNP
+density  together with the manhattan plot.
+
+```{r Figure20, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4)
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10, r1=0.8)
+kp <- kpPlotManhattan(kp, data=ds$snps, points.col = "brewer.set3", ymax=10, r1=0.8)
+
+kpPlotDensity(kp, data=snps, col="lightskyblue1", r0=0.82, window.size = 10e6)
+kpAddLabels(kp, labels = "Density", srt=90, pos=3, cex=1.2, label.margin = 0.025, r0=0.82)
+```
+
+## Zooming
+
+As with any other karyoploteR plot, it's possible to zoom in using 
+[`zoom`]({{ site.baseurl }}{% link Tutorial/Zoom/Zoom.md %})
+
+```{r Figure21, message=FALSE, warning=FALSE, fig.height=7}
+kp <- plotKaryotype(plot.type=4, zoom="chr1:50e6-90e6")
+kpAddBaseNumbers(kp, add.units = TRUE, cex=1)
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10, r1=0.8)
+kp <- kpPlotManhattan(kp, data=ds$snps, points.col = "brewer.set3", ymax=10, r1=0.8)
+
+kpText(kp, data = top.snps, labels = names(top.snps), ymax=10, pos=3, cex=1.6, col="red", r1=0.8)
+kpPoints(kp, data = top.snps, pch=1, cex=1.6, col="red", lwd=2, ymax=10, r1=0.8)
+
+kpPlotDensity(kp, data=snps, col="lightskyblue1", r0=0.82, window.size = 10e6)
+kpAddLabels(kp, labels = "Density", srt=90, pos=3, cex=1.2, label.margin = 0.025, r0=0.82)
+
+```
+
+And we can then add the genes in the zoomed region to the plot, to investigate
+the relation between top SNPs and genes.
+
+```{r Figure22, message=FALSE, warning=FALSE, fig.height=7}
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+
+kp <- plotKaryotype(plot.type=4, zoom="chr1:68e6-73e6")
+kpAddBaseNumbers(kp, add.units = TRUE, cex=1, tick.dist = 1e6)
+kpAddLabels(kp, labels = "Trait 1", srt=90, pos=3, cex=1.8, label.margin = 0.025)
+kpAxis(kp, ymin=0, ymax=10, r0=0.2)
+kp <- kpPlotManhattan(kp, data=ds$snps, points.col = "brewer.set3", ymax=10, r0=0.2)
+
+kpText(kp, data = top.snps, labels = names(top.snps), ymax=10, pos=3, cex=1.6, col="red", r0=0.2)
+kpPoints(kp, data = top.snps, pch=1, cex=1.6, col="red", lwd=2, ymax=10, r0=0.2)
+
+genes.data <- makeGenesDataFromTxDb(txdb = TxDb.Hsapiens.UCSC.hg19.knownGene, karyoplot = kp)
+genes.data <- addGeneNames(genes.data)
+genes.data <- mergeTranscripts(genes.data)
+kpPlotGenes(kp, data=genes.data, add.transcript.names = FALSE, r1=0.2, cex=0.8, gene.name.position = "left")
+            
+
+```
+
+
