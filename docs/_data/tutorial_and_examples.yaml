@@ -188,6 +188,12 @@ tutorial:
         url: /Tutorial/PlotHorizon/PlotHorizon.html
         text: Plot a horizon plot (aka horizon graph) on the genome
         only_devel: 1
+      - label: PlotManhattan
+        title: Creating Manhattan plots
+        short_title: Manhattan plots
+        url: /Tutorial/PlotPlotManhattan/PlotManhattan.html
+        text: Plot a manhattan plot, the one usually used for GWAS studies, in your genome
+        only_devel: 1
       
 examples:
   - label: MultipleData
