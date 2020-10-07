@@ -20,8 +20,9 @@ regulatory elements. All this data is
 and most of it also via other sources.
 
 In this example we'll use ENCODE data downloaded from the UCSC at
-[http://http://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/] to study the
-chromatin conformation of a small genomic region in the K562 cell line.
+[https://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/](https://hgdownload.soe.ucsc.edu/goldenPath/hg19/encodeDCC/)
+to study the chromatin conformation of a small genomic region in the K562 cell
+line.
 
 We'll plot the TP53 region and our plot will contain: the genes in the region, 
 the chromatin state as defined by a hidden markov model (HMM) and the peak
