@@ -7,6 +7,7 @@ disqus_shortname: ''
 
 # if you use google analytics, add your tracking id here
 google_analytics_id: 'UA-98092676-1'
+google_analytics4_id: 'G-DE97ZP61PM'
 
 # Enable/show navigation. There are there options:
 #   0 - always hide
